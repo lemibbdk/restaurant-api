@@ -14,6 +14,20 @@ class CategoryService {
 
     return lista;
   }
+
+  public async getById(categoryId: number): Promise<CategoryModel|null> {
+    if (categoryId === 1) {
+      return {
+        categoryId: 1,
+        name: 'Category A',
+        parentCategoryId: null,
+        parentCategory: null,
+        subCategories: []
+      }
+    } else {
+      return null;
+    }
+  }
 }
 
 export default CategoryService;
