@@ -4,11 +4,11 @@ const Config: IConfig = {
   server: {
     port: 40080,
     static: {
-      path: "static/",
+      path: "./static/",
       route: "/static",
-      cacheControl: true,
+      cacheControl: false,
       dotfiles: "deny",
-      etag: true,
+      etag: false,
       maxAge: 3600000,
       index: false
     }
@@ -21,7 +21,7 @@ const Config: IConfig = {
     port: 3306,
     user: "root",
     password: "",
-    database: "aplikacija",
+    database: "restaurant",
     charset: "utf8",
     timezone: "+01:00"
   }

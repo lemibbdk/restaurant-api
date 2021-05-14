@@ -1,6 +1,7 @@
 import CategoryModel from './model';
 import * as mysql2 from 'mysql2/promise'
 import IModelAdapterOptions from '../../common/IModelAdapterOptions.interface';
+import IErrorResponse from '../../common/IErrorResponse.interface';
 
 class CategoryService {
   private db: mysql2.Connection
@@ -16,66 +17,109 @@ class CategoryService {
     item.name = row?.name;
     item.parentCategoryId = Number(row?.parent_category_id);
 
-    if (options.loadParent && item.parentCategoryId) {
-      item.parentCategory = await this.getById(item.parentCategoryId)
+    if (options.loadParent && item.parentCategoryId !== null) {
+      const data = await this.getById(item.parentCategoryId);
+
+      if (data instanceof CategoryModel) {
+        item.parentCategory = data;
+      }
     }
 
     if (options.loadChildren) {
-      item.subCategories = await this.getByParentCategoryId(item.categoryId)
+      const data = await this.getAllByParentCategoryId(item.categoryId);
+
+      if (Array.isArray(data)) {
+        item.subCategories = data;
+      }
     }
 
     return item;
   }
 
-  public async getAll(): Promise<CategoryModel[]> {
-    const categories: CategoryModel[] = [];
+  public async getAll(): Promise<CategoryModel[]|IErrorResponse> {
+    return new Promise<CategoryModel[]|IErrorResponse>(async (resolve) => {
 
-    const sql: string = "SELECT * FROM category WHERE parent_category_id IS NULL ORDER BY name;";
-    const [rows, columns] = await this.db.execute(sql);
-
-    if (Array.isArray(rows)) {
-      for (const row of rows) {
-        categories.push(await this.adaptToModel(row, {loadChildren: true}))
-      }
-    }
-
-    return categories;
-  }
-
-  public async getByParentCategoryId(parentCategoryId: number): Promise<CategoryModel[]> {
-    const categories: CategoryModel[] = [];
-
-    const sql: string = "SELECT * FROM category WHERE parent_category_id = ? ORDER BY name;";
-    const [rows, columns] = await this.db.execute(sql, [parentCategoryId]);
-
-    if (Array.isArray(rows)) {
-      for (const row of rows) {
-        categories.push(
-          await this.adaptToModel(
-            row, {
-              loadChildren: true
+      const sql: string = "SELECT * FROM category WHERE parent_category_id IS NULL ORDER BY name;";
+      this.db.execute(sql)
+        .then(async result => {
+          const rows = result[0]
+          console.log(rows)
+          const categories: CategoryModel[] = [];
+          if (Array.isArray(rows)) {
+            for (const row of rows) {
+              categories.push(await this.adaptToModel(row, {loadChildren: true}))
             }
-          )
-        )
-      }
-    }
+          }
 
-    return categories;
+          resolve(categories);
+        })
+        .catch(error => {
+          resolve({
+            errorCode: error?.errno,
+            errorMessage: error?.sqlMessage
+          })
+        });
+
+
+    })
   }
 
-  public async getById(categoryId: number): Promise<CategoryModel|null> {
-    const sql: string = "SELECT * FROM category WHERE category_id = ?;"
-    const [rows, columns] = await this.db.execute(sql, [categoryId])
+  public async getAllByParentCategoryId(parentCategoryId: number): Promise<CategoryModel[]|IErrorResponse> {
+    try {
+      const categories: CategoryModel[] = [];
 
-    if (!Array.isArray(rows)) {
-      return null
+      const sql: string = "SELECT * FROM category WHERE parent_category_id = ? ORDER BY name;";
+      const [rows, columns] = await this.db.execute(sql, [parentCategoryId]);
+
+      if (Array.isArray(rows)) {
+        for (const row of rows) {
+          categories.push(
+            await this.adaptToModel(
+              row, {
+                loadChildren: true
+              }
+            )
+          )
+        }
+      }
+
+      return categories;
+    } catch (e) {
+      return {
+        errorCode: e?.errno,
+        errorMessage: e?.sqlMessage
+      }
     }
+  }
 
-    if (rows.length == 0) {
-      return null
-    }
+  public async getById(categoryId: number): Promise<CategoryModel|null|IErrorResponse> {
+    return new Promise<CategoryModel|null|IErrorResponse>(async resolve => {
+      const sql: string = "SELECT FROM category WHERE category_id = ?;"
+      this.db.execute(sql, [categoryId])
+        .then(async result => {
+          const [rows, columns] = result
 
-    return await this.adaptToModel(rows[0], {loadChildren: true, loadParent: true})
+          if (!Array.isArray(rows)) {
+            resolve(null)
+            return;
+          }
+
+          if (rows.length == 0) {
+            resolve( null);
+            return;
+          }
+
+          resolve(await this.adaptToModel(rows[0], {loadChildren: true, loadParent: true}))
+        })
+        .catch(error => {
+          resolve({
+            errorCode: error?.errno,
+            errorMessage: error?.sqlMessage
+          })
+        })
+
+
+    });
   }
 }
 

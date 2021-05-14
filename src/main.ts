@@ -17,7 +17,9 @@ async function main() {
       host: Config.database.host,
       port: Config.database.port,
       user: Config.database.user,
-      password: Config.database.charset,
+      password: Config.database.password,
+      database: Config.database.database,
+      charset: Config.database.charset,
       timezone: Config.database.timezone,
       supportBigNumbers: true
     }),
@@ -39,6 +41,10 @@ async function main() {
   )
 
   Router.setupRoutes(application, resources, [new CategoryRouter()]);
+
+  application.use((err, req, res, next) => {
+    res.status(err.status).send(err.type);
+  })
 
   application.listen(Config.server.port)
 }
