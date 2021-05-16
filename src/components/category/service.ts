@@ -122,6 +122,42 @@ class CategoryService extends BaseService<CategoryModel>{
         })
     })
   }
+
+  public async delete(categoryId: number): Promise<IErrorResponse> {
+    return new Promise<IErrorResponse>(resolve => {
+      const sql = 'DELETE FROM category WHERE category_id = ?;';
+      this.db.execute(sql, [categoryId])
+        .then(async result => {
+          const deleteInfo: any = result[0];
+          const deletedRowCount: number = +(deleteInfo?.affectedRows);
+
+          if (deletedRowCount === 1) {
+            resolve({
+              errorCode: 0,
+              errorMessage: 'One record deleted.'
+            })
+          } else {
+            resolve({
+              errorCode: -1,
+              errorMessage: 'This record could not be deleted, because it not exist.'
+            })
+          }
+        })
+        .catch(error => {
+          if (error?.errno === 1451) {
+            resolve({
+              errorCode: -2,
+              errorMessage: 'This record could not be deleted, because category has subcategories.'
+            })
+          }
+
+          resolve({
+            errorCode: error?.errno,
+            errorMessage: error?.sqlMessage
+          });
+        })
+    });
+  }
 }
 
 export default CategoryService;
