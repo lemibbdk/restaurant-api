@@ -5,9 +5,14 @@ import { IAddCategory } from './dto/IAddCategory';
 import BaseService from '../../services/BaseService';
 import { IEditCategory } from './dto/IEditCategory';
 
+class CategoryModelAdapterOptions implements IModelAdapterOptions {
+  loadParentCategory: boolean = false;
+  loadSubcategories:  boolean = false;
+}
+
 class CategoryService extends BaseService<CategoryModel>{
 
-  protected async adaptModel(row: any, options: Partial<IModelAdapterOptions> = {loadParent: false, loadChildren: false})
+  protected async adaptModel(row: any, options: Partial<CategoryModelAdapterOptions> = { })
     : Promise<CategoryModel> {
     const item: CategoryModel = new CategoryModel();
 
@@ -15,7 +20,7 @@ class CategoryService extends BaseService<CategoryModel>{
     item.name = row?.name;
     item.parentCategoryId = row?.parent_category_id;
 
-    if (options.loadParent && item.parentCategoryId !== null) {
+    if (options.loadParentCategory && item.parentCategoryId !== null) {
       const data = await this.getById(item.parentCategoryId);
 
       if (data instanceof CategoryModel) {
@@ -23,7 +28,7 @@ class CategoryService extends BaseService<CategoryModel>{
       }
     }
 
-    if (options.loadChildren) {
+    if (options.loadSubcategories) {
       const data = await this.getAllByParentCategoryId(item.categoryId);
 
       if (Array.isArray(data)) {
@@ -35,27 +40,33 @@ class CategoryService extends BaseService<CategoryModel>{
   }
 
   public async getAll(): Promise<CategoryModel[]|IErrorResponse> {
-    return await this.getAllByFieldNameFromTable(
+    return await this.getAllByFieldNameFromTable<CategoryModelAdapterOptions>(
       'category',
       'parent_category_id',
       null,
       {
-        loadChildren: true
+        loadSubcategories: true
       })
   }
 
   public async getAllByParentCategoryId(parentCategoryId: number): Promise<CategoryModel[]|IErrorResponse> {
-    return await this.getAllByFieldNameFromTable(
+    return await this.getAllByFieldNameFromTable<CategoryModelAdapterOptions>(
       'category',
       'parent_category_id',
       parentCategoryId,
       {
-        loadChildren: true
+        loadSubcategories: true
       })
   }
 
   public async getById(categoryId: number): Promise<CategoryModel|null|IErrorResponse> {
-    return await this.getByIdFromTable('category', categoryId);
+    return await this.getByIdFromTable<CategoryModelAdapterOptions>(
+      'category',
+      categoryId,
+      {
+        loadSubcategories: true
+      }
+    );
   }
 
   public async add(data: IAddCategory): Promise<CategoryModel|IErrorResponse> {
@@ -93,7 +104,7 @@ class CategoryService extends BaseService<CategoryModel>{
       const sql = 'UPDATE category SET name = ? WHERE category_id = ?;';
 
       this.db.execute(sql, [ data.name, categoryId ])
-        .then(async result => {
+        .then(async () => {
           resolve(await this.getById(categoryId));
         })
         .catch(error => {
