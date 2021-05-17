@@ -3,6 +3,7 @@ import ItemModel from './model';
 import IErrorResponse from '../../common/IErrorResponse.interface';
 import IModelAdapterOptions from '../../common/IModelAdapterOptions.interface';
 import { IAddItem } from './dto/IAddItem';
+import { IEditItem } from './dto/IEditItem';
 
 class ItemModelAdapterOptions implements IModelAdapterOptions {
   loadItemInfo: boolean = false;
@@ -47,6 +48,34 @@ class ItemService extends BaseService<ItemModel> {
 
           const newItemId: number = +(insertInfo?.insertId);
           resolve(await this.getById(newItemId));
+        })
+        .catch(error => {
+          resolve({
+            errorCode: error?.errno,
+            errorMessage: error?.sqlMessage
+          })
+        })
+    })
+  }
+
+  public async edit(itemId: number, data: IEditItem, options: Partial<ItemModelAdapterOptions> = { })
+    : Promise<ItemModel|IErrorResponse|null> {
+    const result = await this.getById(itemId);
+
+    if (result === null) {
+      return null;
+    }
+
+    if (!(result instanceof ItemModel)) {
+      return result;
+    }
+
+    return new Promise<ItemModel|IErrorResponse>(async resolve => {
+      const sql = 'UPDATE item SET name = ?, ingredients = ? WHERE item_id = ?;';
+
+      this.db.execute(sql, [data.name, data.ingredients, itemId])
+        .then(async () => {
+          resolve(await this.getById(itemId, options));
         })
         .catch(error => {
           resolve({

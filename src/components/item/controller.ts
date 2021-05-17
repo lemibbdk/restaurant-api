@@ -3,6 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import ItemModel from './model';
 import IErrorResponse from '../../common/IErrorResponse.interface';
 import { IAddItem, IAddItemValidator } from './dto/IAddItem';
+import { IEditItem, IEditItemValidator } from './dto/IEditItem';
 
 class ItemController {
   private itemService: ItemService;
@@ -50,6 +51,32 @@ class ItemController {
     }
 
     const result = await this.itemService.add(data as IAddItem);
+
+    res.send(result);
+  }
+
+  async edit(req: Request, res: Response, next: NextFunction) {
+    const id: string = req.params.id;
+    const itemId: number = +id;
+
+    if (itemId <= 0) {
+      res.sendStatus(400)
+      return;
+    }
+
+    const data = req.body;
+
+    if (!IEditItemValidator(data)) {
+      res.status(400).send(IEditItemValidator.errors);
+      return;
+    }
+
+    const result = await this.itemService.edit(itemId, data as IEditItem);
+
+    if (result === null) {
+      res.sendStatus(404)
+      return;
+    }
 
     res.send(result);
   }

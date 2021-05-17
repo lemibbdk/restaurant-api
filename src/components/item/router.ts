@@ -12,5 +12,6 @@ export default class ItemRouter implements IRouter {
     application.get('/item', itemController.getAll.bind(itemController));
     application.get('/item/:id', itemController.getById.bind(itemController));
     application.post('/item', itemController.add.bind(itemController));
+    application.put('/item/:id', itemController.edit.bind(itemController));
   }
 }
