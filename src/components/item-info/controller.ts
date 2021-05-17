@@ -1,4 +1,3 @@
-import ItemInfoService from './service';
 import { NextFunction, Request, Response } from 'express';
 import IErrorResponse from '../../common/IErrorResponse.interface';
 import ItemInfoModel from './model';
@@ -46,14 +45,12 @@ class ItemInfoController extends BaseController {
   }
 
   public async add(req: Request, res: Response, next: NextFunction) {
-    const data = req.body;
-
-    if (!IAddItemInfoValidator(data)) {
+    if (!IAddItemInfoValidator(req.body)) {
       res.status(400).send(IAddItemInfoValidator.errors);
       return;
     }
 
-    const result = await this.services.itemInfoService.add(data as IAddItemInfo);
+    const result = await this.services.itemInfoService.add(req.body as IAddItemInfo);
 
     res.send(result);
   }
