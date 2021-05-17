@@ -79,9 +79,9 @@ class ItemInfoService extends BaseService<ItemInfoModel> {
     }
 
     return new Promise<ItemInfoModel|IErrorResponse>(async resolve => {
-      const sql = 'UPDATE item_info SET size = ?, energy_value = ?, mass = ?, price = ?, item_id = ?;';
+      const sql = 'UPDATE item_info SET energy_value = ?, mass = ?, price = ? WHERE item_info_id = ?;';
 
-      this.db.execute(sql, [ data.size, data.energyValue, data.mass, data.price, data.itemId ])
+      this.db.execute(sql, [ data.energyValue, data.mass, data.price, itemInfoId ])
         .then(async () => {
           resolve(await this.getById(itemInfoId, options));
         })
@@ -93,7 +93,6 @@ class ItemInfoService extends BaseService<ItemInfoModel> {
         })
     })
   }
-
 }
 
 export default ItemInfoService;

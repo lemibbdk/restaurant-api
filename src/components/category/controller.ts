@@ -66,14 +66,11 @@ class CategoryController extends BaseController{
     const data = req.body as IAddCategory;
 
     if (data.parentCategoryId) {
-      console.log('usao')
       const parentCategoryData = await this.services.categoryService.getById(
         data.parentCategoryId,
         {loadItems: true}
       ) as CategoryModel;
-      console.log(parentCategoryData)
       if (parentCategoryData.items.length !== 0) {
-        console.log(parentCategoryData.items)
         res.status(400).send({errorMessage: "Parent category have items and it is low level category."})
         return;
       }

@@ -45,14 +45,14 @@ class ItemController extends BaseController {
       return;
     }
 
-    const item = req.body as IAddItem
+    const item = req.body as IAddItem;
 
     if (item.categoryId <= 0) {
       res.sendStatus(400);
       return;
     }
 
-    const categoryData = await this.categoryValidation(item);
+    const categoryData = await this.categoryValidation(item.categoryId);
 
     if (categoryData.status) {
       res.status(categoryData.status).send(categoryData.data);
@@ -105,9 +105,9 @@ class ItemController extends BaseController {
     res.send(await this.services.itemService.delete(itemId));
   }
 
-  async categoryValidation(item: IAddItem|IEditItem) {
+  async categoryValidation(categoryId) {
     const categoryResult: CategoryModel|null|IErrorResponse = await this.services.categoryService.getById(
-      item.categoryId,
+      categoryId,
       {
         loadSubcategories: true
       });

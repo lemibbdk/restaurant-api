@@ -50,7 +50,15 @@ class ItemInfoController extends BaseController {
       return;
     }
 
-    const result = await this.services.itemInfoService.add(req.body as IAddItemInfo);
+    const itemInfo = req.body as IAddItemInfo;
+
+    const sizeInfo = await this.checkSizes(itemInfo.itemId, itemInfo.size);
+    if (sizeInfo.status) {
+      res.status(sizeInfo.status).send(sizeInfo.data);
+      return;
+    }
+
+    const result = await this.services.itemInfoService.add(itemInfo);
 
     res.send(result);
   }
@@ -81,6 +89,23 @@ class ItemInfoController extends BaseController {
     }
 
     res.send(await this.services.itemInfoService.edit(itemInfoId, req.body as IEditItemInfo, {loadItem: true}));
+  }
+
+  async checkSizes(itemId, size: string) {
+    const data: ItemInfoModel[]|IErrorResponse = await this.services.itemInfoService.getAllByItemId(itemId);
+
+    if (Array.isArray(data)) {
+      if (data.length !== 0) {
+        const sizes = data.map(el => el.size);
+
+        if (sizes.includes(size)) {
+          return {
+            status: 500,
+            data: {errorMessage: 'Size ' + size + ' already exists for this item.'}
+          }
+        }
+      }
+    }
   }
 }
 
