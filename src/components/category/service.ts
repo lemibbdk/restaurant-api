@@ -66,7 +66,9 @@ class CategoryService extends BaseService<CategoryModel>{
     return await this.getByIdFromTable<CategoryModelAdapterOptions>(
       'category',
       categoryId,
-      options
+      {
+        loadSubcategories: true
+      }
     );
   }
 

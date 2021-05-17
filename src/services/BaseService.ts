@@ -26,6 +26,7 @@ export default abstract class BaseService<ReturnModel extends IModel> {
       this.db.execute(sql)
         .then(async result => {
           const rows = result[0]
+          console.log(rows)
           const list: ReturnModel[] = [];
 
           if (Array.isArray(rows)) {
