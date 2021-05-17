@@ -80,6 +80,19 @@ class ItemController {
 
     res.send(result);
   }
+
+  async deleteById(req: Request, res: Response, next: NextFunction) {
+    const id: string = req.params.id;
+
+    const itemId: number = +id;
+
+    if (itemId <= 0) {
+      res.status(400).send('Invalid ID number.');
+      return;
+    }
+
+    res.send(await this.itemService.delete(itemId));
+  }
 }
 
 export default ItemController;

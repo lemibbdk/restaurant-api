@@ -85,6 +85,35 @@ class ItemService extends BaseService<ItemModel> {
         })
     })
   }
+
+  public async delete(itemId: number): Promise<IErrorResponse> {
+    return new Promise<IErrorResponse>(resolve => {
+      const sql = 'DELETE FROM item WHERE item_id = ?;';
+      this.db.execute(sql, [itemId])
+        .then(async result => {
+          const deleteInfo: any = result[0];
+          const deletedRowCount: number = +(deleteInfo?.affectedRows);
+
+          if (deletedRowCount === 1) {
+            resolve({
+              errorCode: 0,
+              errorMessage: 'One record deleted.'
+            })
+          } else {
+            resolve({
+              errorCode: -1,
+              errorMessage: 'This record could not be deleted, because it not exist.'
+            })
+          }
+        })
+        .catch(error => {
+          resolve({
+            errorCode: error?.errno,
+            errorMessage: error?.sqlMessage
+          });
+        })
+    })
+  }
 }
 
 export default ItemService;
