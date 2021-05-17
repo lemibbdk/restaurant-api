@@ -2,6 +2,7 @@ import BaseService from '../../services/BaseService';
 import ItemModel from './model';
 import IErrorResponse from '../../common/IErrorResponse.interface';
 import IModelAdapterOptions from '../../common/IModelAdapterOptions.interface';
+import { IAddItem } from './dto/IAddItem';
 
 class ItemModelAdapterOptions implements IModelAdapterOptions {
   loadItemInfo: boolean = false;
@@ -34,6 +35,26 @@ class ItemService extends BaseService<ItemModel> {
       itemId,
       options
     )
+  }
+
+  public async add(data: IAddItem): Promise<ItemModel|IErrorResponse> {
+    return new Promise<ItemModel|IErrorResponse>(async resolve => {
+      const sql = 'INSERT item SET name = ?, ingredients = ?;';
+
+      this.db.execute(sql, [data.name, data.ingredients])
+        .then(async result => {
+          const insertInfo: any = result[0];
+
+          const newItemId: number = +(insertInfo?.insertId);
+          resolve(await this.getById(newItemId));
+        })
+        .catch(error => {
+          resolve({
+            errorCode: error?.errno,
+            errorMessage: error?.sqlMessage
+          })
+        })
+    })
   }
 }
 

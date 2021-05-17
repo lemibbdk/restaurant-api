@@ -2,6 +2,7 @@ import ItemService from './service';
 import { NextFunction, Request, Response } from 'express';
 import ItemModel from './model';
 import IErrorResponse from '../../common/IErrorResponse.interface';
+import { IAddItem, IAddItemValidator } from './dto/IAddItem';
 
 class ItemController {
   private itemService: ItemService;
@@ -38,6 +39,19 @@ class ItemController {
     }
 
     res.status(500).send(data);
+  }
+
+  async add(req: Request, res: Response, next: NextFunction) {
+    const data = req.body;
+
+    if (!IAddItemValidator(data)) {
+      res.status(400).send(IAddItemValidator.errors);
+      return;
+    }
+
+    const result = await this.itemService.add(data as IAddItem);
+
+    res.send(result);
   }
 }
 
