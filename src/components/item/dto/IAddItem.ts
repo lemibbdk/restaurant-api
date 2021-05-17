@@ -3,6 +3,7 @@ import Ajv from 'ajv';
 interface IAddItem {
   name: string;
   ingredients: string;
+  categoryId: number;
 }
 
 const ajv = new Ajv();
@@ -19,11 +20,16 @@ const IAddItemValidator = ajv.compile({
       type: 'string',
       minLength: 2,
       maxLength: 100
+    },
+    categoryId: {
+      type: 'integer',
+      minimum: 1
     }
   },
   required: [
     'name',
-    'ingredients'
+    'ingredients',
+    'categoryId'
   ],
   additionalProperties: false
 })

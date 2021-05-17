@@ -1,8 +1,6 @@
-import BaseService from '../../services/BaseService';
+import BaseService from '../../common/BaseService';
 import ItemInfoModel from './model';
 import IModelAdapterOptions from '../../common/IModelAdapterOptions.interface';
-import * as mysql2 from 'mysql2/promise';
-import ItemService from '../item/service';
 import ItemModel from '../item/model';
 import IErrorResponse from '../../common/IErrorResponse.interface';
 import { IAddItemInfo } from './dto/IAddItemInfo';
@@ -13,14 +11,6 @@ class ItemInfoModelAdapterOptions implements IModelAdapterOptions {
 }
 
 class ItemInfoService extends BaseService<ItemInfoModel> {
-  private itemService: ItemService;
-
-  constructor(db: mysql2.Connection) {
-    super(db);
-
-    this.itemService = new ItemService(this.db);
-  }
-
   protected async adaptModel(data: any, options: Partial<ItemInfoModelAdapterOptions>): Promise<ItemInfoModel> {
     const item: ItemInfoModel = new ItemInfoModel();
 
@@ -32,7 +22,7 @@ class ItemInfoService extends BaseService<ItemInfoModel> {
     item.itemId = +(data?.item_id)
 
     if (options.loadItem && item.itemId) {
-      const result = await this.itemService.getById(item.itemId);
+      const result = await this.services.itemService.getById(item.itemId, {loadItemCategory: true});
 
       if (result instanceof ItemModel) {
         item.item = result;

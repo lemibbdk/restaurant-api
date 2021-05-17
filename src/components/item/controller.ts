@@ -4,16 +4,11 @@ import ItemModel from './model';
 import IErrorResponse from '../../common/IErrorResponse.interface';
 import { IAddItem, IAddItemValidator } from './dto/IAddItem';
 import { IEditItem, IEditItemValidator } from './dto/IEditItem';
+import BaseController from '../../common/BaseController';
 
-class ItemController {
-  private itemService: ItemService;
-
-  constructor(itemService: ItemService) {
-    this.itemService = itemService
-  }
-
+class ItemController extends BaseController {
   async getAll(req: Request, res: Response, next: NextFunction) {
-    const items = await this.itemService.getAll();
+    const items = await this.services.itemService.getAll();
 
     res.send(items);
   }
@@ -27,7 +22,10 @@ class ItemController {
       return;
     }
 
-    const data: ItemModel|null|IErrorResponse = await this.itemService.getById(itemId);
+    const data: ItemModel|null|IErrorResponse = await this.services.itemService.getById(itemId, {
+      loadAllInfoItem: true,
+      loadItemCategory: true
+    });
 
     if (data === null) {
       res.sendStatus(404);
@@ -50,7 +48,7 @@ class ItemController {
       return;
     }
 
-    const result = await this.itemService.add(data as IAddItem);
+    const result = await this.services.itemService.add(data as IAddItem);
 
     res.send(result);
   }
@@ -71,7 +69,7 @@ class ItemController {
       return;
     }
 
-    const result = await this.itemService.edit(itemId, data as IEditItem);
+    const result = await this.services.itemService.edit(itemId, data as IEditItem);
 
     if (result === null) {
       res.sendStatus(404)
@@ -91,7 +89,7 @@ class ItemController {
       return;
     }
 
-    res.send(await this.itemService.delete(itemId));
+    res.send(await this.services.itemService.delete(itemId));
   }
 }
 

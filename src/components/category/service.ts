@@ -2,7 +2,7 @@ import CategoryModel from './model';
 import IModelAdapterOptions from '../../common/IModelAdapterOptions.interface';
 import IErrorResponse from '../../common/IErrorResponse.interface';
 import { IAddCategory } from './dto/IAddCategory';
-import BaseService from '../../services/BaseService';
+import BaseService from '../../common/BaseService';
 import { IEditCategory } from './dto/IEditCategory';
 
 class CategoryModelAdapterOptions implements IModelAdapterOptions {
@@ -66,9 +66,7 @@ class CategoryService extends BaseService<CategoryModel>{
     return await this.getByIdFromTable<CategoryModelAdapterOptions>(
       'category',
       categoryId,
-      {
-        loadSubcategories: true
-      }
+      options
     );
   }
 

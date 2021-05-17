@@ -1,21 +1,35 @@
-import BaseService from '../../services/BaseService';
+import BaseService from '../../common/BaseService';
 import ItemModel from './model';
 import IErrorResponse from '../../common/IErrorResponse.interface';
 import IModelAdapterOptions from '../../common/IModelAdapterOptions.interface';
 import { IAddItem } from './dto/IAddItem';
 import { IEditItem } from './dto/IEditItem';
+import CategoryModel from '../category/model';
+import ItemInfoModel from '../item-info/model';
 
 class ItemModelAdapterOptions implements IModelAdapterOptions {
-  loadItemInfo: boolean = false;
+  loadItemCategory: boolean = false;
+  loadAllInfoItem: boolean = false;
 }
 
 class ItemService extends BaseService<ItemModel> {
-  protected async adaptModel(row: any): Promise<ItemModel> {
+  protected async adaptModel(row: any, options: Partial<ItemModelAdapterOptions> = { }): Promise<ItemModel> {
     const item: ItemModel = new ItemModel();
 
     item.itemId = +(row?.item_id);
     item.name = row?.name;
     item.ingredients = row?.ingredients;
+    item.categoryId = +(row?.category_id)
+
+    if (options.loadItemCategory && item.categoryId) {
+      const data = await this.services.categoryService.getById(item.categoryId, {loadParentCategory: true});
+      item.category = data as CategoryModel;
+    }
+
+    if (options.loadAllInfoItem) {
+      const data = await this.services.itemInfoService.getAllByItemId(item.itemId);
+      item.itemInfoAll = data as ItemInfoModel[];
+    }
 
     return item;
   }

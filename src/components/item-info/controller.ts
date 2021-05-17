@@ -4,14 +4,9 @@ import IErrorResponse from '../../common/IErrorResponse.interface';
 import ItemInfoModel from './model';
 import { IAddItemInfo, IAddItemInfoValidator } from './dto/IAddItemInfo';
 import { IEditItemInfo, IEditItemInfoValidator } from './dto/IEditItemInfo';
+import BaseController from '../../common/BaseController';
 
-class ItemInfoController {
-  private itemInfoService: ItemInfoService;
-
-  constructor(itemInfoService) {
-    this.itemInfoService = itemInfoService;
-  }
-
+class ItemInfoController extends BaseController {
   public async getById(req: Request, res: Response, next: NextFunction) {
     const id: string = req.params.id;
     const itemInfoId: number = +id;
@@ -21,7 +16,7 @@ class ItemInfoController {
       return;
     }
 
-    const data: ItemInfoModel|null|IErrorResponse = await this.itemInfoService.getById(itemInfoId, {
+    const data: ItemInfoModel|null|IErrorResponse = await this.services.itemInfoService.getById(itemInfoId, {
       loadItem: true
     });
 
@@ -46,7 +41,7 @@ class ItemInfoController {
       return;
     }
 
-    res.send(await this.itemInfoService.getAllByItemId(itemId));
+    res.send(await this.services.itemInfoService.getAllByItemId(itemId));
 
   }
 
@@ -58,7 +53,7 @@ class ItemInfoController {
       return;
     }
 
-    const result = await this.itemInfoService.add(data as IAddItemInfo);
+    const result = await this.services.itemInfoService.add(data as IAddItemInfo);
 
     res.send(result);
   }
@@ -76,7 +71,7 @@ class ItemInfoController {
       return;
     }
 
-    const result = await this.itemInfoService.getById(itemInfoId);
+    const result = await this.services.itemInfoService.getById(itemInfoId);
 
     if (result === null) {
       res.sendStatus(404);
@@ -88,7 +83,7 @@ class ItemInfoController {
       return;
     }
 
-    res.send(await this.itemInfoService.edit(itemInfoId, req.body as IEditItemInfo, {loadItem: true}));
+    res.send(await this.services.itemInfoService.edit(itemInfoId, req.body as IEditItemInfo, {loadItem: true}));
   }
 }
 

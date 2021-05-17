@@ -7,12 +7,15 @@ import IApplicationResources from './common/IApplicationResources.interface';
 import Router from './router';
 import ItemRouter from './components/item/router';
 import ItemInfoRouter from './components/item-info/router';
+import ItemService from './components/item/service';
+import ItemInfoService from './components/item-info/service';
+import CategoryService from './components/category/service';
 
 async function main() {
   const application: express.Application = express();
 
-  application.use(cors())
-  application.use(express.json())
+  application.use(cors());
+  application.use(express.json());
 
   const resources: IApplicationResources = {
     databaseConnection: await mysql2.createConnection({
@@ -24,10 +27,16 @@ async function main() {
       charset: Config.database.charset,
       timezone: Config.database.timezone,
       supportBigNumbers: true
-    }),
+    })
   }
 
   resources.databaseConnection.connect();
+
+  resources.services = {
+    itemService: new ItemService(resources),
+    itemInfoService: new ItemInfoService(resources),
+    categoryService: new CategoryService(resources)
+  }
 
   application.use(
     Config.server.static.route,
