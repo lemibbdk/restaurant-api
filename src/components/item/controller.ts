@@ -115,7 +115,7 @@ class ItemController extends BaseController {
     if (categoryResult === null) {
       return {
         status: 404,
-        data: {message: "Category doesn't exist."}
+        data: {errorMessage: "Category doesn't exist."}
       }
     }
 
@@ -123,7 +123,7 @@ class ItemController extends BaseController {
       if (categoryResult.subCategories.length !== 0) {
         return {
           status: 400,
-          data: { message: 'Item category can be only low level category.' }
+          data: { errorMessage: 'Item category can be only low level category.' }
         }
       }
     } else {

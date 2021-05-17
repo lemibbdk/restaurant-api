@@ -14,7 +14,7 @@ const IEditItemValidator = ajv.compile({
     name: {
       type: 'string',
       minLength: 2,
-      maxLength: 30
+      maxLength: 100
     },
     ingredients: {
       type: 'string',

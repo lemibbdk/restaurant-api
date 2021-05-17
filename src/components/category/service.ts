@@ -8,6 +8,7 @@ import { IEditCategory } from './dto/IEditCategory';
 class CategoryModelAdapterOptions implements IModelAdapterOptions {
   loadParentCategory: boolean = false;
   loadSubcategories:  boolean = false;
+  loadItems: boolean = false;
 }
 
 class CategoryService extends BaseService<CategoryModel>{
@@ -35,17 +36,17 @@ class CategoryService extends BaseService<CategoryModel>{
       if (Array.isArray(data)) {
         item.subCategories = data;
       }
+    }
 
-      // if (item.subCategories.length === 0) {
-      //   const dataItems = await this.services.itemService.getAllByCategory(
-      //     item.categoryId,
-      //     {loadAllInfoItem: true}
-      //   );
-      //
-      //   if (Array.isArray(dataItems)) {
-      //     item.items = dataItems;
-      //   }
-      // }
+    if (options.loadItems) {
+      const dataItems = await this.services.itemService.getAllByCategory(
+        item.categoryId,
+        {loadAllInfoItem: true}
+      );
+
+      if (Array.isArray(dataItems)) {
+        item.items = dataItems;
+      }
     }
 
     return item;
@@ -93,6 +94,13 @@ class CategoryService extends BaseService<CategoryModel>{
           resolve(await this.getById(newCategoryId));
         })
         .catch(error => {
+          if (error?.errno === 1452) {
+            resolve({
+              errorCode: -3,
+              errorMessage: 'Parent category does not exist.'
+            })
+          }
+
           resolve({
             errorCode: error?.errno,
             errorMessage: error?.sqlMessage
