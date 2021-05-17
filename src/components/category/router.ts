@@ -10,6 +10,7 @@ export default class CategoryRouter implements IRouter {
 
     application.get('/category', categoryController.getAll.bind(categoryController));
     application.get('/category/:id', categoryController.getById.bind(categoryController));
+    application.get('/category/:id/item', categoryController.getById.bind(categoryController));
     application.post('/category', categoryController.add.bind(categoryController));
     application.put('/category/:id', categoryController.edit.bind(categoryController));
     application.delete('/category/:id', categoryController.deleteById.bind(categoryController));

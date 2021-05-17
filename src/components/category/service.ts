@@ -35,6 +35,17 @@ class CategoryService extends BaseService<CategoryModel>{
       if (Array.isArray(data)) {
         item.subCategories = data;
       }
+
+      // if (item.subCategories.length === 0) {
+      //   const dataItems = await this.services.itemService.getAllByCategory(
+      //     item.categoryId,
+      //     {loadAllInfoItem: true}
+      //   );
+      //
+      //   if (Array.isArray(dataItems)) {
+      //     item.items = dataItems;
+      //   }
+      // }
     }
 
     return item;

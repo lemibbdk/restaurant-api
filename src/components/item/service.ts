@@ -41,6 +41,16 @@ class ItemService extends BaseService<ItemModel> {
     )
   }
 
+  public async getAllByCategory(categoryId: number, options: Partial<ItemModelAdapterOptions> = { })
+    : Promise<ItemModel[]|IErrorResponse> {
+    return await this.getAllByFieldNameFromTable(
+      'item',
+      'category_id',
+      categoryId,
+      options
+    );
+  }
+
   public async getById(
     itemId: number,
     options: Partial<ItemModelAdapterOptions> = { }

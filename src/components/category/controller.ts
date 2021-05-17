@@ -39,6 +39,17 @@ class CategoryController extends BaseController{
     }
 
     if (data instanceof CategoryModel) {
+      if (data.subCategories.length === 0) {
+        const dataItems = await this.services.itemService.getAllByCategory(
+          data.categoryId,
+          {loadAllInfoItem: true}
+        );
+
+        if (Array.isArray(dataItems)) {
+          data.items = dataItems;
+        }
+      }
+
       res.send(data);
       return
     }
@@ -47,14 +58,14 @@ class CategoryController extends BaseController{
   }
 
   async add(req: Request, res: Response, next: NextFunction) {
-    const data = req.body;
-
-    if (!IAddCategoryValidator(data)) {
+    if (!IAddCategoryValidator(req.body)) {
       res.status(400).send(IAddCategoryValidator.errors);
       return;
     }
 
-    const result = await this.services.categoryService.add(data as IAddCategory);
+    const data = req.body as IAddCategory;
+
+    const result = await this.services.categoryService.add(data);
 
     res.send(result);
   }
