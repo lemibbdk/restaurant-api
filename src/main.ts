@@ -6,6 +6,7 @@ import * as mysql2 from 'mysql2/promise';
 import IApplicationResources from './common/IApplicationResources.interface';
 import Router from './router';
 import ItemRouter from './components/item/router';
+import ItemInfoRouter from './components/item-info/router';
 
 async function main() {
   const application: express.Application = express();
@@ -43,7 +44,8 @@ async function main() {
 
   Router.setupRoutes(application, resources, [
     new CategoryRouter(),
-    new ItemRouter()
+    new ItemRouter(),
+    new ItemInfoRouter()
   ]);
 
   application.use((err, req, res, next) => {
