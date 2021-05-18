@@ -1,9 +1,15 @@
 import Ajv from 'ajv';
+import ItemInfoModel from '../../item-info/model';
 
 interface IAddItem {
   name: string;
   ingredients: string;
   categoryId: number;
+  infos: ItemInfoModel[];
+}
+
+interface IUploadedPhoto {
+  imagePath: string;
 }
 
 const ajv = new Ajv();
@@ -24,14 +30,52 @@ const IAddItemValidator = ajv.compile({
     categoryId: {
       type: 'integer',
       minimum: 1
+    },
+    infos: {
+      type: 'array',
+      minItems: 3,
+      maxItems: 3,
+      uniqueItems: true,
+      items: {
+        type: 'object',
+        properties: {
+          size: {
+            type: 'string',
+            pattern: 'S|L|XL'
+          },
+          energyValue: {
+            type: 'number'
+          },
+          mass: {
+            type: 'number',
+            minimum: 0.5
+          },
+          price: {
+            type: 'number',
+            minimum: 10.00
+          },
+          itemId: {
+            type: 'integer',
+            minimum: 1
+          }
+        },
+        required: [
+          'size',
+          'energyValue',
+          'mass',
+          'price'
+        ],
+        additionalProperties: false
+      }
     }
   },
   required: [
     'name',
     'ingredients',
-    'categoryId'
+    'categoryId',
+    'infos'
   ],
   additionalProperties: false
 })
 
-export { IAddItem, IAddItemValidator };
+export { IAddItem, IAddItemValidator, IUploadedPhoto };

@@ -9,7 +9,6 @@ export default class ItemInfoRouter implements IRouter {
 
     application.get('/info/:id', itemInfoController.getById.bind(itemInfoController));
     application.get('/item/:iid/info', itemInfoController.getAllOfItem.bind(itemInfoController));
-    application.post('/info', itemInfoController.add.bind(itemInfoController));
     application.put('/info/:id', itemInfoController.edit.bind(itemInfoController));
   }
 }

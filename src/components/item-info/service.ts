@@ -46,26 +46,6 @@ class ItemInfoService extends BaseService<ItemInfoModel> {
     return await this.getAllByFieldNameFromTable('item_info', 'item_id', itemId, options);
   }
 
-  public async add(data: IAddItemInfo): Promise<ItemInfoModel|IErrorResponse> {
-    return new Promise<ItemInfoModel|IErrorResponse>(resolve => {
-      const sql = 'INSERT item_info SET size = ?, energy_value = ?, mass = ?, price = ?, item_id = ?;';
-
-      this.db.execute(sql, [ data.size, data.energyValue, data.mass, data.price, data.itemId ])
-        .then(async result => {
-          const insertInfo: any = result[0];
-
-          const newItemInfoId: number = +(insertInfo?.insertId);
-          resolve(await this.getById(newItemInfoId));
-        })
-        .catch(error => {
-          resolve({
-            errorCode: error?.errno,
-            errorMessage: error?.sqlMessage
-          })
-        })
-    });
-  }
-
   public async edit(itemInfoId: number, data: IEditItemInfo, options: Partial<ItemInfoModelAdapterOptions> = { })
     : Promise<ItemInfoModel|IErrorResponse|null> {
     const result = await this.getById(itemInfoId);

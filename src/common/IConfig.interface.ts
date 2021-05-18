@@ -22,5 +22,12 @@ export default interface IConfig {
     database: string,
     charset: string,
     timezone: string
+  },
+  fileUpload: {
+    maxSize: number;
+    maxFiles: number;
+    timeout: number;
+    temporaryDirectory: string;
+    uploadDestinationDirectory: string;
   }
 }

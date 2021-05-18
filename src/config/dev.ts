@@ -24,6 +24,13 @@ const Config: IConfig = {
     database: "restaurant",
     charset: "utf8",
     timezone: "+01:00"
+  },
+  fileUpload: {
+    maxSize: 5 * 1024 * 1024,
+    maxFiles: 5,
+    timeout: 30000,
+    temporaryDirectory: '../temp/',
+    uploadDestinationDirectory: 'static/uploads/'
   }
 }
 

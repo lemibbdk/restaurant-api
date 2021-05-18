@@ -21,10 +21,12 @@ const IAddItemInfoValidator = ajv.compile({
       type: 'number'
     },
     mass: {
-      type: 'number'
+      type: 'number',
+      minimum: 0.5
     },
     price: {
-      type: 'number'
+      type: 'number',
+      minimum: 10.00
     },
     itemId: {
       type: 'integer',

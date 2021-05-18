@@ -1,8 +1,8 @@
 import BaseService from '../../common/BaseService';
-import ItemModel from './model';
+import ItemModel, { ItemPhoto } from './model';
 import IErrorResponse from '../../common/IErrorResponse.interface';
 import IModelAdapterOptions from '../../common/IModelAdapterOptions.interface';
-import { IAddItem } from './dto/IAddItem';
+import { IAddItem, IUploadedPhoto } from './dto/IAddItem';
 import { IEditItem } from './dto/IEditItem';
 import CategoryModel from '../category/model';
 import ItemInfoModel from '../item-info/model';
@@ -10,6 +10,7 @@ import ItemInfoModel from '../item-info/model';
 class ItemModelAdapterOptions implements IModelAdapterOptions {
   loadItemCategory: boolean = false;
   loadAllInfoItem: boolean = false;
+  loadPhotos: boolean = false;
 }
 
 class ItemService extends BaseService<ItemModel> {
@@ -29,6 +30,10 @@ class ItemService extends BaseService<ItemModel> {
     if (options.loadAllInfoItem) {
       const data = await this.services.itemInfoService.getAllByItemId(item.itemId);
       item.itemInfoAll = data as ItemInfoModel[];
+    }
+
+    if (options.loadPhotos) {
+      item.photos = await this.getAllPhotosByItemId(item.itemId);
     }
 
     return item;
@@ -51,6 +56,22 @@ class ItemService extends BaseService<ItemModel> {
     );
   }
 
+  public async getAllPhotosByItemId(itemId: number): Promise<ItemPhoto[]> {
+    const sql = 'SELECT photo_id, image_path FROM photo WHERE item_id = ?;'
+    const [ rows ] = await this.db.execute(sql, [ itemId ]);
+
+    if (!Array.isArray(rows) || rows.length === 0) {
+      return [];
+    }
+
+    return rows.map(row => {
+      return {
+        photoId: +(row?.photo_id),
+        imagePath: row?.image_path
+      }
+    })
+  }
+
   public async getById(
     itemId: number,
     options: Partial<ItemModelAdapterOptions> = { }
@@ -62,23 +83,68 @@ class ItemService extends BaseService<ItemModel> {
     )
   }
 
-  public async add(data: IAddItem): Promise<ItemModel|IErrorResponse> {
+  public async add(data: IAddItem, uploadedPhotos: IUploadedPhoto[]): Promise<ItemModel|IErrorResponse> {
     return new Promise<ItemModel|IErrorResponse>(async resolve => {
-      const sql = 'INSERT item SET name = ?, ingredients = ?;';
+      this.db.beginTransaction()
+        .then(() => {
+          const sql = 'INSERT item SET name = ?, ingredients = ?, category_id = ?;';
 
-      this.db.execute(sql, [data.name, data.ingredients])
-        .then(async result => {
-          const insertInfo: any = result[0];
+          this.db.execute(sql, [data.name, data.ingredients, data.categoryId])
+            .then(async res => {
+              const insertInfo: any = res[0];
+              const newItemId: number = +(insertInfo?.insertId);
 
-          const newItemId: number = +(insertInfo?.insertId);
-          resolve(await this.getById(newItemId));
-        })
-        .catch(error => {
-          resolve({
-            errorCode: error?.errno,
-            errorMessage: error?.sqlMessage
-          })
-        })
+              const promises = [];
+
+              for (const itemInfo of data.infos) {
+                promises.push(
+                  this.db.execute(
+                    'INSERT item_info SET size = ?, energy_value = ?, mass = ?, price = ?, item_id = ?;',
+                    [ itemInfo.size, itemInfo.energyValue, itemInfo.mass, itemInfo.price, newItemId ]
+                  )
+                )
+              }
+
+              for (const uploadedPhoto of uploadedPhotos) {
+                promises.push(
+                  this.db.execute(
+                    'INSERT photo SET item_id = ?, image_path = ?;',
+                    [ newItemId, uploadedPhoto.imagePath ]
+                  )
+                );
+              }
+
+              Promise.all(promises)
+                .then(async () => {
+                  await this.db.commit();
+
+                  resolve(await this.services.itemService.getById(
+                    newItemId,
+                    {
+                      loadItemCategory: true,
+                      loadAllInfoItem: true,
+                      loadPhotos: true
+                    }
+                  ));
+                })
+                .catch(async error => {
+                  await this.db.rollback();
+
+                  resolve({
+                    errorCode: error?.errno,
+                    errorMessage: error?.sqlMessage
+                  })
+                })
+            })
+            .catch(async error => {
+              await this.db.rollback();
+
+              resolve({
+                errorCode: error?.errno,
+                errorMessage: error?.sqlMessage
+              })
+            })
+        });
     })
   }
 

@@ -2,6 +2,11 @@ import IModel from '../../common/IModel.interface';
 import CategoryModel from '../category/model';
 import ItemInfoModel from '../item-info/model';
 
+class Photo implements IModel {
+  photoId: number;
+  imagePath: string;
+}
+
 class ItemModel implements IModel {
   itemId: number;
   name: string;
@@ -9,6 +14,8 @@ class ItemModel implements IModel {
   categoryId: number;
   category: CategoryModel | null = null;
   itemInfoAll: ItemInfoModel[] = [];
+  photos: Photo[] = [];
 }
 
 export default ItemModel;
+export { Photo as ItemPhoto }
