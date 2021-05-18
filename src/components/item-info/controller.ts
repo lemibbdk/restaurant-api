@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import IErrorResponse from '../../common/IErrorResponse.interface';
 import ItemInfoModel from './model';
-import { IAddItemInfo, IAddItemInfoValidator } from './dto/IAddItemInfo';
 import { IEditItemInfo, IEditItemInfoValidator } from './dto/IEditItemInfo';
 import BaseController from '../../common/BaseController';
 

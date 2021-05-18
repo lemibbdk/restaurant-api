@@ -7,7 +7,6 @@ import BaseController from '../../common/BaseController';
 import CategoryModel from '../category/model';
 import Config from '../../config/dev';
 import { v4 } from 'uuid';
-import ItemInfoModel from '../item-info/model';
 
 class ItemController extends BaseController {
   public async getAll(req: Request, res: Response, next: NextFunction) {

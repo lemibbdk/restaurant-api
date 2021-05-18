@@ -3,7 +3,6 @@ import ItemInfoModel from './model';
 import IModelAdapterOptions from '../../common/IModelAdapterOptions.interface';
 import ItemModel from '../item/model';
 import IErrorResponse from '../../common/IErrorResponse.interface';
-import { IAddItemInfo } from './dto/IAddItemInfo';
 import { IEditItemInfo } from './dto/IEditItemInfo';
 
 class ItemInfoModelAdapterOptions implements IModelAdapterOptions {

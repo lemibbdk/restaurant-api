@@ -62,7 +62,7 @@ export default abstract class BaseService<ReturnModel extends IModel> {
       const sql: string = `SELECT * FROM ${tableName} WHERE ${tableName}_id = ?;`;
       this.db.execute(sql, [id])
         .then(async result => {
-          const [rows, columns] = result
+          const [ rows ] = result
 
           if (!Array.isArray(rows)) {
             resolve(null)
@@ -119,8 +119,6 @@ export default abstract class BaseService<ReturnModel extends IModel> {
             errorMessage: error?.sqlMessage
           })
         });
-
-
     })
   }
 }
