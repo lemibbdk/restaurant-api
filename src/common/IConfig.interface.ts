@@ -29,5 +29,19 @@ export default interface IConfig {
     timeout: number;
     temporaryDirectory: string;
     uploadDestinationDirectory: string;
+    photos: {
+      limits: {
+        minWidth: number;
+        maxWidth: number;
+        minHeight: number;
+        maxHeight: number;
+      },
+      resizes: {
+        suffix: string;
+        width: number;
+        height: number;
+        fit: 'cover'|'contain';
+      }[]
+    }
   }
 }

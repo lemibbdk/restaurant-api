@@ -7,6 +7,8 @@ import BaseController from '../../common/BaseController';
 import CategoryModel from '../category/model';
 import Config from '../../config/dev';
 import { v4 } from 'uuid';
+import { UploadedFile } from 'express-fileupload';
+import sizeOf from 'image-size';
 
 class ItemController extends BaseController {
   public async getAll(req: Request, res: Response, next: NextFunction) {
@@ -41,11 +43,50 @@ class ItemController extends BaseController {
     res.status(500).send(data);
   }
 
-  public async add(req: Request, res: Response, next: NextFunction) {
+  private isPhotoValid(file: UploadedFile): { isOk: boolean, message?: string } {
+    const size = sizeOf(file.tempFilePath);
+
+    const limits = Config.fileUpload.photos.limits;
+
+    if (size.width < limits.minWidth) {
+      return {
+        isOk: false,
+        message: `The img must have a width of at least ${limits.minWidth}`
+      }
+    }
+
+    if (size.height < limits.minHeight) {
+      return {
+        isOk: false,
+        message: `The img must have a height of at least ${limits.minHeight}`
+      }
+    }
+
+    if (size.width > limits.maxWidth) {
+      return {
+        isOk: false,
+        message: `The img must have a width of at most ${limits.maxWidth}`
+      }
+    }
+
+    if (size.height > limits.maxHeight) {
+      return {
+        isOk: false,
+        message: `The img must have a width of at most ${limits.maxHeight}`
+      }
+    }
+
+
+    return {
+      isOk: true
+    };
+  }
+
+  private async uploadFiles(req: Request, res: Response): Promise<IUploadedPhoto[]> {
     if (!req.files || Object.keys(req.files).length === 0) {
       res.status(400).send('You must upload at lease one and a maximum of '
         + Config.fileUpload.maxFiles + ' photos.');
-      return;
+      return [];
     }
 
     const fileKeys: string[] = Object.keys(req.files);
@@ -54,6 +95,13 @@ class ItemController extends BaseController {
 
     for (const fileKey of fileKeys) {
       const file = req.files[fileKey] as any;
+
+      const result = this.isPhotoValid(file);
+      if (result.isOk === false) {
+        res.status(400).send(`Error with image ${fileKey}: "${result.message}"`);
+        return [];
+      }
+
       const randomString = v4();
       const originalName = file?.name;
       const now = new Date();
@@ -68,6 +116,16 @@ class ItemController extends BaseController {
       uploadedPhotos.push({
         imagePath: imagePath
       })
+    }
+
+    return uploadedPhotos;
+  }
+
+  public async add(req: Request, res: Response, next: NextFunction) {
+    const uploadedPhotos = await this.uploadFiles(req, res);
+
+    if (uploadedPhotos.length === 0) {
+      return;
     }
 
     const data = JSON.parse(req.body?.data);
