@@ -128,35 +128,39 @@ class ItemController extends BaseController {
       return;
     }
 
-    const data = JSON.parse(req.body?.data);
+    try {
+      const data = JSON.parse(req.body?.data);
 
-    if (!IAddItemValidator(data)) {
-      res.status(400).send(IAddItemValidator.errors);
-      return;
+      if (!IAddItemValidator(data)) {
+        res.status(400).send(IAddItemValidator.errors);
+        return;
+      }
+
+      const item = data as IAddItem;
+
+      if (item.categoryId <= 0) {
+        res.sendStatus(400);
+        return;
+      }
+
+      const sizeInfoCheck = this.checkSizes(item);
+      if (sizeInfoCheck?.status) {
+        res.status(sizeInfoCheck.status).send(sizeInfoCheck.data);
+      }
+
+      const categoryData = await this.categoryValidation(item.categoryId);
+
+      if (categoryData?.status) {
+        res.status(categoryData.status).send(categoryData.data);
+        return;
+      }
+
+      const result = await this.services.itemService.add(item, uploadedPhotos);
+
+      res.send(result);
+    } catch (e) {
+      res.status(400).send(e?.message);
     }
-
-    const item = data as IAddItem;
-
-    if (item.categoryId <= 0) {
-      res.sendStatus(400);
-      return;
-    }
-
-    const sizeInfoCheck = this.checkSizes(item);
-    if (sizeInfoCheck?.status) {
-      res.status(sizeInfoCheck.status).send(sizeInfoCheck.data);
-    }
-
-    const categoryData = await this.categoryValidation(item.categoryId);
-
-    if (categoryData?.status) {
-      res.status(categoryData.status).send(categoryData.data);
-      return;
-    }
-
-    const result = await this.services.itemService.add(item, uploadedPhotos);
-
-    res.send(result);
   }
 
   public async edit(req: Request, res: Response, next: NextFunction) {
