@@ -52,7 +52,7 @@ const Config: IConfig = {
           height: 300,
         },
         {
-          suffix: 'thumb',
+          suffix: '-thumb',
           fit: 'cover',
           width: 250,
           height: 200
