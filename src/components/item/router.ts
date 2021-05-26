@@ -13,5 +13,6 @@ export default class ItemRouter implements IRouter {
     application.put('/item/:id', itemController.edit.bind(itemController));
     application.delete('/item/:id', itemController.deleteById.bind(itemController));
     application.delete('/item/:iid/photo/:pid', itemController.deleteItemPhoto.bind(itemController));
+    application.post('/item/:id/photo', itemController.addItemPhotos.bind(itemController));
   }
 }

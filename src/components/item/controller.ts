@@ -148,6 +148,46 @@ class ItemController extends BaseController {
     return uploadedPhotos;
   }
 
+  private async categoryValidation(categoryId) {
+    const categoryResult: CategoryModel|null|IErrorResponse = await this.services.categoryService.getById(
+      categoryId,
+      {
+        loadSubcategories: true
+      });
+
+    if (categoryResult === null) {
+      return {
+        status: 404,
+        data: {errorMessage: "Category doesn't exist."}
+      }
+    }
+
+    if (categoryResult instanceof CategoryModel) {
+      if (categoryResult.subCategories.length !== 0) {
+        return {
+          status: 400,
+          data: { errorMessage: 'Item category can be only low level category.' }
+        }
+      }
+    } else {
+      return {
+        status: 500,
+        data: categoryResult
+      }
+    }
+  }
+
+  private checkSizes(data: IAddItem) {
+    const sizes = data.itemInfoAll.map(el => el.size);
+
+    if (!sizes.includes('S') || !sizes.includes('L') || !sizes.includes('XL')) {
+      return {
+        status: 500,
+        data: {errorMessage: 'Have duplicated sizes.'}
+      }
+    }
+  }
+
   public async add(req: Request, res: Response, next: NextFunction) {
     const uploadedPhotos = await this.uploadFiles(req, res);
 
@@ -274,6 +314,29 @@ class ItemController extends BaseController {
     res.send(result);
   }
 
+  public async addItemPhotos(req: Request, res: Response) {
+    const itemId: number = +(req.params.id);
+
+    if (itemId <= 0) {
+      return res.sendStatus(400);
+    }
+
+    const itemResult = await this.services.itemService.getById(itemId);
+
+    if (itemResult === null) {
+      res.sendStatus(404);
+      return;
+    }
+
+    const uploadedPhotos = await this.uploadFiles(req, res);
+
+    if (uploadedPhotos.length === 0) {
+      return;
+    }
+
+    res.send(await this.services.itemService.addItemPhotos(itemId, uploadedPhotos));
+  }
+
   public async deleteById(req: Request, res: Response, next: NextFunction) {
     const id: string = req.params.id;
 
@@ -285,47 +348,6 @@ class ItemController extends BaseController {
     }
 
     res.send(await this.services.itemService.delete(itemId));
-  }
-
-  async categoryValidation(categoryId) {
-    const categoryResult: CategoryModel|null|IErrorResponse = await this.services.categoryService.getById(
-      categoryId,
-      {
-        loadSubcategories: true
-      });
-
-    if (categoryResult === null) {
-      return {
-        status: 404,
-        data: {errorMessage: "Category doesn't exist."}
-      }
-    }
-
-    if (categoryResult instanceof CategoryModel) {
-      if (categoryResult.subCategories.length !== 0) {
-        return {
-          status: 400,
-          data: { errorMessage: 'Item category can be only low level category.' }
-        }
-      }
-    } else {
-      return {
-        status: 500,
-        data: categoryResult
-      }
-    }
-  }
-
-  public checkSizes(data: IAddItem) {
-    const sizes = data.itemInfoAll.map(el => el.size);
-
-    if (!sizes.includes('S') || !sizes.includes('L') || !sizes.includes('XL')) {
-      return {
-        status: 500,
-        data: {errorMessage: 'Have duplicated sizes.'}
-      }
-    }
-
   }
 }
 

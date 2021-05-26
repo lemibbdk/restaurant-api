@@ -183,6 +183,22 @@ class ItemService extends BaseService<ItemModel> {
                     }
                   ));
                 })
+                .catch(async error => {
+                  await this.db.rollback();
+
+                  resolve({
+                    errorCode: error?.errno,
+                    errorMessage: error?.sqlMessage
+                  })
+                })
+            })
+            .catch(async error => {
+              await this.db.rollback();
+
+              resolve({
+                errorCode: error?.errno,
+                errorMessage: error?.sqlMessage
+              })
             })
         })
         .catch(async error => {
@@ -283,6 +299,64 @@ class ItemService extends BaseService<ItemModel> {
         }))
     })
   }
+
+  public async addItemPhotos(itemId: number, uploadedPhotos: IUploadedPhoto[]): Promise<ItemModel|IErrorResponse|null> {
+    return new Promise<ItemModel|IErrorResponse|null>(async resolve => {
+      const item = await this.getById(itemId, {
+        loadPhotos: true
+      });
+
+      if (item === null) {
+        return resolve(null);
+      }
+
+      this.db.beginTransaction()
+        .then(() => {
+          const promises = [];
+
+          for (const uploadedPhoto of uploadedPhotos) {
+            promises.push(
+              this.db.execute(
+                'INSERT photo SET item_id = ?, image_path = ?;',
+                [ itemId, uploadedPhoto.imagePath ]
+              )
+            );
+          }
+
+          Promise.all(promises)
+            .then(async () => {
+              await this.db.commit();
+
+              resolve(await this.services.itemService.getById(
+                itemId,
+                {
+                  loadItemCategory: true,
+                  loadAllInfoItem: true,
+                  loadPhotos: true
+                }
+              ));
+            })
+            .catch(async error => {
+              await this.db.rollback();
+
+              resolve({
+                errorCode: error?.errno,
+                errorMessage: error?.sqlMessage
+              })
+            })
+        })
+        .catch(async error => {
+          await this.db.rollback();
+
+          resolve({
+            errorCode: error?.errno,
+            errorMessage: error?.sqlMessage
+          })
+        })
+
+    })
+  }
+
 }
 
 export default ItemService;
