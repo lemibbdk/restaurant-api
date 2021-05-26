@@ -6,6 +6,9 @@ import { IAddItem, IUploadedPhoto } from './dto/IAddItem';
 import { IEditItem } from './dto/IEditItem';
 import CategoryModel from '../category/model';
 import ItemInfoModel from '../item-info/model';
+import * as fs from 'fs';
+import * as path from 'path';
+import Config from '../../config/dev';
 
 class ItemModelAdapterOptions implements IModelAdapterOptions {
   loadItemCategory: boolean = false;
@@ -219,6 +222,65 @@ class ItemService extends BaseService<ItemModel> {
             errorMessage: error?.sqlMessage
           });
         })
+    })
+  }
+
+  private deleteItemPhotosAndResizedVersion(filesToDelete: string[]) {
+    try {
+      for (const fileToDelete of filesToDelete) {
+        fs.unlinkSync(fileToDelete);
+
+        const pathParts = path.parse(fileToDelete);
+
+        const directory = pathParts.dir;
+        const filename  = pathParts.name;
+        const extension = pathParts.ext;
+
+        for (const resizeSpecification of Config.fileUpload.photos.resizes) {
+          const resizedImagePath = directory + "/" +
+            filename +
+            resizeSpecification.suffix +
+            extension;
+
+          fs.unlinkSync(resizedImagePath);
+        }
+      }
+    } catch (e) { }
+  }
+
+  public async deleteItemPhoto(itemId: number, photoId: number): Promise<IErrorResponse|null> {
+    return new Promise<IErrorResponse|null>(async resolve => {
+      const item = await this.getById(itemId, {
+        loadPhotos: true
+      });
+
+      if (item === null) {
+        return resolve(null);
+      }
+
+      const filteredPhotos = (item as ItemModel).photos.filter(el => el.photoId === photoId);
+
+      if (filteredPhotos.length === 0) {
+        return resolve(null);
+      }
+
+      const photo = filteredPhotos[0];
+
+      this.db.execute('DELETE FROM photo WHERE photo_id = ?;', [ photo.photoId ])
+        .then(() => {
+          this.deleteItemPhotosAndResizedVersion([
+            photo.imagePath
+          ])
+
+          resolve({
+            errorCode: 0,
+            errorMessage: 'Photo deleted.'
+          })
+        })
+        .catch((error) => resolve({
+          errorCode: error?.errno,
+          errorMessage: error?.sqlMessage
+        }))
     })
   }
 }

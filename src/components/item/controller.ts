@@ -257,6 +257,23 @@ class ItemController extends BaseController {
     res.send(result);
   }
 
+  public async deleteItemPhoto(req: Request, res: Response) {
+    const itemId: number = +(req.params.iid);
+    const photoId: number = +(req.params.pid);
+
+    if (itemId <= 0 || photoId <= 0) {
+      return res.sendStatus(400);
+    }
+
+    const result = await this.services.itemService.deleteItemPhoto(itemId, photoId);
+
+    if (result === null) {
+      return res.sendStatus(404);
+    }
+
+    res.send(result);
+  }
+
   public async deleteById(req: Request, res: Response, next: NextFunction) {
     const id: string = req.params.id;
 
