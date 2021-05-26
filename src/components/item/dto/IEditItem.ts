@@ -1,9 +1,10 @@
 import Ajv from 'ajv';
+import ItemInfoModel from '../../item-info/model';
 
 interface IEditItem {
   name: string;
   ingredients: string;
-  categoryId: number;
+  itemInfoAll: ItemInfoModel[];
 }
 
 const ajv = new Ajv();
@@ -21,15 +22,44 @@ const IEditItemValidator = ajv.compile({
       minLength: 2,
       maxLength: 100
     },
-    categoryId: {
-      type: 'integer',
-      minimum: 1
+    itemInfoAll: {
+      type: 'array',
+      minItems: 3,
+      maxItems: 3,
+      uniqueItems: true,
+      items: {
+        type: 'object',
+        properties: {
+          itemInfoId: {
+            type: 'integer',
+            minimum: 1
+          },
+          energyValue: {
+            type: 'number'
+          },
+          mass: {
+            type: 'number',
+            minimum: 0.5
+          },
+          price: {
+            type: 'number',
+            minimum: 10.00
+          }
+        },
+        required: [
+          'itemInfoId',
+          'energyValue',
+          'mass',
+          'price',
+        ],
+        additionalProperties: false
+      }
     }
   },
   required: [
     'name',
     'ingredients',
-    'categoryId'
+    'itemInfoAll'
   ],
   additionalProperties: false
 })

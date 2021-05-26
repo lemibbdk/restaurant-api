@@ -5,7 +5,7 @@ interface IAddItem {
   name: string;
   ingredients: string;
   categoryId: number;
-  infos: ItemInfoModel[];
+  itemInfoAll: ItemInfoModel[];
 }
 
 interface IUploadedPhoto {
@@ -31,7 +31,7 @@ const IAddItemValidator = ajv.compile({
       type: 'integer',
       minimum: 1
     },
-    infos: {
+    itemInfoAll: {
       type: 'array',
       minItems: 3,
       maxItems: 3,
@@ -73,7 +73,7 @@ const IAddItemValidator = ajv.compile({
     'name',
     'ingredients',
     'categoryId',
-    'infos'
+    'itemInfoAll'
   ],
   additionalProperties: false
 })

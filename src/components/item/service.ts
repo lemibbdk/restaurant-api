@@ -96,7 +96,7 @@ class ItemService extends BaseService<ItemModel> {
 
               const promises = [];
 
-              for (const itemInfo of data.infos) {
+              for (const itemInfo of data.itemInfoAll) {
                 promises.push(
                   this.db.execute(
                     'INSERT item_info SET size = ?, energy_value = ?, mass = ?, price = ?, item_id = ?;',
@@ -148,26 +148,43 @@ class ItemService extends BaseService<ItemModel> {
     })
   }
 
-  public async edit(itemId: number, data: IEditItem, options: Partial<ItemModelAdapterOptions> = { })
-    : Promise<ItemModel|IErrorResponse|null> {
-    const result = await this.getById(itemId);
-
-    if (result === null) {
-      return null;
-    }
-
-    if (!(result instanceof ItemModel)) {
-      return result;
-    }
-
+  public async edit(itemId: number, data: IEditItem): Promise<ItemModel|IErrorResponse> {
     return new Promise<ItemModel|IErrorResponse>(async resolve => {
       const sql = 'UPDATE item SET name = ?, ingredients = ? WHERE item_id = ?;';
 
-      this.db.execute(sql, [data.name, data.ingredients, itemId])
+      this.db.beginTransaction()
         .then(async () => {
-          resolve(await this.getById(itemId, options));
+          this.db.execute(sql, [ data.name, data.ingredients, itemId ])
+            .then(async () => {
+              const promises = [];
+
+              for (const itemInfo of data.itemInfoAll) {
+                promises.push(
+                  this.db.execute(
+                    'UPDATE item_info SET energy_value = ?, mass = ?, price = ? WHERE item_info_id = ?;',
+                    [ itemInfo.energyValue, itemInfo.mass, itemInfo.price, itemInfo.itemInfoId ]
+                  )
+                )
+              }
+
+              Promise.all(promises)
+                .then(async () => {
+                  await this.db.commit();
+
+                  resolve(await this.services.itemService.getById(
+                    itemId,
+                    {
+                      loadItemCategory: true,
+                      loadAllInfoItem: true,
+                      loadPhotos: true
+                    }
+                  ));
+                })
+            })
         })
-        .catch(error => {
+        .catch(async error => {
+          await this.db.rollback();
+
           resolve({
             errorCode: error?.errno,
             errorMessage: error?.sqlMessage

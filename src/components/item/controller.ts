@@ -11,6 +11,7 @@ import { UploadedFile } from 'express-fileupload';
 import sizeOf from 'image-size';
 import * as path from 'path';
 import * as sharp from 'sharp';
+import ItemInfoModel from '../item-info/model';
 
 class ItemController extends BaseController {
   public async getAll(req: Request, res: Response, next: NextFunction) {
@@ -202,11 +203,48 @@ class ItemController extends BaseController {
       return;
     }
 
+    const itemResult = await this.services.itemService.getById(itemId, {loadAllInfoItem: true});
+
+    if (itemResult === null) {
+      res.sendStatus(404);
+      return;
+    }
+
+    if (!(itemResult instanceof ItemModel)) {
+      return itemResult;
+    }
+
     const data = req.body as IEditItem;
 
-    const categoryData = await this.categoryValidation(data);
-    if (categoryData?.status) {
-      res.status(categoryData.status).send(categoryData.data);
+    const itemInfoIds = itemResult.itemInfoAll.map(el => el.itemInfoId);
+
+    for (const info of data.itemInfoAll) {
+      if (info.itemInfoId <= 0) {
+        res.sendStatus(400);
+        return;
+      }
+
+      if (!itemInfoIds.includes(info.itemInfoId)) {
+        res.status(400).send({errorMessage: `Item info ${info.itemInfoId} is not for regular item.` })
+        return;
+      }
+
+      const itemInfo = await this.services.itemInfoService.getById(info.itemInfoId);
+
+      if (itemInfo === null) {
+        res.status(404).send({errorMessage: `Item info ${info.itemInfoId} not found.`});
+        return;
+      }
+
+      if (!(itemInfo instanceof ItemInfoModel)) {
+        res.status(400).send({errorMessage: 'Invalid item info.'});
+        return;
+      }
+
+      if (itemInfo.itemId !== itemId) {
+        res.sendStatus(400);
+        return;
+      }
     }
 
     const result = await this.services.itemService.edit(itemId, data as IEditItem);
@@ -262,7 +300,7 @@ class ItemController extends BaseController {
   }
 
   public checkSizes(data: IAddItem) {
-    const sizes = data.infos.map(el => el.size);
+    const sizes = data.itemInfoAll.map(el => el.size);
 
     if (!sizes.includes('S') || !sizes.includes('L') || !sizes.includes('XL')) {
       return {
