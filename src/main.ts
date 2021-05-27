@@ -11,6 +11,8 @@ import ItemService from './components/item/service';
 import ItemInfoService from './components/item-info/service';
 import CategoryService from './components/category/service';
 import * as fileUpload from 'express-fileupload';
+import AdministratorService from './components/administrator/service';
+import AdministratorRouter from './components/administrator/router';
 
 async function main() {
   const application: express.Application = express();
@@ -49,7 +51,8 @@ async function main() {
   resources.services = {
     itemService: new ItemService(resources),
     itemInfoService: new ItemInfoService(resources),
-    categoryService: new CategoryService(resources)
+    categoryService: new CategoryService(resources),
+    administratorService: new AdministratorService(resources)
   }
 
   application.use(
@@ -68,7 +71,8 @@ async function main() {
   Router.setupRoutes(application, resources, [
     new CategoryRouter(),
     new ItemRouter(),
-    new ItemInfoRouter()
+    new ItemInfoRouter(),
+    new AdministratorRouter()
   ]);
 
   application.use((err, req, res, next) => {
