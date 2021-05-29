@@ -121,7 +121,7 @@ class ItemService extends BaseService<ItemModel> {
                 .then(async () => {
                   await this.db.commit();
 
-                  resolve(await this.services.itemService.getById(
+                  resolve(await this.getById(
                     newItemId,
                     {
                       loadItemCategory: true,
@@ -174,7 +174,7 @@ class ItemService extends BaseService<ItemModel> {
                 .then(async () => {
                   await this.db.commit();
 
-                  resolve(await this.services.itemService.getById(
+                  resolve(await this.getById(
                     itemId,
                     {
                       loadItemCategory: true,
@@ -200,14 +200,6 @@ class ItemService extends BaseService<ItemModel> {
                 errorMessage: error?.sqlMessage
               })
             })
-        })
-        .catch(async error => {
-          await this.db.rollback();
-
-          resolve({
-            errorCode: error?.errno,
-            errorMessage: error?.sqlMessage
-          })
         })
     })
   }

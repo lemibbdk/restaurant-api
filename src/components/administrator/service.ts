@@ -11,7 +11,7 @@ class AdministratorModelAdapterOptions implements IModelAdapterOptions {
 }
 
 class AdministratorService extends BaseService<AdministratorModel> {
-  protected async adaptModel(data: any, options: Partial<IModelAdapterOptions>): Promise<AdministratorModel> {
+  protected async adaptModel(data: any, options: Partial<AdministratorModelAdapterOptions>): Promise<AdministratorModel> {
     const item = new AdministratorModel();
 
     item.administratorId = +(data?.administrator_id);
