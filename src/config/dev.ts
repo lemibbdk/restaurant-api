@@ -1,4 +1,9 @@
 import IConfig from '../common/IConfig.interface';
+import * as dotenv from 'dotenv';
+
+const dotenvResult = dotenv.config();
+
+if (dotenvResult.error) throw 'Environment configuration file error: ' + dotenvResult.error;
 
 const Config: IConfig = {
   server: {
@@ -59,6 +64,15 @@ const Config: IConfig = {
         }
       ]
     }
+  },
+  mail: {
+    hostname: process.env?.MAIL_HOST,
+    port: +(process.env?.MAIL_PORT),
+    secure: process.env?.MAIL_HOST === 'true',
+    username: process.env?.USERNAME,
+    password: process.env?.MAIL_PASSWORD,
+    fromEmail: process.env?.MAIL_FROM,
+    debug: true
   }
 }
 
