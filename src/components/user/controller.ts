@@ -66,7 +66,8 @@ export default class UserController extends BaseController {
           user: Config.mail.username,
           pass: Config.mail.password
         },
-        debug: Config.mail.debug
+        debug: Config.mail.debug,
+        logger: true
       },
         {
           from: Config.mail.fromEmail
@@ -109,14 +110,6 @@ export default class UserController extends BaseController {
             errorMessage: error?.message
           })
         });
-
-      // transport.verify(function(error, success) {
-      //   if (error) {
-      //     console.log(error);
-      //   } else {
-      //     console.log("Server is ready to take our messages");
-      //   }
-      // });
     })
   }
 
@@ -135,10 +128,10 @@ export default class UserController extends BaseController {
       return res.status(400).send(result);
     }
 
-    // const mailResult = await this.sendRegistrationEmail(result);
-    // if (mailResult.errorCode !== 0) {
-    //
-    // }
+    const mailResult = await this.sendRegistrationEmail(result);
+    if (mailResult.errorCode !== 0) {
+      console.log(mailResult.errorMessage)
+    }
 
     res.send(result);
   }
