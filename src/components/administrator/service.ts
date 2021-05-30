@@ -5,6 +5,7 @@ import { IAddAdministrator } from './dto/IAddAdministrator';
 import IErrorResponse from '../../common/IErrorResponse.interface';
 import * as bcrypt from 'bcrypt';
 import { IEditAdministrator } from './dto/IEditAdministrator';
+import UserModel from '../user/model';
 
 class AdministratorModelAdapterOptions implements IModelAdapterOptions {
 
@@ -49,6 +50,16 @@ class AdministratorService extends BaseService<AdministratorModel> {
           })
         })
     })
+  }
+
+  public async getByUsername(username: string): Promise<AdministratorModel | null> {
+    const administrators = await this.getAllByFieldNameFromTable('administrator', 'username', username, {});
+
+    if (!Array.isArray(administrators) || administrators.length === 0) {
+      return null;
+    }
+
+    return administrators[0];
   }
 
   public async edit(administratorId: number, data: IEditAdministrator): Promise<AdministratorModel|IErrorResponse|null> {
