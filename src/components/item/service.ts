@@ -17,7 +17,7 @@ class ItemModelAdapterOptions implements IModelAdapterOptions {
 }
 
 class ItemService extends BaseService<ItemModel> {
-  protected async adaptModel(row: any, options: Partial<ItemModelAdapterOptions> = { }): Promise<ItemModel> {
+  protected async adaptModel(row: any, options: Partial<ItemModelAdapterOptions>): Promise<ItemModel> {
     const item: ItemModel = new ItemModel();
 
     item.itemId = +(row?.item_id);
@@ -26,7 +26,7 @@ class ItemService extends BaseService<ItemModel> {
     item.categoryId = +(row?.category_id)
 
     if (options.loadItemCategory && item.categoryId) {
-      const data = await this.services.categoryService.getById(item.categoryId, {loadParentCategory: true});
+      const data = await this.services.categoryService.getById(item.categoryId);
       item.category = data as CategoryModel;
     }
 

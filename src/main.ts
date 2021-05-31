@@ -17,6 +17,8 @@ import UserService from './components/user/service';
 import UserRouter from './components/user/router';
 import PostalAddressService from './components/postal-address/service';
 import AuthRouter from './components/auth/router';
+import CartService from './components/cart/service';
+import CartRouter from './components/cart/router';
 
 async function main() {
   const application: express.Application = express();
@@ -58,7 +60,8 @@ async function main() {
     categoryService: new CategoryService(resources),
     administratorService: new AdministratorService(resources),
     userService: new UserService(resources),
-    postalAddressService: new PostalAddressService(resources)
+    postalAddressService: new PostalAddressService(resources),
+    cartService: new CartService(resources)
   }
 
   application.use(
@@ -80,7 +83,8 @@ async function main() {
     new ItemInfoRouter(),
     new AdministratorRouter(),
     new UserRouter(),
-    new AuthRouter()
+    new AuthRouter(),
+    new CartRouter()
   ]);
 
   application.use((err, req, res, next) => {

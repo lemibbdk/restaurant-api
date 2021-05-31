@@ -20,7 +20,7 @@ class ItemInfoService extends BaseService<ItemInfoModel> {
     item.itemId = +(data?.item_id)
 
     if (options.loadItem && item.itemId) {
-      const result = await this.services.itemService.getById(item.itemId, {loadItemCategory: true});
+      const result = await this.services.itemService.getById(item.itemId, {loadItemCategory: true, loadPhotos: true});
 
       if (result instanceof ItemModel) {
         item.item = result;

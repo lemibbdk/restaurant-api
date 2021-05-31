@@ -4,6 +4,7 @@ import CategoryService from '../components/category/service';
 import AdministratorService from '../components/administrator/service';
 import UserService from '../components/user/service';
 import PostalAddressService from '../components/postal-address/service';
+import CartService from '../components/cart/service';
 
 export default interface IServices {
   itemService: ItemService;
@@ -12,4 +13,5 @@ export default interface IServices {
   administratorService: AdministratorService;
   userService: UserService;
   postalAddressService: PostalAddressService;
+  cartService: CartService;
 }

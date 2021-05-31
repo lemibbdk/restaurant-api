@@ -41,7 +41,7 @@ const IAddItemValidator = ajv.compile({
         properties: {
           size: {
             type: 'string',
-            pattern: 'S|L|XL'
+            pattern: '^(S|L|XL)$'
           },
           energyValue: {
             type: 'number'

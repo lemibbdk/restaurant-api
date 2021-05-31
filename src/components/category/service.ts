@@ -13,7 +13,7 @@ class CategoryModelAdapterOptions implements IModelAdapterOptions {
 
 class CategoryService extends BaseService<CategoryModel>{
 
-  protected async adaptModel(row: any, options: Partial<CategoryModelAdapterOptions> = { }): Promise<CategoryModel> {
+  protected async adaptModel(row: any, options: Partial<CategoryModelAdapterOptions>): Promise<CategoryModel> {
     const item: CategoryModel = new CategoryModel();
 
     item.categoryId = +(row?.category_id);
