@@ -9,5 +9,7 @@ export default class AuthRouter implements ItemRouter {
 
     application.post('/auth/user/login', authController.userLogin.bind(authController));
     application.post('/auth/administrator/login', authController.administratorLogin.bind(authController));
+    application.post('/auth/user/refresh', authController.userRefresh.bind(authController));
+    application.post('/auth/administrator/refresh', authController.administratorRefresh.bind(authController));
   }
 }
