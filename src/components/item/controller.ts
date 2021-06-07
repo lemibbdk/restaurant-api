@@ -20,6 +20,20 @@ class ItemController extends BaseController {
     res.send(items);
   }
 
+  public async getAllByCategory(req: Request, res: Response) {
+    const id: number = +(req.params.id);
+
+    if (id <= 0) return res.status(400).send('Invalid category id.');
+
+    const data = await this.services.itemService.getAllByCategory(id, {loadAllInfoItem: true, loadPhotos: true});
+
+    if (Array.isArray(data)) {
+      return res.send(data);
+    }
+
+    res.status(500).send(data);
+  }
+
   public async getById(req: Request, res: Response, next: NextFunction) {
     const itemId = +(req.params.id);
 

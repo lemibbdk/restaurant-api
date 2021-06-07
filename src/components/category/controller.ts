@@ -39,19 +39,7 @@ class CategoryController extends BaseController{
     }
 
     if (data instanceof CategoryModel) {
-      if (data.subCategories.length === 0) {
-        const dataItems = await this.services.itemService.getAllByCategory(
-          data.categoryId,
-          {loadAllInfoItem: true}
-        );
-
-        if (Array.isArray(dataItems)) {
-          data.items = dataItems;
-        }
-      }
-
-      res.send(data);
-      return
+      return res.send(data)
     }
 
     res.status(500).send(data);

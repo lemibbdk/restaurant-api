@@ -21,12 +21,12 @@ export default class AuthController extends BaseController {
     if (user === null) return res.sendStatus(404);
 
     if (!user.isActive) {
-      return res.status(403).send('User account inactive.');
+      return res.status(400).send('User account inactive.');
     }
 
     if (!bcrypt.compareSync(data.password, user.passwordHash)) {
       await new Promise(resolve => setTimeout(resolve, 1000));
-      return res.status(403).send('Invalid user password.');
+      return res.status(400).send('Invalid user password.');
     }
 
     const authTokenData: ITokenData = {
@@ -169,5 +169,9 @@ export default class AuthController extends BaseController {
         return res.status(400).send('Invalid refresh token: ' + e?.message)
       }
     }
+  }
+
+  public sendOk(req: Request, res: Response) {
+    res.send('OK')
   }
 }

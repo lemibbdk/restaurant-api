@@ -50,13 +50,13 @@ class ItemService extends BaseService<ItemModel> {
   }
 
   public async getAllByCategory(categoryId: number, options: Partial<ItemModelAdapterOptions> = { })
-    : Promise<ItemModel[]|IErrorResponse> {
+    : Promise<ItemModel[]> {
     return await this.getAllByFieldNameFromTable(
       'item',
       'category_id',
       categoryId,
       options
-    );
+    ) as ItemModel[];;
   }
 
   public async getAllPhotosByItemId(itemId: number): Promise<ItemPhoto[]> {
