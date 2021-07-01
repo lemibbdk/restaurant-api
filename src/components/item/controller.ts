@@ -44,7 +44,8 @@ class ItemController extends BaseController {
 
     const data: ItemModel|null|IErrorResponse = await this.services.itemService.getById(itemId, {
       loadAllInfoItem: true,
-      loadItemCategory: true
+      loadItemCategory: true,
+      loadPhotos: true
     });
 
     if (data === null) {
