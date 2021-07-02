@@ -2,6 +2,7 @@ import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
 
 interface IAddOrder {
+  addressId: number;
   desiredDeliveryTime: Date;
   footnote: string;
   status: string;
@@ -13,6 +14,10 @@ addFormats(ajv);
 const IAddOrderValidator = ajv.compile({
   type: 'object',
   properties: {
+    addressId: {
+      type: 'number',
+      minimum: 1
+    },
     desiredDeliveryTime: {
       type: 'string',
       format: 'date-time'
@@ -27,6 +32,7 @@ const IAddOrderValidator = ajv.compile({
     }
   },
   required: [
+    'addressId',
     'desiredDeliveryTime',
     'footnote'
   ],

@@ -1,11 +1,14 @@
 import IModel from '../../common/IModel.interface';
 import UserModel from '../user/model';
 import ItemInfoModel from '../item-info/model';
+import PostalAddressModel from '../postal-address/model';
 
 type OrderStatus = 'pending' | 'rejected' | 'accepted' | 'completed';
 
 class OrderModel implements IModel {
   orderId: number;
+  addressId: number;
+  address: PostalAddressModel;
   createdAt: Date;
   status: OrderStatus;
   desiredDeliveryTime: Date;

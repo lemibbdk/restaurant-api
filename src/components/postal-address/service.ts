@@ -26,10 +26,10 @@ class PostalAddressService extends BaseService<PostalAddressModel> {
   }
 
   public async getById(
-    itemInfoId: number,
+    postalAddressId: number,
     options: Partial<PostalAddressAdapterOptions> = { }
-  ): Promise<PostalAddressModel|null|IErrorResponse> {
-    return await this.getByIdFromTable('item_info', itemInfoId, options);
+  ): Promise<PostalAddressModel|null> {
+    return await this.getByIdFromTable('postal_address', postalAddressId, options) as PostalAddressModel|null;
   }
 
   public async getAllByUser(

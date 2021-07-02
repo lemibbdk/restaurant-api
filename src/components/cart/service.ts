@@ -2,11 +2,11 @@ import BaseService from '../../common/BaseService';
 import CartModel, { CartItemModel, OrderModel } from './model';
 import IModelAdapterOptions from '../../common/IModelAdapterOptions.interface';
 import UserModel from '../user/model';
-import ItemModel from '../item/model';
 import IErrorResponse from '../../common/IErrorResponse.interface';
 import { IOrderStatus } from './dto/IOrderStatus';
 import IAddOrder from './dto/IAddOrder';
 import ItemInfoModel from '../item-info/model';
+import PostalAddressModel from '../postal-address/model';
 
 class CartModelAdapterOptions implements IModelAdapterOptions {
   loadUser: boolean = false;
@@ -75,13 +75,21 @@ export default class CartService extends BaseService<CartModel> {
 
     const order = rows[0] as any;
 
+    const postalAddress = await this.services.postalAddressService.getById(order?.postal_address_id);
+
+    if (postalAddress === null) {
+      return null;
+    }
+
     return {
       orderId: +(order?.order_id),
+      addressId: +(order?.postal_address_id),
+      address: postalAddress,
       createdAt: new Date(order?.created_at),
       status: order?.status,
       desiredDeliveryTime: new Date(order?.desired_delivery_time),
       footnote: order?.footnote
-    }
+    };
   }
 
   public async getById(cartId: number, options: Partial<CartModelAdapterOptions> = {}): Promise<CartModel|null> {
@@ -195,11 +203,9 @@ export default class CartService extends BaseService<CartModel> {
         })
       }
 
-      const sql = 'INSERT INTO `order` SET cart_id = ?, desired_delivery_time = ?, footnote = ?, status = ?;';
-
       if (data.status) {
-        const sql = 'INSERT INTO `order` SET cart_id = ?, desired_delivery_time = ?, footnote = ?, status = ?;';
-        this.db.execute(sql, [ cart.cartId, data.desiredDeliveryTime, data.footnote, data.status ])
+        const sql = 'INSERT INTO `order` SET cart_id = ?, postal_address_id = ?, desired_delivery_time = ?, footnote = ?, status = ?;';
+        this.db.execute(sql, [ cart.cartId, data.addressId, data.desiredDeliveryTime, data.footnote, data.status ])
           .then(async () => {
             resolve(await this.getById(cart.cartId, {
               loadInfoItems: true,
@@ -214,8 +220,8 @@ export default class CartService extends BaseService<CartModel> {
             })
           })
       } else {
-        const sql = 'INSERT INTO `order` SET cart_id = ?, desired_delivery_time = ?, footnote = ?;';
-        this.db.execute(sql, [ cart.cartId, data.desiredDeliveryTime, data.footnote ])
+        const sql = 'INSERT INTO `order` SET cart_id = ?, postal_address_id = ?, desired_delivery_time = ?, footnote = ?;';
+        this.db.execute(sql, [ cart.cartId, data.addressId, data.desiredDeliveryTime, data.footnote ])
           .then(async () => {
             resolve(await this.getById(cart.cartId, {
               loadInfoItems: true,
