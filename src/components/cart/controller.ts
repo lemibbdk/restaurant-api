@@ -95,7 +95,7 @@ export default class CartController extends BaseController {
     const result = await this.services.cartService.makeOrder(req.authorized?.id, data);
 
     if (!(result instanceof CartModel)) {
-      return res.status(201).send(result)
+      return res.status(400).send(result)
     }
 
     res.send(result);
