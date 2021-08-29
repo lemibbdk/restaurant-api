@@ -6,7 +6,7 @@ import { IOrderStatus, IOrderStatusValidator } from './dto/IOrderStatus';
 import IAddOrder, { IAddOrderValidator } from './dto/IAddOrder';
 
 export default class CartController extends BaseController {
-  private static isCallerUser(req: Request, res: Response): boolean {
+  private isCallerUser(req: Request, res: Response): boolean {
     if (req.authorized?.role !== 'user') {
       res.status(403).send('This action is only available to the user role.');
       return false;
