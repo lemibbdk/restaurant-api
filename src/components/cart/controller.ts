@@ -6,7 +6,7 @@ import { IOrderStatus, IOrderStatusValidator } from './dto/IOrderStatus';
 import IAddOrder, { IAddOrderValidator } from './dto/IAddOrder';
 
 export default class CartController extends BaseController {
-  private isCallerUser(req: Request, res: Response): boolean {
+  private static isCallerUser(req: Request, res: Response): boolean {
     if (req.authorized?.role !== 'user') {
       res.status(403).send('This action is only available to the user role.');
       return false;
@@ -126,6 +126,10 @@ export default class CartController extends BaseController {
 
     if (cartId < 0) {
       return res.status(400).send('Invalid cart id.')
+    }
+
+    if (this.isCallerUser(req, res) && req.body.status !== 'rejected') {
+      return res.status(400).send('Invalid status.')
     }
 
     if (!IOrderStatusValidator(req.body)) {

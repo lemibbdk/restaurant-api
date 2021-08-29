@@ -52,7 +52,7 @@ export default class CartRouter implements IRouter {
 
     application.put(
       '/cart/:cid',
-      AuthMiddleware.getVerifier('administrator'),
+      AuthMiddleware.getVerifier('user', 'administrator'),
       cartController.setStatus.bind(cartController)
     )
   }
