@@ -246,6 +246,7 @@ export default class CartService extends BaseService<CartModel> {
         loadInfoItems: true
       });
 
+
       if (cart.order === null) {
         return resolve({
           errorCode: -3022,
@@ -267,18 +268,18 @@ export default class CartService extends BaseService<CartModel> {
           for (const cartItem of data.itemInfos) {
             if (cartItem.quantity > 0) {
               const sql = 'UPDATE cart_item SET quantity = ? WHERE cart_id = ? AND item_info_id = ?';
-              promises.push(this.db.execute(sql, [ cart.cartId, cartItem.itemInfoId ]))
+              promises.push(this.db.execute(sql, [ cartItem.quantity, data.cartId, cartItem.itemInfoId ]))
             } else {
               const sql = 'DELETE FROM cart_item WHERE cart_id = ? AND item_info_id = ?';
-              promises.push(this.db.execute(sql, [ cart.cartId, cartItem.itemInfoId ]));
+              promises.push(this.db.execute(sql, [ data.cartId, cartItem.itemInfoId ]));
             }
           }
 
-          const sqlOrder = 'UPDATE order SET postal_address_id = ?, desired_delivery_time = ?, footnote = ? WHERE order_id = ?';
+          const sqlOrder = 'UPDATE `order` SET postal_address_id = ?, desired_delivery_time = ?, footnote = ? WHERE order_id = ?;'
           promises.push(
             this.db.execute(
               sqlOrder,
-              [ data.order.address.postalAddressId,
+              [ data.order.addressId,
                 data.order.desiredDeliveryTime,
                 data.order.footnote,
                 data.order.orderId ]

@@ -5,7 +5,6 @@ import CartModel from './model';
 import { IOrderStatus, IOrderStatusValidator } from './dto/IOrderStatus';
 import IAddOrder, { IAddOrderValidator } from './dto/IAddOrder';
 import IEditCart, { IEditOrderValidator } from './dto/IEditCart';
-import ItemModel from '../item/model';
 
 export default class CartController extends BaseController {
   private isCallerUser(req: Request, res: Response): boolean {
@@ -147,8 +146,9 @@ export default class CartController extends BaseController {
 
     const result = await this.services.cartService.editOrder(data);
 
+    console.log(result)
     if (!(result instanceof CartModel)) {
-      return res.status(400).send(result)
+      return res.status(500).send(result)
     }
 
     res.send(result);

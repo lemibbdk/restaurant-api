@@ -46,7 +46,11 @@ const IEditOrderValidator = ajv.compile({
     order: {
       type: 'object',
       properties: {
-        postalAddressId: {
+        orderId: {
+          type: 'number',
+          minimum: 1
+        },
+        addressId: {
           type: 'number',
           minimum: 1
         },
@@ -60,7 +64,8 @@ const IEditOrderValidator = ajv.compile({
         },
       },
       required: [
-        'postalAddressId',
+        'orderId',
+        'addressId',
         'desiredDeliveryTime',
         'footnote'
       ]
