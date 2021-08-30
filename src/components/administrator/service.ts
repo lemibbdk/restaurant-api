@@ -5,7 +5,6 @@ import { IAddAdministrator } from './dto/IAddAdministrator';
 import IErrorResponse from '../../common/IErrorResponse.interface';
 import * as bcrypt from 'bcrypt';
 import { IEditAdministrator } from './dto/IEditAdministrator';
-import UserModel from '../user/model';
 
 class AdministratorModelAdapterOptions implements IModelAdapterOptions {
 
@@ -74,7 +73,7 @@ class AdministratorService extends BaseService<AdministratorModel> {
 
       this.db.execute(
         'UPDATE administrator SET password_hash = ?, is_active = ? WHERE administrator_id = ?;',
-        [ passwordHash, data.isActive, administratorId ]
+        [ passwordHash, administratorId ]
       )
         .then(async () => {
           resolve(await this.getById(administratorId))
@@ -86,6 +85,27 @@ class AdministratorService extends BaseService<AdministratorModel> {
           })
         })
     })
+  }
+
+  public async delete(administratorId: number): Promise<IErrorResponse> {
+    return new Promise<IErrorResponse>(async resolve => {
+      this.db.execute(
+        `DELETE FROM administrator WHERE administrator_id = ?;`,
+        [ administratorId ]
+      )
+        .then(res => {
+          resolve({
+            errorCode: 0,
+            errorMessage: `Deleted ${(res as any[])[0]?.affectedRows} records.`
+          });
+        })
+        .catch(error => {
+          resolve({
+            errorCode: error?.errno,
+            errorMessage: error?.sqlMessage
+          });
+        });
+    });
   }
 
 }

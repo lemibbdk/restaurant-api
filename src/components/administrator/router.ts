@@ -24,5 +24,9 @@ export default class AdministratorRouter implements IRouter {
       '/administrator/:id',
       AuthMiddleware.getVerifier('administrator'),
       administratorController.edit.bind(administratorController));
+    application.delete(
+      '/administrator/:id',
+      AuthMiddleware.getVerifier('administrator'),
+      administratorController.delete.bind(administratorController))
   }
 }
