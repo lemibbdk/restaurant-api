@@ -55,5 +55,11 @@ export default class CartRouter implements IRouter {
       AuthMiddleware.getVerifier('user', 'administrator'),
       cartController.setStatus.bind(cartController)
     )
+
+    application.put(
+      '/cart/:cid/edit',
+      AuthMiddleware.getVerifier('user'),
+      cartController.editCart.bind(cartController)
+    )
   }
 }

@@ -6,7 +6,7 @@ import IErrorResponse from '../../common/IErrorResponse.interface';
 import { IOrderStatus } from './dto/IOrderStatus';
 import IAddOrder from './dto/IAddOrder';
 import ItemInfoModel from '../item-info/model';
-import PostalAddressModel from '../postal-address/model';
+import IEditCart from './dto/IEditCart';
 
 class CartModelAdapterOptions implements IModelAdapterOptions {
   loadUser: boolean = false;
@@ -16,7 +16,7 @@ class CartModelAdapterOptions implements IModelAdapterOptions {
 
 export default class CartService extends BaseService<CartModel> {
   protected async adaptModel(data: any, options: Partial<CartModelAdapterOptions>): Promise<CartModel> {
-    const item = new CartModel();
+    const item:CartModel = new CartModel();
 
     item.cartId = +(data?.cart_id);
     item.createdAt = new Date(data?.created_at);
@@ -236,6 +236,76 @@ export default class CartService extends BaseService<CartModel> {
             })
           })
       }
+    })
+  }
+
+  public async editOrder(data: IEditCart): Promise<CartModel|IErrorResponse> {
+    return new Promise<CartModel|IErrorResponse>(async resolve => {
+      const cart = await this.getById(data.cartId, {
+        loadOrder: true,
+        loadInfoItems: true
+      });
+
+      if (cart.order === null) {
+        return resolve({
+          errorCode: -3022,
+          errorMessage: 'This cart has no order.'
+        });
+      }
+
+      if (cart.itemInfos.length === 0) {
+        return resolve({
+          errorCode: -1,
+          errorMessage: 'You cannot make an order with an empty cart.'
+        })
+      }
+
+      this.db.beginTransaction()
+        .then(async () => {
+          const promises = [];
+
+          for (const cartItem of data.itemInfos) {
+            if (cartItem.quantity > 0) {
+              const sql = 'UPDATE cart_item SET quantity = ? WHERE cart_id = ? AND item_info_id = ?';
+              promises.push(this.db.execute(sql, [ cart.cartId, cartItem.itemInfoId ]))
+            } else {
+              const sql = 'DELETE FROM cart_item WHERE cart_id = ? AND item_info_id = ?';
+              promises.push(this.db.execute(sql, [ cart.cartId, cartItem.itemInfoId ]));
+            }
+          }
+
+          const sqlOrder = 'UPDATE order SET postal_address_id = ?, desired_delivery_time = ?, footnote = ? WHERE order_id = ?';
+          promises.push(
+            this.db.execute(
+              sqlOrder,
+              [ data.order.address.postalAddressId,
+                data.order.desiredDeliveryTime,
+                data.order.footnote,
+                data.order.orderId ]
+            ))
+
+          Promise.all(promises)
+            .then(async () => {
+              await this.db.commit();
+
+              resolve(await this.getById(
+                cart.cartId,
+                {
+                  loadOrder: true,
+                  loadInfoItems: true
+                }
+              ))
+            })
+            .catch(async error => {
+              await this.db.rollback();
+
+              resolve({
+                errorCode: error?.errno,
+                errorMessage: error?.sqlMessage
+              })
+            })
+        })
+
     })
   }
 

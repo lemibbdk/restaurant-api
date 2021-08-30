@@ -4,6 +4,8 @@ import IAddCart, { IAddCartValidator } from './dto/IAddCart';
 import CartModel from './model';
 import { IOrderStatus, IOrderStatusValidator } from './dto/IOrderStatus';
 import IAddOrder, { IAddOrderValidator } from './dto/IAddOrder';
+import IEditCart, { IEditOrderValidator } from './dto/IEditCart';
+import ItemModel from '../item/model';
 
 export default class CartController extends BaseController {
   private isCallerUser(req: Request, res: Response): boolean {
@@ -93,6 +95,57 @@ export default class CartController extends BaseController {
     }
 
     const result = await this.services.cartService.makeOrder(req.authorized?.id, data);
+
+    if (!(result instanceof CartModel)) {
+      return res.status(400).send(result)
+    }
+
+    res.send(result);
+  }
+
+  public async editCart(req: Request, res: Response) {
+    if (!this.isCallerUser(req, res)) return;
+
+    const itemId = +(req.params.cid);
+
+    if (itemId <= 0) {
+      res.sendStatus(400)
+      return;
+    }
+
+    if (!IEditOrderValidator(req.body)) {
+      return res.status(400).send(IEditOrderValidator.errors);
+    }
+
+    const cartResult = await this.services.cartService.getById(itemId, {loadInfoItems: true, loadOrder: true});
+
+    if (cartResult === null) {
+      res.sendStatus(404);
+      return;
+    }
+
+    if (!(cartResult instanceof CartModel)) {
+      return cartResult;
+    }
+
+    const data = req.body as IEditCart;
+
+    const now = new Date();
+    const desired = new Date(data.order.desiredDeliveryTime);
+
+    if (now.getFullYear() !== desired.getFullYear() ||
+      now.getMonth() !== desired.getMonth() ||
+      now.getDate() !== desired.getDate()) {
+      return res.status(400).send('Desired delivery time must be on same date.')
+    }
+
+    const differenceInMinutes = Math.round((desired.getTime() - now.getTime()) / 60);
+
+    if (differenceInMinutes < 45) {
+      return res.status(400).send('Desired delivery time can be at least 45 minutes.');
+    }
+
+    const result = await this.services.cartService.editOrder(data);
 
     if (!(result instanceof CartModel)) {
       return res.status(400).send(result)
