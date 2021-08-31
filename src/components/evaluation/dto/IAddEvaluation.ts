@@ -2,6 +2,7 @@ import Ajv from 'ajv';
 
 interface IAddEvaluation {
   orderId: number;
+  cartId: number;
   score: string;
   remark: string;
 }
@@ -12,6 +13,10 @@ const IAddEvaluationValidator = ajv.compile({
   type: 'object',
   properties: {
     orderId: {
+      type: 'number',
+      minimum: 1
+    },
+    cartId: {
       type: 'number',
       minimum: 1
     },
@@ -26,6 +31,7 @@ const IAddEvaluationValidator = ajv.compile({
   },
   required: [
     'orderId',
+    'cartId',
     'score',
     'remark'
   ],
