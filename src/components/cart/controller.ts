@@ -66,7 +66,13 @@ export default class CartController extends BaseController {
       return res.status(404).send('Item not found.')
     }
 
-    res.send(await this.services.cartService.setItemToLatestCartByUserId(req.authorized?.id, data.itemInfoId, data.quantity));
+    if (data.notLastCart) {
+      if (!data.cartId) return res.status(400).send('Must provide cart id');
+      res.send(await this.services.cartService.setItemToCart(req.authorized?.id, data.itemInfoId, data.quantity, data.notLastCart, data.cartId));
+    } else {
+      res.send(await this.services.cartService.setItemToCart(req.authorized?.id, data.itemInfoId, data.quantity));
+    }
+
   }
 
   public async makeOrder(req: Request, res: Response) {
@@ -146,7 +152,6 @@ export default class CartController extends BaseController {
 
     const result = await this.services.cartService.editOrder(data);
 
-    console.log(result)
     if (!(result instanceof CartModel)) {
       return res.status(500).send(result)
     }

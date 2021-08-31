@@ -163,10 +163,17 @@ export default class CartService extends BaseService<CartModel> {
     })
   }
 
-  public async setItemToLatestCartByUserId(userId: number, itemInfoId: number, quantity: number): Promise<CartModel> {
-    const cart = await this.getLatestCartByUserId(userId, {
-      loadInfoItems: true
-    });
+  public async setItemToCart(userId: number, itemInfoId: number, quantity: number, notLastCart: boolean = false, cartId: number = 0): Promise<CartModel> {
+    let cart;
+    if (notLastCart) {
+      cart = await this.getById(cartId, {
+        loadInfoItems: true
+      });
+    } else {
+      cart = await this.getLatestCartByUserId(userId, {
+        loadInfoItems: true
+      });
+    }
 
     const filteredItems = cart.itemInfos.filter(el => el.itemInfoId === itemInfoId);
 

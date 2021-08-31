@@ -3,6 +3,8 @@ import Ajv from 'ajv';
 interface IAddCart {
   itemInfoId: number;
   quantity: number;
+  notLastCart: boolean;
+  cartId: number;
 }
 
 const ajv = new Ajv();
@@ -17,6 +19,13 @@ const IAddCartValidator = ajv.compile({
     quantity: {
       type: 'integer',
       minimum: 0
+    },
+    notLastCart: {
+      type: 'boolean'
+    },
+    cartId: {
+      type: 'number',
+      minimum: 1
     }
   },
   required: [
