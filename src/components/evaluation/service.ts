@@ -3,7 +3,6 @@ import IModelAdapterOptions from '../../common/IModelAdapterOptions.interface';
 import IErrorResponse from '../../common/IErrorResponse.interface';
 import EvaluationModel from './model';
 import { IAddEvaluation } from './dto/IAddEvaluation';
-import { IEditEvaluation } from './dto/IEditEvaluation';
 
 class EvaluationAdapterOptions implements IModelAdapterOptions {
   loadOrder: boolean = false;
@@ -55,30 +54,6 @@ class EvaluationService extends BaseService<EvaluationModel> {
             })
           }
 
-          resolve({
-            errorCode: error?.errno,
-            errorMessage: error?.sqlMessage
-          })
-        })
-    })
-  }
-
-  public async edit(evaluationId: number, data: IEditEvaluation): Promise<EvaluationModel|IErrorResponse|null> {
-    return new Promise<EvaluationModel|IErrorResponse>(async resolve => {
-      const evaluation = await this.getById(evaluationId);
-
-      if (evaluation === null) {
-        return resolve(null);
-      }
-
-      this.db.execute(
-        'UPDATE evaluation SET score = ?, remark = ? WHERE evaluation_id = ? AND order_id = ?;',
-        [ data.score, data.remark, data.evaluationId, data.orderId ]
-      )
-        .then(async () => {
-          resolve(await this.getById(evaluationId))
-        })
-        .catch(error => {
           resolve({
             errorCode: error?.errno,
             errorMessage: error?.sqlMessage

@@ -20,9 +20,5 @@ export default class EvaluationRouter implements IRouter {
       '/administrator',
       AuthMiddleware.getVerifier('administrator'),
       evaluationController.add.bind(evaluationController));
-    application.put(
-      '/administrator/:id',
-      AuthMiddleware.getVerifier('user'),
-      evaluationController.edit.bind(evaluationController));
   }
 }
