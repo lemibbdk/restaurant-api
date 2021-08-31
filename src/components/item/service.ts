@@ -56,7 +56,7 @@ class ItemService extends BaseService<ItemModel> {
       'category_id',
       categoryId,
       options
-    ) as ItemModel[];;
+    ) as ItemModel[];
   }
 
   public async getAllPhotosByItemId(itemId: number): Promise<ItemPhoto[]> {
