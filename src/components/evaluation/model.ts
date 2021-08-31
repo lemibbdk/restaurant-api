@@ -5,6 +5,7 @@ class EvaluationModel implements IModel {
   evaluationId: number;
   orderId: number;
   order: OrderModel;
+  userId: number;
   score: string;
   remark: string;
 }

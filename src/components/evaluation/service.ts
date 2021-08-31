@@ -35,11 +35,11 @@ class EvaluationService extends BaseService<EvaluationModel> {
     return await this.getByIdFromTable('evaluation', evaluationId, options) as EvaluationModel|null;
   }
 
-  public async add(data: IAddEvaluation): Promise<EvaluationModel|IErrorResponse> {
+  public async add(data: IAddEvaluation, userId: number): Promise<EvaluationModel|IErrorResponse> {
     return new Promise<EvaluationModel|IErrorResponse>(async resolve => {
-      const sql = 'INSERT evaluation SET score = ?, remark = ?, order_id = ?;';
+      const sql = 'INSERT evaluation SET score = ?, remark = ?, order_id = ?, user_id = ?;';
 
-      this.db.execute(sql, [data.score, data.remark, data.orderId ])
+      this.db.execute(sql, [data.score, data.remark, data.orderId, userId ])
         .then(async result => {
           const insertInfo: any = result[0];
 

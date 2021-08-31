@@ -10,15 +10,15 @@ export default class EvaluationRouter implements IRouter {
 
     application.get(
       '/evaluation',
-      AuthMiddleware.getVerifier('administrator'),
+      AuthMiddleware.getVerifier('administrator', 'user'),
       evaluationController.getAll.bind(evaluationController));
     application.get(
       '/evaluation/:id',
-      AuthMiddleware.getVerifier('administrator'),
+      AuthMiddleware.getVerifier('administrator', 'user'),
       evaluationController.getById.bind(evaluationController));
     application.post(
       '/evaluation',
-      AuthMiddleware.getVerifier('administrator'),
+      AuthMiddleware.getVerifier('user'),
       evaluationController.add.bind(evaluationController));
   }
 }

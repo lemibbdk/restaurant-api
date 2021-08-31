@@ -32,7 +32,7 @@ export default class EvaluationController extends BaseController {
 
     const cartId = +((req.body as IAddEvaluation).cartId)
 
-    const cartResult = await this.services.cartService.getById(cartId)
+    const cartResult = await this.services.cartService.getById(cartId, {loadOrder: true, loadUser: true})
 
     if (!(cartResult instanceof CartModel)) {
       return res.status(400).send(cartResult);
@@ -50,7 +50,7 @@ export default class EvaluationController extends BaseController {
       return res.status(400).send({errorMessage: 'Wrong user for this order.'})
     }
 
-    const result = await this.services.evaluationService.add(req.body as IAddEvaluation);
+    const result = await this.services.evaluationService.add(req.body as IAddEvaluation, cartResult.userId);
 
     res.send(result);
   }
