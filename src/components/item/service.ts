@@ -51,7 +51,7 @@ class ItemService extends BaseService<ItemModel> {
 
   public async getAllByCategory(categoryId: number, options: Partial<ItemModelAdapterOptions> = { })
     : Promise<ItemModel[]> {
-    return await this.getAllByFieldNameFromTable(
+    return await this.getAllActiveByFieldNameFromTable(
       'item',
       'category_id',
       categoryId,
@@ -206,7 +206,7 @@ class ItemService extends BaseService<ItemModel> {
 
   public async delete(itemId: number): Promise<IErrorResponse> {
     return new Promise<IErrorResponse>(resolve => {
-      const sql = 'DELETE FROM item WHERE item_id = ?;';
+      const sql = 'UPDATE item SET is_active = 0 WHERE item_id = ?;';
       this.db.execute(sql, [itemId])
         .then(async result => {
           const deleteInfo: any = result[0];

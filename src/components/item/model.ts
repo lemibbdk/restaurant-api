@@ -15,6 +15,7 @@ class ItemModel implements IModel {
   category: CategoryModel | null = null;
   itemInfoAll: ItemInfoModel[] = [];
   photos: Photo[] = [];
+  isActive: boolean;
 }
 
 export default ItemModel;

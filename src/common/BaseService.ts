@@ -152,4 +152,39 @@ export default abstract class BaseService<ReturnModel extends IModel> {
         });
     })
   }
+
+  protected async getAllActiveByFieldNameFromTable<AdapterOptions extends IModelAdapterOptions>(
+    tableName: string,
+    fieldName: string,
+    fieldValue: any,
+    options: Partial<AdapterOptions> = { }
+  ): Promise<ReturnModel[]|IErrorResponse> {
+    return new Promise<ReturnModel[]|IErrorResponse>(async (resolve) => {
+      let sql = `SELECT * FROM ${tableName} WHERE ${fieldName} = ? AND is_active = 1`;
+
+      if (fieldValue === null) {
+        sql = `SELECT * FROM ${tableName} WHERE ${fieldName} IS NULL`;
+      }
+
+      this.db.execute(sql, [ fieldValue ])
+        .then(async result => {
+          const rows = result[0]
+          const list: ReturnModel[] = [];
+
+          if (Array.isArray(rows)) {
+            for (const row of rows) {
+              list.push(await this.adaptModel(row, options))
+            }
+          }
+
+          resolve(list);
+        })
+        .catch(error => {
+          resolve({
+            errorCode: error?.errno,
+            errorMessage: error?.sqlMessage
+          })
+        });
+    })
+  }
 }
