@@ -7,11 +7,13 @@ import { IOrderStatus } from './dto/IOrderStatus';
 import IAddOrder from './dto/IAddOrder';
 import ItemInfoModel from '../item-info/model';
 import IEditCart from './dto/IEditCart';
+import EvaluationModel from '../evaluation/model';
 
 class CartModelAdapterOptions implements IModelAdapterOptions {
   loadUser: boolean = false;
   loadInfoItems: boolean = false;
   loadOrder: boolean = false;
+  loadEvaluation: boolean = false;
 }
 
 export default class CartService extends BaseService<CartModel> {
@@ -32,6 +34,8 @@ export default class CartService extends BaseService<CartModel> {
 
     if (options.loadOrder) {
       item.order = await this.getOrderByCartId(item.cartId);
+
+      if (options.loadEvaluation) item.order.evaluation = await this.getOrderEvaluation(item.order.orderId, item.userId)
     }
 
     return item;
@@ -339,6 +343,7 @@ export default class CartService extends BaseService<CartModel> {
         loadInfoItems: true,
         loadOrder: true,
         loadUser: true,
+        loadEvaluation: true
       }));
     }
 
@@ -405,4 +410,15 @@ export default class CartService extends BaseService<CartModel> {
     });
   }
 
+  public async getOrderEvaluation(orderId: number, userId: number): Promise<EvaluationModel|null> {
+    const sql = 'SELECT * FROM evaluation WHERE order_id = ? AND user_id = ?;';
+
+    const [ rows ] = await this.db.execute(sql,[ orderId, userId ]);
+
+    if (!Array.isArray((rows)) || rows.length === 0) {
+      return null;
+    }
+
+    return rows[0] as EvaluationModel;
+  }
 }

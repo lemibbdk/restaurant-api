@@ -2,6 +2,7 @@ import IModel from '../../common/IModel.interface';
 import UserModel from '../user/model';
 import ItemInfoModel from '../item-info/model';
 import PostalAddressModel from '../postal-address/model';
+import EvaluationModel from '../evaluation/model';
 
 type OrderStatus = 'pending' | 'rejected' | 'accepted' | 'completed';
 
@@ -13,6 +14,7 @@ class OrderModel implements IModel {
   status: OrderStatus;
   desiredDeliveryTime: Date;
   footnote: string;
+  evaluation?: EvaluationModel = null;
 }
 
 class CartItemModel implements IModel {
