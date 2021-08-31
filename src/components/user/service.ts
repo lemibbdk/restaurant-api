@@ -38,7 +38,8 @@ class UserService extends BaseService<UserModel> {
   }
 
   public async getAll(): Promise<UserModel[]> {
-    return await this.getAllFromTable('user', {}) as UserModel[];
+    return await this.getAllActiveFromTable('user', {}) as UserModel[];
+    // return await this.getAllFromTable('user', {}) as UserModel[];
   }
 
   public async getById(
@@ -185,6 +186,24 @@ class UserService extends BaseService<UserModel> {
             })
         })
     })
+  }
+
+  public async delete(userId: number): Promise<IErrorResponse> {
+    return new Promise<IErrorResponse>(resolve => {
+      this.db.execute('UPDATE user SET is_active = 0 WHERE user_id = ?', [ userId ])
+        .then(res => {
+          resolve({
+            errorCode: 0,
+            errorMessage: `Deleted ${(res as any[])[0]?.affectedRows} records.`
+          })
+        })
+        .catch(error => {
+          resolve({
+            errorCode: error?.errno,
+            errorMessage: error?.sqlMessage
+          });
+        })
+    });
   }
 
 }

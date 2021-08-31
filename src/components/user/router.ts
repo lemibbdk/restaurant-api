@@ -26,5 +26,7 @@ export default class UserRouter implements IRouter {
     application.post(
       '/auth/user/register',
       userController.register.bind(userController));
+    application.delete("/user/:id",
+      userController.delete.bind(userController));
   }
 }

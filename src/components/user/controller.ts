@@ -135,4 +135,12 @@ export default class UserController extends BaseController {
 
     res.send(result);
   }
+
+  public async delete(req: Request, res: Response) {
+    const id = +(req.params.id);
+
+    if (id <= 0) return res.status(400).send("The ID value cannot be smaller than 1.");
+
+    res.send(await this.services.userService.delete(id));
+  }
 }
