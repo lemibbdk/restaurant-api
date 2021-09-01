@@ -186,7 +186,7 @@ export default class CartController extends BaseController {
       return res.status(400).send('Invalid cart id.')
     }
 
-    if (this.isCallerUser(req, res) && req.body.status !== 'rejected') {
+    if (req.authorized.role === 'user' && req.body.status !== 'rejected') {
       return res.status(400).send('Invalid status.')
     }
 
