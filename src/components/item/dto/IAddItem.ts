@@ -52,7 +52,7 @@ const IAddItemValidator = ajv.compile({
           },
           price: {
             type: 'number',
-            minimum: 10.00
+            minimum: 2.00
           },
           itemId: {
             type: 'integer',
