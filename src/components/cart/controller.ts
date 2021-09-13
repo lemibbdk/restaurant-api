@@ -133,6 +133,10 @@ export default class CartController extends BaseController {
       return cartResult;
     }
 
+    if (cartResult.order.status !== 'pending') {
+      return res.status(400).send({message: 'Cant edit cart which isn\'t on pending!'})
+    }
+
     const data = req.body as IEditCart;
 
     const now = new Date();
@@ -196,6 +200,21 @@ export default class CartController extends BaseController {
 
     const data = req.body as IOrderStatus;
 
-    res.send(await this.services.cartService.setOrderStatus(cartId, data));
+    const cart = await this.services.cartService.getById(cartId, {
+      loadOrder: true
+    });
+
+    if (cart.order === null) {
+      return res.status(400).send({
+        errorCode: -3022,
+        errorMessage: 'This cart has no order.'
+      });
+    }
+
+    if (cart.order.status === 'accepted' && req.authorized?.role === 'user' && data.status === 'rejected') {
+      return res.status(400).send({message: 'Can\'t cancel order which is already accepted.'});
+    }
+
+    res.send(await this.services.cartService.setOrderStatus(cartId, data, cart));
   }
 }

@@ -377,19 +377,8 @@ export default class CartService extends BaseService<CartModel> {
     return items;
   }
 
-  public async setOrderStatus(cartId: number, data: IOrderStatus): Promise<CartModel|IErrorResponse> {
+  public async setOrderStatus(cartId: number, data: IOrderStatus, cart: CartModel): Promise<CartModel|IErrorResponse> {
     return new Promise<CartModel|IErrorResponse>(async resolve => {
-      const cart = await this.getById(cartId, {
-        loadOrder: true
-      });
-
-      if (cart.order === null) {
-        return resolve({
-          errorCode: -3022,
-          errorMessage: 'This cart has no order.'
-        });
-      }
-
       this.db.execute(
         `UPDATE \`order\` SET \`status\` = ? WHERE order_id = ?;`,
         [ data.status, cart.order.orderId ]
