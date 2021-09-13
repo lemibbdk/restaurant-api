@@ -2,9 +2,9 @@ import IConfig from '../common/IConfig.interface';
 import * as dotenv from 'dotenv';
 import { readFileSync } from 'fs';
 
-const dotenvResult = dotenv.config();
-
-if (dotenvResult.error) throw 'Environment configuration file error: ' + dotenvResult.error;
+// const dotenvResult = dotenv.config();
+//
+// if (dotenvResult.error) throw 'Environment configuration file error: ' + dotenvResult.error;
 
 const Config: IConfig = {
   server: {
@@ -66,15 +66,15 @@ const Config: IConfig = {
       ]
     }
   },
-  mail: {
-    hostname: process.env?.MAIL_HOST,
-    port: +(process.env?.MAIL_PORT),
-    secure: process.env?.MAIL_SECURE === 'true',
-    username: process.env?.MAIL_USERNAME,
-    password: process.env?.MAIL_PASSWORD,
-    fromEmail: process.env?.MAIL_FROM,
-    debug: true
-  },
+  // mail: {
+  //   hostname: process.env?.MAIL_HOST,
+  //   port: +(process.env?.MAIL_PORT),
+  //   secure: process.env?.MAIL_SECURE === 'true',
+  //   username: process.env?.MAIL_USERNAME,
+  //   password: process.env?.MAIL_PASSWORD,
+  //   fromEmail: process.env?.MAIL_FROM,
+  //   debug: true
+  // },
   auth: {
     user: {
       algorithm: 'RS256',
