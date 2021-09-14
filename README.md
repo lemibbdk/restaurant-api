@@ -8,3 +8,9 @@
 2. Napraviti key store folder/fajlove
 3. napraviti static folder i po zelji prebaciti slike koje su povezane sa delimicno popunjenom bazom /resources/static -> /static
 4. Importovati postman upite za testiranje API-ja /resources/Restaurant app.postman_collection.json
+
+## Pristupni parametri rola korisnika
+1. username: aleksa, password: asdasdasd          (admin)
+2. email: aleksa2@test.com, password: asdasdasd   (user)
+# Link ka repozitorijumu front-end dela
+https://github.com/lemibbdk/restaurant-react
