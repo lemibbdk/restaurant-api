@@ -1,0 +1,5991 @@
+{
+	"info": {
+		"_postman_id": "4d5601bc-cf3a-41f3-b3fe-1a03c92e4c6f",
+		"name": "Restaurant app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "GET all categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/category",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"category"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET all categories",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/category",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1039"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"40f-8KllGj75CSZgrwU3d+96f0JBhKY\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 May 2021 20:50:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"parentCategoryId\": null,\n        \"parentCategory\": null,\n        \"subCategories\": [\n            {\n                \"parentCategoryId\": 1,\n                \"parentCategory\": null,\n                \"subCategories\": [],\n                \"categoryId\": 10,\n                \"name\": \"Klijentske veb aplikacije\"\n            },\n            {\n                \"parentCategoryId\": 1,\n                \"parentCategory\": null,\n                \"subCategories\": [],\n                \"categoryId\": 11,\n                \"name\": \"Veb programiranje\"\n            },\n            {\n                \"parentCategoryId\": 1,\n                \"parentCategory\": null,\n                \"subCategories\": [],\n                \"categoryId\": 12,\n                \"name\": \"Baze podataka\"\n            },\n            {\n                \"parentCategoryId\": 1,\n                \"parentCategory\": null,\n                \"subCategories\": [],\n                \"categoryId\": 13,\n                \"name\": \"Racunarske mreze\"\n            },\n            {\n                \"parentCategoryId\": 1,\n                \"parentCategory\": null,\n                \"subCategories\": [],\n                \"categoryId\": 14,\n                \"name\": \"Testiranje softvera\"\n            }\n        ],\n        \"categoryId\": 1,\n        \"name\": \"proba\"\n    },\n    {\n        \"parentCategoryId\": null,\n        \"parentCategory\": null,\n        \"subCategories\": [],\n        \"categoryId\": 15,\n        \"name\": \"proba 2\"\n    },\n    {\n        \"parentCategoryId\": null,\n        \"parentCategory\": null,\n        \"subCategories\": [],\n        \"categoryId\": 16,\n        \"name\": \"proba 3\"\n    },\n    {\n        \"parentCategoryId\": null,\n        \"parentCategory\": null,\n        \"subCategories\": [],\n        \"categoryId\": 18,\n        \"name\": \"proba 4\"\n    },\n    {\n        \"parentCategoryId\": null,\n        \"parentCategory\": null,\n        \"subCategories\": [],\n        \"categoryId\": 19,\n        \"name\": \"Test edit\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "GET category by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/category/1",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"category",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET category by id - for an existing category ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/category/1",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "101"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"65-fDuNQSMEQabsQVKheBpDGVmaY4Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 May 2021 00:28:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"categoryId\": 1,\n    \"name\": \"Category A\",\n    \"parentCategoryId\": null,\n    \"parentCategory\": null,\n    \"subCategories\": []\n}"
+						},
+						{
+							"name": "GET category by id - with an invalid ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/category/-2",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category",
+										"-2"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "11"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b-EFiDB1U+dmqzx9Mo2UjcZ1SJPO8\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 May 2021 00:30:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Bad Request"
+						},
+						{
+							"name": "GET category by id - with an ID of a non exist",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/category/78",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category",
+										"78"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 May 2021 00:31:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
+						}
+					]
+				},
+				{
+					"name": "POST a new category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Non-alcohol\",\r\n    \"parentCategoryId\": 43\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/category",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"category"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST a new category - with a valid structure data",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Eggs\",\r\n    \"parentCategoryId\": 32\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/category",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "105"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"69-JVOVEBjI6dNrj6jDHfHvPHomd0k\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Sep 2021 19:42:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"parentCategoryId\": 32,\n    \"parentCategory\": null,\n    \"subCategories\": [],\n    \"items\": [],\n    \"categoryId\": 33,\n    \"name\": \"Eggs\"\n}"
+						},
+						{
+							"name": "POST a new category - with a valid structure without a parent category id",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"proba 5\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/category",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "99"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"63-u0oywDScl8+cCuRD86fvI/8R3W0\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 May 2021 17:26:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"parentCategoryId\": null,\n    \"parentCategory\": null,\n    \"subCategories\": [],\n    \"categoryId\": 19,\n    \"name\": \"proba 5\"\n}"
+						},
+						{
+							"name": "POST a new category - with a name already exist",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"proba 4\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/category",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "88"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"58-TjapEEVxe5DrycXVFvWxoCKfT0o\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 May 2021 17:31:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": 1062,\n    \"errorMessage\": \"Duplicate entry 'proba 4' for key 'uq_category_name'\"\n}"
+						},
+						{
+							"name": "POST a new category - with parent category no exist",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Testing no parent id\",\r\n    \"parentCategoryId\": 44\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/category",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "65"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"41-I9Whr59sPY/MG9kzuxahXW1K5BY\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 May 2021 22:04:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": -3,\n    \"errorMessage\": \"Parent category does not exist.\"\n}"
+						},
+						{
+							"name": "POST a new category - with parent category which is low level (have items)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Testing with low level category\",\r\n    \"parentCategoryId\": 11\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/category",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "75"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4b-2H6EW1Mfh9g8caNtKlWWfM6yNIo\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 May 2021 22:28:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorMessage\": \"Parent category have items and it is low level category.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "PUT to edit an existing category",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"proba\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/category/19",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"category",
+								"19"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "PUT to edit an existing category - valid response",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Test edit\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/category/19",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category",
+										"19"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "101"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"65-H9ARMV5zqMHV8GS7P6fJeouuufQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 May 2021 19:50:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"parentCategoryId\": null,\n    \"parentCategory\": null,\n    \"subCategories\": [],\n    \"categoryId\": 19,\n    \"name\": \"Test edit\"\n}"
+						},
+						{
+							"name": "PUT to edit an existing category - with a non existing category",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Test edit\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/category/200",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category",
+										"200"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 May 2021 19:51:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
+						},
+						{
+							"name": "PUT to edit an existing category - with existing category name",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"proba\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/category/19",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category",
+										"19"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "86"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"56-X97ytihQbD5PkiHu7T5UujBAFLA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 May 2021 19:54:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": 1062,\n    \"errorMessage\": \"Duplicate entry 'proba' for key 'uq_category_name'\"\n}"
+						}
+					]
+				},
+				{
+					"name": "DELETE a category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/category/21",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"category",
+								"21"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "DELETE a category - which is an existing category, without subcategories",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/category/21",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category",
+										"21"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"34-3Woi6Y4X+M3qVvsIQ1xzM++GrlM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 May 2021 23:34:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": 0,\n    \"errorMessage\": \"One record deleted.\"\n}"
+						},
+						{
+							"name": "DELETE a category - which has subcategories",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/category/1",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "103"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"67-/cXPKciS/fxEd2kN3WhrnqLsxTc\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 May 2021 23:43:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": -2,\n    \"errorMessage\": \"This record could not be deleted, because category has subcategories.\"\n}"
+						},
+						{
+							"name": "DELETE a category - which no exist",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/category/21",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category",
+										"21"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "89"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"59-xabbauFKM6/VjJn4DZaaamASzxg\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 May 2021 23:44:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": -1,\n    \"errorMessage\": \"This record could not be deleted, because it not exist.\"\n}"
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Item",
+			"item": [
+				{
+					"name": "GET all items",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/item",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"item"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET all items",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/item",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"item"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "135"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"87-qNzq5O/BeFFii/ZY6GRQh/yZA9Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 May 2021 00:53:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"itemId\": 1,\n        \"name\": \"test item\",\n        \"ingredients\": \"test ingredients\"\n    },\n    {\n        \"itemId\": 2,\n        \"name\": \"test 2 item\",\n        \"ingredients\": \"test 2 ingredients\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "GET item by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/item/19",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"item",
+								"19"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET item by id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/item/19",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"item",
+										"19"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "598"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"256-gep0V22Mj07qJvgySH+5wQTNCoE\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 26 Aug 2021 19:47:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"category\": {\n        \"parentCategoryId\": null,\n        \"parentCategory\": null,\n        \"subCategories\": [],\n        \"items\": [],\n        \"categoryId\": 16,\n        \"name\": \"proba 3\"\n    },\n    \"itemInfoAll\": [\n        {\n            \"itemId\": 19,\n            \"item\": null,\n            \"itemInfoId\": 38,\n            \"size\": \"S\",\n            \"energyValue\": 99,\n            \"mass\": 88,\n            \"price\": 77\n        },\n        {\n            \"itemId\": 19,\n            \"item\": null,\n            \"itemInfoId\": 39,\n            \"size\": \"L\",\n            \"energyValue\": 66,\n            \"mass\": 55,\n            \"price\": 44\n        },\n        {\n            \"itemId\": 19,\n            \"item\": null,\n            \"itemInfoId\": 40,\n            \"size\": \"XL\",\n            \"energyValue\": 33,\n            \"mass\": 22,\n            \"price\": 11\n        }\n    ],\n    \"photos\": [\n        {\n            \"photoId\": 15,\n            \"imagePath\": \"static/uploads/2021/08/4c3e75ef-4223-413d-bd4f-8b8499afc5c6-background.png\"\n        }\n    ],\n    \"itemId\": 19,\n    \"name\": \"Test proba\",\n    \"ingredients\": \"Proba\",\n    \"categoryId\": 16\n}"
+						},
+						{
+							"name": "GET item by id - with an invalid ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/item/0",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"item",
+										"0"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "11"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b-EFiDB1U+dmqzx9Mo2UjcZ1SJPO8\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 May 2021 00:56:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Bad Request"
+						},
+						{
+							"name": "GET item by id - with an non exist ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/item/222",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"item",
+										"222"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 May 2021 00:56:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
+						}
+					]
+				},
+				{
+					"name": "POST a new item",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/C:/Users/klett/Downloads/klettsrbija_shutterstock_209010316-eps_2021-08-18_0831/beloglavi sup_119150340.jpg"
+								},
+								{
+									"key": "data",
+									"value": "{\n    \"name\": \"Eggs with cheese\",\n    \"ingredients\": \"eggs, cheese\",\n    \"categoryId\": 33,\n    \"itemInfoAll\": [\n        {\n            \"size\": \"S\",\n            \"energyValue\": 11.45,\n            \"mass\": 20.0,\n            \"price\": 2\n        },\n        {\n            \"size\": \"L\",\n            \"energyValue\": 14.90,\n            \"mass\": 25.2,\n            \"price\": 3\n        },\n        {\n            \"size\": \"XL\",\n            \"energyValue\": 18.10,\n            \"mass\": 28.9,\n            \"price\": 4\n        }\n    ]\n}",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/item",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"item"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST a new item - valid data",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "photo",
+											"type": "file",
+											"src": "/C:/Users/klett/Desktop/za res app slike/banatski bozur_205914884.jpg"
+										},
+										{
+											"key": "data",
+											"value": "{\n    \"name\": \"Eggs with bacon\",\n    \"ingredients\": \"eggs, bacon\",\n    \"categoryId\": 33,\n    \"itemInfoAll\": [\n        {\n            \"size\": \"S\",\n            \"energyValue\": 10.42,\n            \"mass\": 21.4,\n            \"price\": 2\n        },\n        {\n            \"size\": \"L\",\n            \"energyValue\": 12.55,\n            \"mass\": 24.1,\n            \"price\": 3\n        },\n        {\n            \"size\": \"XL\",\n            \"energyValue\": 14.70,\n            \"mass\": 28.9,\n            \"price\": 4\n        }\n    ]\n}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/item",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"item"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "628"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"274-uOOe91MKv8nx2aHz+ZM0LDxaanU\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Sep 2021 20:10:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"category\": {\n        \"parentCategoryId\": 32,\n        \"parentCategory\": null,\n        \"subCategories\": [],\n        \"items\": [],\n        \"categoryId\": 33,\n        \"name\": \"Eggs\"\n    },\n    \"itemInfoAll\": [\n        {\n            \"itemId\": 21,\n            \"item\": null,\n            \"itemInfoId\": 44,\n            \"size\": \"S\",\n            \"energyValue\": 10.42,\n            \"mass\": 21.4,\n            \"price\": 2\n        },\n        {\n            \"itemId\": 21,\n            \"item\": null,\n            \"itemInfoId\": 45,\n            \"size\": \"L\",\n            \"energyValue\": 12.55,\n            \"mass\": 24.1,\n            \"price\": 3\n        },\n        {\n            \"itemId\": 21,\n            \"item\": null,\n            \"itemInfoId\": 46,\n            \"size\": \"XL\",\n            \"energyValue\": 14.7,\n            \"mass\": 28.9,\n            \"price\": 4\n        }\n    ],\n    \"photos\": [\n        {\n            \"photoId\": 24,\n            \"imagePath\": \"static/uploads/2021/09/73727b4d-1013-4740-9dc4-f00e0f847368-banatskibozur_205914884.jpg\"\n        }\n    ],\n    \"itemId\": 21,\n    \"name\": \"Eggs with bacon\",\n    \"ingredients\": \"eggs, bacon\",\n    \"categoryId\": 33\n}"
+						},
+						{
+							"name": "POST a new item - with missing fields",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "photo",
+											"type": "file",
+											"src": "/C:/Users/klett/Desktop/za res app slike/banatski bozur_205914884.jpg"
+										},
+										{
+											"key": "data",
+											"value": "{\n    \"name\": \"Eggs with bacon\",\n    \"ingredients\": \"eggs, bacon\",\n    \"categoryId\": 33,\n    \"itemInfoAll\": [\n        {\n            \"size\": \"L\",\n            \"energyValue\": 12.55,\n            \"mass\": 24.1,\n            \"price\": 3\n        },\n        {\n            \"size\": \"XL\",\n            \"energyValue\": 14.70,\n            \"mass\": 28.9,\n            \"price\": 4\n        }\n    ]\n}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/item",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"item"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "169"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a9-Sevd4R7VB83LKBJGa2zRfG5ItIs\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Sep 2021 20:11:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"instancePath\": \"/itemInfoAll\",\n        \"schemaPath\": \"#/properties/itemInfoAll/minItems\",\n        \"keyword\": \"minItems\",\n        \"params\": {\n            \"limit\": 3\n        },\n        \"message\": \"must NOT have fewer than 3 items\"\n    }\n]"
+						},
+						{
+							"name": "POST a new item - with no photo included",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Eggs with bacon\",\r\n    \"ingredients\": \"eggs, bacon\",\r\n    \"categoryId\": 32,\r\n    \"itemInfoAll\": [\r\n        {\r\n            \"size\": \"S\",\r\n            \"energyValue\": 10.42,\r\n            \"mass\": 21.4\r\n        },\r\n        {\r\n            \"size\": \"L\",\r\n            \"energyValue\": 12.55,\r\n            \"mass\": 24.1\r\n        },\r\n        {\r\n            \"size\": \"XL\",\r\n            \"energyValue\": 14.70,\r\n            \"mass\": 28.9\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/item",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"item"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "55"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"37-tCnrpiLBOKt7tLezVPE/yHxGtPQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Sep 2021 19:58:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "You must upload at lease one and a maximum of 5 photos."
+						},
+						{
+							"name": "POST a new item - with photo incorrect size",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "photo",
+											"type": "file",
+											"src": "/C:/Users/klett/Downloads/klettsrbija_shutterstock_209010316-eps_2021-08-18_0831/banatski bozur_205914884.jpg"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/item",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"item"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "67"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"43-yOLfFPwmJAJr81bNJJ0b7zgTmqU\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Sep 2021 20:01:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Error with image photo: \"The img must have a width of at most 1920\""
+						},
+						{
+							"name": "POST a new item - category not low level",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Eggs with bacon\",\r\n    \"ingredients\": \"eggs, bacon\",\r\n    \"categoryId\": 32,\r\n    \"itemInfoAll\": [\r\n        {\r\n            \"size\": \"S\",\r\n            \"energyValue\": 10.42,\r\n            \"mass\": 21.4,\r\n            \"price\": 2\r\n        },\r\n        {\r\n            \"size\": \"L\",\r\n            \"energyValue\": 12.55,\r\n            \"mass\": 24.1,\r\n            \"price\": 3\r\n        },\r\n        {\r\n            \"size\": \"XL\",\r\n            \"energyValue\": 14.70,\r\n            \"mass\": 28.9,\r\n            \"price\": 4\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/item",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"item"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "64"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"40-uE8RQXt+ac6nQu/CFz9uAGpZTGY\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Sep 2021 20:08:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorMessage\": \"Item category can be only low level category.\"\n}"
+						},
+						{
+							"name": "POST a new item - with existing item name",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "photo",
+											"type": "file",
+											"src": "/C:/Users/klett/Downloads/klettsrbija_shutterstock_209010316-eps_2021-08-18_0831/beloglavi sup_119150340.jpg"
+										},
+										{
+											"key": "data",
+											"value": "{\n    \"name\": \"Margarita\",\n    \"ingredients\": \"Pelat, cheese\",\n    \"categoryId\": 36,\n    \"itemInfoAll\": [\n        {\n            \"size\": \"S\",\n            \"energyValue\": 11.45,\n            \"mass\": 20.0,\n            \"price\": 2\n        },\n        {\n            \"size\": \"L\",\n            \"energyValue\": 14.90,\n            \"mass\": 25.2,\n            \"price\": 3\n        },\n        {\n            \"size\": \"XL\",\n            \"energyValue\": 18.10,\n            \"mass\": 28.9,\n            \"price\": 4\n        }\n    ]\n}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/item",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"item"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "86"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"56-Pg9pZz9s3Q1zRAfAPkA4BD59/+4\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Sep 2021 20:28:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": 1062,\n    \"errorMessage\": \"Duplicate entry 'Margarita' for key 'uq_item_name'\"\n}"
+						}
+					]
+				},
+				{
+					"name": "PUT to edit item",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test item change\",\r\n    \"ingredients\": \"test ingredients\",\r\n    \"itemInfoAll\": [\r\n        {\r\n            \"itemInfoId\": 20,\r\n            \"energyValue\": 22.25,\r\n            \"mass\": 22.25,\r\n            \"price\": 22.25\r\n        },\r\n        {\r\n            \"itemInfoId\": 21,\r\n            \"energyValue\": 22.25,\r\n            \"mass\": 22.25,\r\n            \"price\": 22.25\r\n        },\r\n        {\r\n            \"itemInfoId\": 22,\r\n            \"energyValue\": 22.25,\r\n            \"mass\": 22.25,\r\n            \"price\": 22.25\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/item/13",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"item",
+								"13"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "PUT to edit item - valid data",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Eggs with bacon\",\r\n    \"ingredients\": \"eggs, bacon, salt\",\r\n    \"itemInfoAll\": [\r\n        {\r\n            \"itemInfoId\": 44,\r\n            \"energyValue\": 10.42,\r\n            \"mass\": 21.4,\r\n            \"price\": 2\r\n        },\r\n        {\r\n            \"itemInfoId\": 45,\r\n            \"energyValue\": 12.55,\r\n            \"mass\": 24.1,\r\n            \"price\": 3\r\n        },\r\n        {\r\n            \"itemInfoId\": 46,\r\n            \"energyValue\": 14.70,\r\n            \"mass\": 28.9,\r\n            \"price\": 4\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/item/21",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"item",
+										"21"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "634"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"27a-tgMii8yhY2JAda4oEXY8uRmymYA\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Sep 2021 20:50:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"category\": {\n        \"parentCategoryId\": 32,\n        \"parentCategory\": null,\n        \"subCategories\": [],\n        \"items\": [],\n        \"categoryId\": 33,\n        \"name\": \"Eggs\"\n    },\n    \"itemInfoAll\": [\n        {\n            \"itemId\": 21,\n            \"item\": null,\n            \"itemInfoId\": 44,\n            \"size\": \"S\",\n            \"energyValue\": 10.42,\n            \"mass\": 21.4,\n            \"price\": 2\n        },\n        {\n            \"itemId\": 21,\n            \"item\": null,\n            \"itemInfoId\": 45,\n            \"size\": \"L\",\n            \"energyValue\": 12.55,\n            \"mass\": 24.1,\n            \"price\": 3\n        },\n        {\n            \"itemId\": 21,\n            \"item\": null,\n            \"itemInfoId\": 46,\n            \"size\": \"XL\",\n            \"energyValue\": 14.7,\n            \"mass\": 28.9,\n            \"price\": 4\n        }\n    ],\n    \"photos\": [\n        {\n            \"photoId\": 24,\n            \"imagePath\": \"static/uploads/2021/09/73727b4d-1013-4740-9dc4-f00e0f847368-banatskibozur_205914884.jpg\"\n        }\n    ],\n    \"itemId\": 21,\n    \"name\": \"Eggs with bacon\",\n    \"ingredients\": \"eggs, bacon, salt\",\n    \"categoryId\": 33\n}"
+						},
+						{
+							"name": "PUT to edit item - no existing ID",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"test item change\",\r\n    \"ingredients\": \"test ingredients\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/item/222",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"item",
+										"222"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 May 2021 02:06:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
+						},
+						{
+							"name": "PUT to edit item - with existing name",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"test 2 item\",\r\n    \"ingredients\": \"test ingredients\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/item/1",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"item",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "88"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"58-7GjNu9Gxp+arrD7pV3Ghqpr2qGg\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 May 2021 02:07:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": 1062,\n    \"errorMessage\": \"Duplicate entry 'test 2 item' for key 'uq_item_name'\"\n}"
+						},
+						{
+							"name": "PUT to edit item - with additional properties",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Eggs with bacon\",\r\n    \"ingredients\": \"eggs, bacon, salt\",\r\n    \"categoryId\": 33,\r\n    \"itemInfoAll\": [\r\n        {\r\n            \"size\": \"S\",\r\n            \"energyValue\": 10.42,\r\n            \"mass\": 21.4,\r\n            \"price\": 2\r\n        },\r\n        {\r\n            \"size\": \"L\",\r\n            \"energyValue\": 12.55,\r\n            \"mass\": 24.1,\r\n            \"price\": 3\r\n        },\r\n        {\r\n            \"size\": \"XL\",\r\n            \"energyValue\": 14.70,\r\n            \"mass\": 28.9,\r\n            \"price\": 4\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/item/21",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"item",
+										"21"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "185"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b9-mRHVnp4foyhoJ3MwRGOY/BMXsWA\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Sep 2021 20:44:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"instancePath\": \"\",\n        \"schemaPath\": \"#/additionalProperties\",\n        \"keyword\": \"additionalProperties\",\n        \"params\": {\n            \"additionalProperty\": \"categoryId\"\n        },\n        \"message\": \"must NOT have additional properties\"\n    }\n]"
+						},
+						{
+							"name": "PUT to edit item - with missing property",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Eggs with bacon\",\r\n    \"ingredients\": \"eggs, bacon, salt\",\r\n    \"itemInfoAll\": [\r\n        {\r\n            \"itemInfoId\": 44,\r\n            \"size\": \"S\",\r\n            \"energyValue\": 10.42,\r\n            \"mass\": 21.4,\r\n            \"price\": 2\r\n        },\r\n        {\r\n            \"itemInfoId\": 45,\r\n            \"size\": \"L\",\r\n            \"energyValue\": 12.55,\r\n            \"mass\": 24.1,\r\n            \"price\": 3\r\n        },\r\n        {\r\n            \"itemInfoId\": 46,\r\n            \"size\": \"XL\",\r\n            \"energyValue\": 14.70,\r\n            \"mass\": 28.9,\r\n            \"price\": 4\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/item/21",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"item",
+										"21"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "206"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ce-zUimQS1oJxNzyyqNMv0lC3gg8hg\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Sep 2021 20:44:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"instancePath\": \"/itemInfoAll/0\",\n        \"schemaPath\": \"#/properties/itemInfoAll/items/required\",\n        \"keyword\": \"required\",\n        \"params\": {\n            \"missingProperty\": \"itemInfoId\"\n        },\n        \"message\": \"must have required property 'itemInfoId'\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "DELETE item",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/item/5",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"item",
+								"5"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "DELETE item - with an existing item",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/item/5",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"item",
+										"5"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"34-3Woi6Y4X+M3qVvsIQ1xzM++GrlM\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 May 2021 02:18:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": 0,\n    \"errorMessage\": \"One record deleted.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "DELETE a single photo of an item",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/item/15/photo/4",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"item",
+								"15",
+								"photo",
+								"4"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "DELETE a single photo of an item",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/item/15/photo/4",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"item",
+										"15",
+										"photo",
+										"4"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "47"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2f-+DFY8+0YM+KyTge7bv5hfEa9mXg\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 May 2021 01:37:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": 0,\n    \"errorMessage\": \"Photo deleted.\"\n}"
+						},
+						{
+							"name": "DELETE a single photo of an item - record not found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/item/15/photo/22",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"item",
+										"15",
+										"photo",
+										"22"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 May 2021 01:38:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
+						}
+					]
+				},
+				{
+					"name": "POST new item photo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image1",
+									"type": "file",
+									"src": "/C:/Users/klett/Desktop/yaml.PNG"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{API_URL}}/item/300/photo",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"item",
+								"300",
+								"photo"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST new item photo",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image1",
+											"type": "file",
+											"src": "/C:/Users/klett/Desktop/yaml.PNG"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{API_URL}}/item/15/photo",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"item",
+										"15",
+										"photo"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "740"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2e4-pNTIZ2GcS9+cNoCapkmIS5ivIOE\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 May 2021 02:10:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"category\": {\n        \"parentCategoryId\": 1,\n        \"parentCategory\": {\n            \"parentCategoryId\": null,\n            \"parentCategory\": null,\n            \"subCategories\": [],\n            \"items\": [],\n            \"categoryId\": 1,\n            \"name\": \"proba\"\n        },\n        \"subCategories\": [],\n        \"items\": [],\n        \"categoryId\": 11,\n        \"name\": \"Veb programiranje\"\n    },\n    \"itemInfoAll\": [\n        {\n            \"itemId\": 15,\n            \"item\": null,\n            \"itemInfoId\": 26,\n            \"size\": \"S\",\n            \"energyValue\": 22.22,\n            \"mass\": 22.22,\n            \"price\": 22.22\n        },\n        {\n            \"itemId\": 15,\n            \"item\": null,\n            \"itemInfoId\": 27,\n            \"size\": \"L\",\n            \"energyValue\": 22.22,\n            \"mass\": 22.22,\n            \"price\": 22.22\n        },\n        {\n            \"itemId\": 15,\n            \"item\": null,\n            \"itemInfoId\": 28,\n            \"size\": \"XL\",\n            \"energyValue\": 22.22,\n            \"mass\": 22.22,\n            \"price\": 22.22\n        }\n    ],\n    \"photos\": [\n        {\n            \"photoId\": 7,\n            \"imagePath\": \"static/uploads/2021/05/36baeb82-2870-47ee-8635-ebabd596ded5-yaml.PNG\"\n        }\n    ],\n    \"itemId\": 15,\n    \"name\": \"Test photo resize\",\n    \"ingredients\": \"Test ingrd\",\n    \"categoryId\": 11\n}"
+						},
+						{
+							"name": "POST new item photo - for non existing item",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image1",
+											"type": "file",
+											"src": "/C:/Users/klett/Desktop/yaml.PNG"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{API_URL}}/item/300/photo",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"item",
+										"300",
+										"photo"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 May 2021 02:14:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
+						}
+					]
+				},
+				{
+					"name": "GET all by category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": [
+						{
+							"name": "GET all by category",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/category/all/11/item",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category",
+										"all",
+										"11",
+										"item"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1612"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"64c-MPvxR5SnDDhZRPhsmeTiRtOt7qs\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 07 Jun 2021 22:34:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"category\": null,\n        \"itemInfoAll\": [\n            {\n                \"itemId\": 13,\n                \"item\": null,\n                \"itemInfoId\": 20,\n                \"size\": \"S\",\n                \"energyValue\": 22.25,\n                \"mass\": 22.25,\n                \"price\": 22.25\n            },\n            {\n                \"itemId\": 13,\n                \"item\": null,\n                \"itemInfoId\": 21,\n                \"size\": \"L\",\n                \"energyValue\": 22.25,\n                \"mass\": 22.25,\n                \"price\": 22.25\n            },\n            {\n                \"itemId\": 13,\n                \"item\": null,\n                \"itemInfoId\": 22,\n                \"size\": \"XL\",\n                \"energyValue\": 22.25,\n                \"mass\": 22.25,\n                \"price\": 22.25\n            }\n        ],\n        \"photos\": [\n            {\n                \"photoId\": 2,\n                \"imagePath\": \"static/uploads/2021/05/dca87ad0-fa7e-4a40-998f-15fbad8dac0d-pexels-jorge-jesus-614117.jpg\"\n            }\n        ],\n        \"itemId\": 13,\n        \"name\": \"test item change\",\n        \"ingredients\": \"test ingredients\",\n        \"categoryId\": 11\n    },\n    {\n        \"category\": null,\n        \"itemInfoAll\": [\n            {\n                \"itemId\": 14,\n                \"item\": null,\n                \"itemInfoId\": 23,\n                \"size\": \"S\",\n                \"energyValue\": 22.22,\n                \"mass\": 22.22,\n                \"price\": 22.22\n            },\n            {\n                \"itemId\": 14,\n                \"item\": null,\n                \"itemInfoId\": 24,\n                \"size\": \"L\",\n                \"energyValue\": 22.22,\n                \"mass\": 22.22,\n                \"price\": 22.22\n            },\n            {\n                \"itemId\": 14,\n                \"item\": null,\n                \"itemInfoId\": 25,\n                \"size\": \"XL\",\n                \"energyValue\": 22.22,\n                \"mass\": 22.22,\n                \"price\": 22.22\n            }\n        ],\n        \"photos\": [\n            {\n                \"photoId\": 3,\n                \"imagePath\": \"static/uploads/2021/05/0f69399b-09ec-46b9-a12a-f1cc1f257abc-90-91_oli_zve_2.jpg\"\n            }\n        ],\n        \"itemId\": 14,\n        \"name\": \"Test Photo Error\",\n        \"ingredients\": \"Test ingrd\",\n        \"categoryId\": 11\n    },\n    {\n        \"category\": null,\n        \"itemInfoAll\": [\n            {\n                \"itemId\": 15,\n                \"item\": null,\n                \"itemInfoId\": 26,\n                \"size\": \"S\",\n                \"energyValue\": 22.22,\n                \"mass\": 22.22,\n                \"price\": 22.22\n            },\n            {\n                \"itemId\": 15,\n                \"item\": null,\n                \"itemInfoId\": 27,\n                \"size\": \"L\",\n                \"energyValue\": 22.22,\n                \"mass\": 22.22,\n                \"price\": 22.22\n            },\n            {\n                \"itemId\": 15,\n                \"item\": null,\n                \"itemInfoId\": 28,\n                \"size\": \"XL\",\n                \"energyValue\": 22.22,\n                \"mass\": 22.22,\n                \"price\": 22.22\n            }\n        ],\n        \"photos\": [\n            {\n                \"photoId\": 7,\n                \"imagePath\": \"static/uploads/2021/05/36baeb82-2870-47ee-8635-ebabd596ded5-yaml.PNG\"\n            }\n        ],\n        \"itemId\": 15,\n        \"name\": \"Test photo resize\",\n        \"ingredients\": \"Test ingrd\",\n        \"categoryId\": 11\n    }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Administrator",
+			"item": [
+				{
+					"name": "GET all administrators",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/administrator",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"administrator"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET all administrators",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/administrator",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"administrator"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "137"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"89-u4oH0CqVYa6rPaMZRNPP2JwrIc8\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 May 2021 00:51:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"administratorId\": 1,\n        \"username\": \"aleksa\",\n        \"passwordHash\": \"$2b$08$0F2Wfyf94o4/B5sWvThJ6eDl2Yh5TwmGoJbn/CE08wtvH.3OUfw1O\",\n        \"isActive\": true\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "GET a single administrator",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/administrator/1",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"administrator",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET a single administrator",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/administrator/1",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"administrator",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "135"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"87-1F4MuBwLn+ZlSvqQ0h0PFWhubx8\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 May 2021 00:50:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"administratorId\": 1,\n    \"username\": \"aleksa\",\n    \"passwordHash\": \"$2b$08$0F2Wfyf94o4/B5sWvThJ6eDl2Yh5TwmGoJbn/CE08wtvH.3OUfw1O\",\n    \"isActive\": true\n}"
+						},
+						{
+							"name": "GET a single administrator - which not exist",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/administrator/2",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"administrator",
+										"2"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 May 2021 00:50:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
+						}
+					]
+				},
+				{
+					"name": "POST new administrator",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"aleksa\",\r\n    \"password\": \"asdasdasd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/administrator",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"administrator"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST new administrator",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"aleksa\",\r\n    \"password\": \"asdasdasd\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/administrator",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"administrator"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "135"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"87-1F4MuBwLn+ZlSvqQ0h0PFWhubx8\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 May 2021 00:47:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"administratorId\": 1,\n    \"username\": \"aleksa\",\n    \"passwordHash\": \"$2b$08$0F2Wfyf94o4/B5sWvThJ6eDl2Yh5TwmGoJbn/CE08wtvH.3OUfw1O\",\n    \"isActive\": true\n}"
+						},
+						{
+							"name": "POST new administrator - with name of administrator already exist",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"aleksa\",\r\n    \"password\": \"asdasdasd\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/administrator",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"administrator"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "96"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"60-JLynXkhgzd8lltKSs56a7JU2bmw\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 May 2021 00:48:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": 1062,\n    \"errorMessage\": \"Duplicate entry 'aleksa' for key 'uq_administrator_username'\"\n}"
+						}
+					]
+				},
+				{
+					"name": "PUT to change administrator data",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"asdasdasd\",\r\n    \"isActive\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/administrator/1",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"administrator",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "PUT to change administrator data",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"password\": \"asdasdasd\",\r\n    \"isActive\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/administrator/1",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"administrator",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "136"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"88-iVuNuGic2G1ZAHQw7Q696zkMbGw\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 May 2021 01:08:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"administratorId\": 1,\n    \"username\": \"aleksa\",\n    \"passwordHash\": \"$2b$08$g71eFDJ6UvfqZdOA1JFZxeJG2YKxnusl0Bvrfuey4NfJvHr4A3hLy\",\n    \"isActive\": false\n}"
+						},
+						{
+							"name": "PUT to change administrator data - with given username",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"aleksa1\",\r\n    \"password\": \"testpass\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/administrator/1",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"administrator",
+										"1"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "183"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b7-NaatCTw2FVG6PKdZLVNmreI5Yb4\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 May 2021 01:04:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"instancePath\": \"\",\n        \"schemaPath\": \"#/additionalProperties\",\n        \"keyword\": \"additionalProperties\",\n        \"params\": {\n            \"additionalProperty\": \"username\"\n        },\n        \"message\": \"must NOT have additional properties\"\n    }\n]"
+						},
+						{
+							"name": "PUT to change administrator data - for non existing administtrator",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"password\": \"asdasdasd\",\r\n    \"isActive\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/administrator/5",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"administrator",
+										"5"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 May 2021 01:10:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "GET all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/user",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET all users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/user",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "524"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"20c-iiDuo0hNgMgBqP23c581MiThGPc\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 29 May 2021 16:05:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"passwordResetCode\": null,\n        \"postalAddresses\": [],\n        \"userId\": 1,\n        \"email\": \"aleksa@test.com\",\n        \"createdAt\": \"2021-05-29T15:47:34.000Z\",\n        \"passwordHash\": \"$2b$08$Rb/By/fDXxhiALJMXJyrGO9SK.Lo/DREU5k2aHZsF4KAcdq.4ffG6\",\n        \"forename\": \"Aleksa\",\n        \"surname\": \"Milenkovic\",\n        \"isActive\": true\n    },\n    {\n        \"passwordResetCode\": null,\n        \"postalAddresses\": [],\n        \"userId\": 2,\n        \"email\": \"aleksa2@test.com\",\n        \"createdAt\": \"2021-05-29T17:05:31.000Z\",\n        \"passwordHash\": \"$2b$08$DHjgNjPqayHRMpqYHx6S3OGbuOvHnGAK4pixIj/UWy1HzpxRiBefK\",\n        \"forename\": \"Aleksa\",\n        \"surname\": \"Milenkovic\",\n        \"isActive\": true\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "GET a single user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/user/1",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET a single user",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/user/1",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"user",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "358"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"166-8HClVBnaAHjib0rXLlMjQq8jrxA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 29 May 2021 16:04:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"passwordResetCode\": null,\n    \"postalAddresses\": [\n        {\n            \"postalAddressId\": 2,\n            \"userId\": 1,\n            \"address\": \"Test add\",\n            \"phoneNumber\": \"064111222333\",\n            \"isActive\": true\n        }\n    ],\n    \"userId\": 1,\n    \"email\": \"aleksa@test.com\",\n    \"createdAt\": \"2021-05-29T15:47:34.000Z\",\n    \"passwordHash\": \"$2b$08$Rb/By/fDXxhiALJMXJyrGO9SK.Lo/DREU5k2aHZsF4KAcdq.4ffG6\",\n    \"forename\": \"Aleksa\",\n    \"surname\": \"Milenkovic\",\n    \"isActive\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "POST new user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"aleksa2@test.com\",\r\n    \"password\": \"asdasdasd\",\r\n    \"forename\": \"Aleksa\",\r\n    \"surname\": \"Milenkovic\",\r\n    \"postalAddresses\": [\r\n        {\r\n            \"address\": \"Test address\",\r\n            \"phoneNumber\": \"064111222333\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/user",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST new user",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"aleksa2@test.com\",\r\n    \"password\": \"asdasdasd\",\r\n    \"forename\": \"Aleksa\",\r\n    \"surname\": \"Milenkovic\",\r\n    \"postalAddresses\": [\r\n        {\r\n            \"address\": \"Test address\",\r\n            \"phoneNumber\": \"064111222333\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/user",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "363"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"16b-WibHVTUDka8osi+eQSrcqV8HX2o\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 29 May 2021 16:05:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"passwordResetCode\": null,\n    \"postalAddresses\": [\n        {\n            \"postalAddressId\": 3,\n            \"userId\": 2,\n            \"address\": \"Test address\",\n            \"phoneNumber\": \"064111222333\",\n            \"isActive\": true\n        }\n    ],\n    \"userId\": 2,\n    \"email\": \"aleksa2@test.com\",\n    \"createdAt\": \"2021-05-29T17:05:31.000Z\",\n    \"passwordHash\": \"$2b$08$DHjgNjPqayHRMpqYHx6S3OGbuOvHnGAK4pixIj/UWy1HzpxRiBefK\",\n    \"forename\": \"Aleksa\",\n    \"surname\": \"Milenkovic\",\n    \"isActive\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "PUT new data for a user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"aleksaedit@test.com\",\r\n    \"password\": \"asdasdasd\",\r\n    \"forename\": \"Aleksa\",\r\n    \"surname\": \"Milenkovic\",\r\n    \"isActive\": true,\r\n    \"postalAddresses\": [\r\n        {\r\n            \"postalAddressId\": 2,\r\n            \"address\": \"Test add edit\",\r\n            \"phoneNumber\": \"064555555555\",\r\n            \"isActive\": true\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/user/1",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "PUT new data for a user",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"aleksaedit@test.com\",\r\n    \"password\": \"asdasdasd\",\r\n    \"forename\": \"Aleksa\",\r\n    \"surname\": \"Milenkovic\",\r\n    \"isActive\": true,\r\n    \"postalAddresses\": [\r\n        {\r\n            \"postalAddressId\": 2,\r\n            \"address\": \"Test add edit\",\r\n            \"phoneNumber\": \"064555555555\",\r\n            \"isActive\": true\r\n        },\r\n        {\r\n            \"address\": \"Test add on edit\",\r\n            \"phoneNumber\": \"069777777\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/user/1",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"user",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "471"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1d7-451byH9ZpSr2uLqvWgDnA+XX0tU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 29 May 2021 18:00:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"passwordResetCode\": null,\n    \"postalAddresses\": [\n        {\n            \"postalAddressId\": 2,\n            \"userId\": 1,\n            \"address\": \"Test add edit\",\n            \"phoneNumber\": \"064555555555\",\n            \"isActive\": true\n        },\n        {\n            \"postalAddressId\": 5,\n            \"userId\": 1,\n            \"address\": \"Test add on edit\",\n            \"phoneNumber\": \"069777777\",\n            \"isActive\": true\n        }\n    ],\n    \"userId\": 1,\n    \"email\": \"aleksaedit@test.com\",\n    \"createdAt\": \"2021-05-29T19:00:45.000Z\",\n    \"passwordHash\": \"$2b$08$WZQ8Qby2CLNLaWcxYPsBpeK.gebo3RlYUOmP/adkuQ98JYaFI6oq6\",\n    \"forename\": \"Aleksa\",\n    \"surname\": \"Milenkovic\",\n    \"isActive\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "POST a new user registration request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"akibbrs@yahoo.com\",\r\n    \"password\": \"asdasdasd\",\r\n    \"forename\": \"Aleksa\",\r\n    \"surname\": \"Milenkovic\",\r\n    \"postalAddresses\": [\r\n        {\r\n            \"address\": \"Test address 1\",\r\n            \"phoneNumber\": \"060004007\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/auth/user/register",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"auth",
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST a new user registration request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"akibbrs@hotmail.com\",\r\n    \"password\": \"asdasdasd\",\r\n    \"forename\": \"Aleksa\",\r\n    \"surname\": \"Milenkovic\",\r\n    \"postalAddresses\": [\r\n        {\r\n            \"address\": \"Test address 1\",\r\n            \"phoneNumber\": \"060004007\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/auth/user/register",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"user",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "365"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"16d-/96fmEi+XVhsP/A/GgT2DGGaHI0\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 29 May 2021 21:29:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"passwordResetCode\": null,\n    \"postalAddresses\": [\n        {\n            \"postalAddressId\": 8,\n            \"userId\": 5,\n            \"address\": \"Test address 1\",\n            \"phoneNumber\": \"060004007\",\n            \"isActive\": true\n        }\n    ],\n    \"userId\": 5,\n    \"email\": \"akibbrs@hotmail.com\",\n    \"createdAt\": \"2021-05-29T22:29:04.000Z\",\n    \"passwordHash\": \"$2b$08$Xr7PnGn7aizqtxraNFievewPzKHrb2QF1R9vfYCwhxcI5WhrnC8uS\",\n    \"forename\": \"Aleksa\",\n    \"surname\": \"Milenkovic\",\n    \"isActive\": true\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "POST new login request",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if (pm.response.code === 200) {\r",
+											"    pm.environment.set('AUTH_TOKEN', pm.response.json().authToken)\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"aleksa2@test.com\",\r\n    \"password\": \"asdasdasd\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/auth/user/login",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"user",
+										"login"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "POST new login request",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\": \"aleksa2@test.com\",\r\n    \"password\": \"asdasdasd\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/auth/user/login",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"auth",
+												"user",
+												"login"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "1072"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"430-l+qNyiRQn6lMKlfOJM9RT8jqupc\""
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 30 May 2021 01:13:55 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"authToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWRlbnRpdHkiOiJhbGVrc2EyQHRlc3QuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2MjIzMzcyMzUsImV4cCI6MTYyMjk0MjAzNSwiaXNzIjoibG9jYWxob3N0In0.b1P_vi1fskqqiEP0fDrzSiSAeMC6IOQjbExvaxkIBXV1iIiPJ7PWKwT-BILINs24eBukdvhNVM6S5lOjO98eOy34k-Hf82Hwpu9NRdVCJtFeqUxnHrLpKnLW88RWtaH9XLVbLoP5RP-YuhbaDBU8x8wsrvvJdfgW3oTuanJaAYsY3Kyhcp0LbjnxqNeH7K8r7ybRBERO86k6ONmdtavtRK8DFkuUQctNNksTVI_98w1Cp025ub4L-uVGLNQC85cK_6OJYrzlrbmZEvu92etnYP7J6eMglofrayp2snwAKFEWOy4nNgZh5p0ezfla8t-QSgIIelZmD0cMsHYS9Fhc0w\",\n    \"refreshToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWRlbnRpdHkiOiJhbGVrc2EyQHRlc3QuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2MjIzMzcyMzUsImV4cCI6MTY1Mzg3MzIzNSwiaXNzIjoibG9jYWxob3N0In0.qdBjPj5Umjl3-ChGOXlUuvBOm575nc0GAa8XLVkSlXocZir58DagIPyUZ3xQSoFXg7Bps5hwhKjL_OXSdset66ce72U1x4tHd2ENYvAzDVqK_i4G9W9dGZxV0P5NAG2lLaWKH7ou2Vhfl_TboUn-FEXr72kufisH0hRE70Ug3zk-r8AGSHKlYNdHr7P2bMhSlxHZRL_Hpx6qhhwp2mLPwI3eYi75KuGzX5CqI3rlqnlXGPlN7lNl1PNrdaOao99Wn6Pv3RO3Lq8wJD2N8e8lmSYIc63CSCYXN41iuPubCDPVKuNrr4NuDdGwFICJq27W5JjI92mrCxYhy4Xkx-r1FQ\"\n}"
+								},
+								{
+									"name": "POST new login request - when user does not exist",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\": \"aleksa2@test.com1\",\r\n    \"password\": \"asdasdasd\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/auth/user/login",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"auth",
+												"user",
+												"login"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/plain; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "9"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 30 May 2021 01:14:47 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "Not Found"
+								},
+								{
+									"name": "POST new login request - with wrong password",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\": \"aleksa2@test.com\",\r\n    \"password\": \"asdasdasd?\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/auth/user/login",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"auth",
+												"user",
+												"login"
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "html",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/html; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "22"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"16-fEc1WArHk5yVgGP5ekfvNKEEvfU\""
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 30 May 2021 01:16:58 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "Invalid user password."
+								},
+								{
+									"name": "POST new login request - with inactive account",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\": \"aleksa2@test.com\",\r\n    \"password\": \"asdasdasd\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/auth/user/login",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"auth",
+												"user",
+												"login"
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "html",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/html; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "22"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"16-6Z5WGFVxmxeyp4KlKgEc1Q84xLM\""
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 30 May 2021 01:39:45 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "User account inactive."
+								}
+							]
+						},
+						{
+							"name": "POST new token refresh request",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if (pm.response.code === 200) {\r",
+											"    pm.environment.set('AUTH_TOKEN', pm.response.json().authToken)\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"refreshToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWRlbnRpdHkiOiJhbGVrc2EyQHRlc3QuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2MjI2NzYyMzMsImV4cCI6MTY1NDIxMjIzMywiaXNzIjoibG9jYWxob3N0In0.V87LDKzhFN2AyTyRjEs690l19uOZmsckCP9hPRAgXZSUPewFraYgjB7pN2ghpW2wOrMSApkg3Ijbb6Ce1DCY2_fJPoR0CLK1TVpz1iaIvXQmRuh8a0Su7wAP-1k1jeZnRqxyrf-4hgztSjH3Hsvosm7Pg2Yt2kI5tRQIU0tNE3EK30GW7-MD4nC3krsL33h2d8ou64g1zFtixu997KuDoK80G2goICAiYOk__bAqZrrtJl5XpHImW6PR7slHDdp92z1f9yGSwRpNYc9gvdO_5-k2e30GPAwWlKtzpG6sq1XAt7DxZbgKRhvQaKlbrUQhxR10YUSdDl_ZraaiPp23JA\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/auth/user/refresh",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"user",
+										"refresh"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "POST new token refresh request",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"refreshToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWRlbnRpdHkiOiJhbGVrc2EyQHRlc3QuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2MjI2NzYyMzMsImV4cCI6MTY1NDIxMjIzMywiaXNzIjoibG9jYWxob3N0In0.V87LDKzhFN2AyTyRjEs690l19uOZmsckCP9hPRAgXZSUPewFraYgjB7pN2ghpW2wOrMSApkg3Ijbb6Ce1DCY2_fJPoR0CLK1TVpz1iaIvXQmRuh8a0Su7wAP-1k1jeZnRqxyrf-4hgztSjH3Hsvosm7Pg2Yt2kI5tRQIU0tNE3EK30GW7-MD4nC3krsL33h2d8ou64g1zFtixu997KuDoK80G2goICAiYOk__bAqZrrtJl5XpHImW6PR7slHDdp92z1f9yGSwRpNYc9gvdO_5-k2e30GPAwWlKtzpG6sq1XAt7DxZbgKRhvQaKlbrUQhxR10YUSdDl_ZraaiPp23JA\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/auth/user/refresh",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"auth",
+												"user",
+												"refresh"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "http://localhost:3000"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "555"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"22b-erf25kahvOKyCkPVoC+3zO7WDPc\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 02 Jun 2021 23:41:35 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"authToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWRlbnRpdHkiOiJhbGVrc2EyQHRlc3QuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2MjI2NzcyOTUsImV4cCI6MTYyMjY3NzQxNSwiaXNzIjoibG9jYWxob3N0In0.kMdiR0WTS3UwiWn98ljhneT8nxyQ89IMl-mwEGwl-6L4JKVdF8phiXfoJ7cfJ0ZiMW_NChtdqJiEbh3ylXNt5GSMTzy9wl1Ka9BW3QvbGGevS-idJvM8Fr4iPUffb9KKVj7bttZy0XwlIL01wJ-GrPZGoM92wyO1wEgefWpb8S4jlN0y8YUPb8qDQSqgkeEqUFDyyN4Kx73Dp21BpU8c_UWIK39VIe-i_W23LcCX9yjTag6DerNgcn6nl0t3Gz54oqDZmwwIhWJmTJugauWnZWd4k7SEJzd-aIwE6xu_u0voB56_xQabqAC9aAPywZ8M7ty30btXA6p73G6VpUPiKQ\",\n    \"refreshToken\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "GET OK message",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/auth/user/ok",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"user",
+										"ok"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GET OK message",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{API_URL}}/auth/user/ok",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"auth",
+												"user",
+												"ok"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "html",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "http://localhost:3000"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/html; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "2"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"2-nOO9QiTIwXgNtWtBJezz8kv3SLc\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 07 Jun 2021 19:34:43 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "OK"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Administrator",
+					"item": [
+						{
+							"name": "POST new login request",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if (pm.response.code === 200) {\r",
+											"    pm.environment.set('AUTH_TOKEN', pm.response.json().authToken)\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"aleksa\",\r\n    \"password\": \"asdasdasd\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/auth/administrator/login",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"administrator",
+										"login"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "POST new login request",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"aleksa\",\r\n    \"password\": \"asdasdasd\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/auth/administrator/login",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"auth",
+												"administrator",
+												"login"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "1070"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"42e-q6nAnpA7VGJgGZqMjIz+Giz3ABg\""
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 30 May 2021 01:34:59 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"authToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWRlbnRpdHkiOiJhbGVrc2EiLCJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlhdCI6MTYyMjMzODQ5OSwiZXhwIjoxNjIyOTQzMjk5LCJpc3MiOiJsb2NhbGhvc3QifQ.l1RLF31Y-Lg7oBiXg9YFEFufNuMyYWRORXmOFQ8XprHzNuTVyhNfTojtPT0BOvUVsLXFtQzJVGff6K8ineh2j8vuXADwzNKU8w67UDfdlGCj3mP_JJVo90sJiSUMdWJp9AN9B-CJWYavdqE4O33PNoCCylAodpaEKlANymThs-81W0SaXjll49dHvpRNr6mKA1_tAHm11ipmWH6Z8ZGt0gQO9EzIg-19pEn0H7VpQiadGAJE_s4hJ_--KWc7p4q397vXL3Rq3q4d-2_BCkqub3tfuA_95lLnrHiwMDyWDirX6zxXvmXDpBm6UIJh3O2dlT3u2yuJp6_B-UFtntYIBg\",\n    \"refreshToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWRlbnRpdHkiOiJhbGVrc2EiLCJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlhdCI6MTYyMjMzODQ5OSwiZXhwIjoxNjUzODc0NDk5LCJpc3MiOiJsb2NhbGhvc3QifQ.H8Xhk8HugMgqLXuqh1obhSLVdZFfqwdT7zrqoDQc-8_j-d8h_c2EInVkC_IXpAImcAMMI_l6CvWKHBcPiHslcoHvPwedetHzBq6SVpvVVpp7gZ7RVfEvXvpHXxg_j2UBgUqqOPoVKF-4I29FOFkMSk79Q1RFlcyP0N9J7IBk9idMI2H0bt0z6MeUfGcVnE4MV76OtNwOF5pX3LJv6UTw4gSOxTITravPqSaEbu9iU5z_ujzamkoI_BGzRPG2oGEaJ4ZF_Z2Nkz3tzt3eGYHzFToxhwahufJ1yrCcaKlToM947FDjAxMWFTC5_nF6Nx96DnkUayjdMtrzkWqBuIpUrQ\"\n}"
+								},
+								{
+									"name": "POST new login request - with administrator not exist",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"aleksa1\",\r\n    \"password\": \"asdasdasd\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/auth/administrator/login",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"auth",
+												"administrator",
+												"login"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/plain; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "9"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 30 May 2021 01:34:07 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "Not Found"
+								},
+								{
+									"name": "POST new login request - with incorrect password",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"aleksa\",\r\n    \"password\": \"asdasdasd1\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/auth/administrator/login",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"auth",
+												"administrator",
+												"login"
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "html",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/html; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "31"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"1f-6m/3ihwm3QpkaqHI5ehdTGQq6J0\""
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 30 May 2021 01:34:40 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "Invalid administrator password."
+								},
+								{
+									"name": "POST new login request - with inactive account",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"aleksa\",\r\n    \"password\": \"asdasdasd\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/auth/administrator/login",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"auth",
+												"administrator",
+												"login"
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "html",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/html; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "31"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"1f-gGX/kiT3mamimbuyelW2JDm0OL8\""
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 30 May 2021 01:38:16 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "Administrator account inactive."
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "GET the latest cart for user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/cart",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET the latest cart for user",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/cart",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "359"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"167-+7kSf7muAEnGCUzk5o7U+GFpfOs\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 May 2021 01:42:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"itemInfos\": [],\n    \"order\": null,\n    \"cartId\": 8,\n    \"createdAt\": \"2021-05-31T02:42:54.000Z\",\n    \"userId\": 2,\n    \"user\": {\n        \"passwordResetCode\": null,\n        \"postalAddresses\": [],\n        \"userId\": 2,\n        \"email\": \"aleksa2@test.com\",\n        \"createdAt\": \"2021-05-30T02:40:01.000Z\",\n        \"passwordHash\": \"$2b$08$DHjgNjPqayHRMpqYHx6S3OGbuOvHnGAK4pixIj/UWy1HzpxRiBefK\",\n        \"forename\": \"Aleksa\",\n        \"surname\": \"Milenkovic\",\n        \"isActive\": true\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "POST new item to the cart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"itemInfoId\": 23,\r\n    \"quantity\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/cart",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST new item to the cart",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"itemInfoId\": 27,\r\n    \"quantity\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/cart",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "682"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2aa-VGBKokH+hNbcNdzxJhLtFb2jB/U\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 May 2021 01:55:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"itemInfos\": [\n        {\n            \"cartItemId\": 1,\n            \"itemInfoId\": 27,\n            \"quantity\": 2,\n            \"itemInfo\": {\n                \"itemId\": 15,\n                \"item\": {\n                    \"category\": {\n                        \"parentCategoryId\": 1,\n                        \"parentCategory\": {\n                            \"parentCategoryId\": null,\n                            \"parentCategory\": null,\n                            \"subCategories\": [],\n                            \"items\": [],\n                            \"categoryId\": 1,\n                            \"name\": \"proba\"\n                        },\n                        \"subCategories\": [],\n                        \"items\": [],\n                        \"categoryId\": 11,\n                        \"name\": \"Veb programiranje\"\n                    },\n                    \"itemInfoAll\": [],\n                    \"photos\": [\n                        {\n                            \"photoId\": 7,\n                            \"imagePath\": \"static/uploads/2021/05/36baeb82-2870-47ee-8635-ebabd596ded5-yaml.PNG\"\n                        }\n                    ],\n                    \"itemId\": 15,\n                    \"name\": \"Test photo resize\",\n                    \"ingredients\": \"Test ingrd\",\n                    \"categoryId\": 11\n                },\n                \"itemInfoId\": 27,\n                \"size\": \"L\",\n                \"energyValue\": 22.22,\n                \"mass\": 22.22,\n                \"price\": 22.22\n            }\n        }\n    ],\n    \"order\": null,\n    \"cartId\": 8,\n    \"createdAt\": \"2021-05-31T02:42:54.000Z\",\n    \"userId\": 2\n}"
+						},
+						{
+							"name": "POST new item to the cart - with invalid quantity value",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"itemInfoId\": 27,\r\n    \"quantity\": -1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/cart",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "159"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9f-nZqlrASHSXmJv9M3q34TyFXoNzE\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 May 2021 01:57:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"instancePath\": \"/quantity\",\n        \"schemaPath\": \"#/properties/quantity/minimum\",\n        \"keyword\": \"minimum\",\n        \"params\": {\n            \"comparison\": \">=\",\n            \"limit\": 0\n        },\n        \"message\": \"must be >= 0\"\n    }\n]"
+						},
+						{
+							"name": "POST new item to the cart - with item info not exist",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"itemInfoId\": 1,\r\n    \"quantity\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/cart",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "15"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f-qWz83HnCrcw8fgDREzRiz5wJSK4\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 May 2021 01:57:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Item not found."
+						}
+					]
+				},
+				{
+					"name": "PUT new item info quantity value into cart",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"itemInfoId\": 23,\r\n    \"quantity\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/cart",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "PUT new item info quantity value into cart",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"itemInfoId\": 27,\r\n    \"quantity\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/cart",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "682"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2aa-QrTxKqH3jZ30QmwQg+joulBN7MY\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 May 2021 02:04:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"itemInfos\": [\n        {\n            \"cartItemId\": 1,\n            \"itemInfoId\": 27,\n            \"quantity\": 1,\n            \"itemInfo\": {\n                \"itemId\": 15,\n                \"item\": {\n                    \"category\": {\n                        \"parentCategoryId\": 1,\n                        \"parentCategory\": {\n                            \"parentCategoryId\": null,\n                            \"parentCategory\": null,\n                            \"subCategories\": [],\n                            \"items\": [],\n                            \"categoryId\": 1,\n                            \"name\": \"proba\"\n                        },\n                        \"subCategories\": [],\n                        \"items\": [],\n                        \"categoryId\": 11,\n                        \"name\": \"Veb programiranje\"\n                    },\n                    \"itemInfoAll\": [],\n                    \"photos\": [\n                        {\n                            \"photoId\": 7,\n                            \"imagePath\": \"static/uploads/2021/05/36baeb82-2870-47ee-8635-ebabd596ded5-yaml.PNG\"\n                        }\n                    ],\n                    \"itemId\": 15,\n                    \"name\": \"Test photo resize\",\n                    \"ingredients\": \"Test ingrd\",\n                    \"categoryId\": 11\n                },\n                \"itemInfoId\": 27,\n                \"size\": \"L\",\n                \"energyValue\": 22.22,\n                \"mass\": 22.22,\n                \"price\": 22.22\n            }\n        }\n    ],\n    \"order\": null,\n    \"cartId\": 8,\n    \"createdAt\": \"2021-05-31T02:42:54.000Z\",\n    \"userId\": 2\n}"
+						}
+					]
+				},
+				{
+					"name": "POST a new order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"desiredDeliveryTime\": \"2021-05-31T02:55:51.038Z\",\r\n    \"footnote\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/cart/order",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"cart",
+								"order"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST a new order - without given information",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/cart/order",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart",
+										"order"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "181"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b5-wxSOIA+z4bLJ1a3mr3Jtp7gjefk\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 May 2021 02:09:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"instancePath\": \"\",\n        \"schemaPath\": \"#/required\",\n        \"keyword\": \"required\",\n        \"params\": {\n            \"missingProperty\": \"desiredDeliveryTime\"\n        },\n        \"message\": \"must have required property 'desiredDeliveryTime'\"\n    }\n]"
+						},
+						{
+							"name": "POST a new order - with desired delivery time less then 45minutes",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"desiredDeliveryTime\": \"2021-05-31T02:12:51.038Z\",\r\n    \"footnote\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/cart/order",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart",
+										"order"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "49"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"31-mnX7FROzeRfv0X/ikW9s4W/Aaxw\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 May 2021 02:31:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Desired delivery time can be at least 45 minutes."
+						},
+						{
+							"name": "POST a new order - with invalid date",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"desiredDeliveryTime\": \"2021-06-22T02:12:51.038Z\",\r\n    \"footnote\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/cart/order",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart",
+										"order"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b-YVQxudBS8+ToPrA7zX5o4hr/fOk\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 May 2021 02:33:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Desired delivery time must be on same date."
+						},
+						{
+							"name": "POST a new order - with empty cart",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"desiredDeliveryTime\": \"2021-05-31T02:55:51.038Z\",\r\n    \"footnote\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/cart/order",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart",
+										"order"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "78"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4e-sww03a/kpBhhFzvQVjuV4ri5XcA\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 May 2021 02:37:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": -1,\n    \"errorMessage\": \"You cannot make an order with an empty cart.\"\n}"
+						},
+						{
+							"name": "POST a new order",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"desiredDeliveryTime\": \"2021-07-02T09:55:51.038Z\",\r\n    \"footnote\": \"test footnote\",\r\n    \"addressId\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/cart/order",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart",
+										"order"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1203"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4b3-izRWLODTw+22YhMtDGMyH5tcl9I\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jul 2021 06:38:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"itemInfos\": [\n        {\n            \"cartItemId\": 7,\n            \"itemInfoId\": 26,\n            \"quantity\": 1,\n            \"itemInfo\": {\n                \"itemId\": 15,\n                \"item\": {\n                    \"category\": {\n                        \"parentCategoryId\": 1,\n                        \"parentCategory\": null,\n                        \"subCategories\": [],\n                        \"items\": [],\n                        \"categoryId\": 11,\n                        \"name\": \"Veb programiranje\"\n                    },\n                    \"itemInfoAll\": [],\n                    \"photos\": [\n                        {\n                            \"photoId\": 10,\n                            \"imagePath\": \"static/uploads/2021/07/e83cc287-8368-480e-af7b-c3ec2fc01a5a-6.jpg\"\n                        },\n                        {\n                            \"photoId\": 11,\n                            \"imagePath\": \"static/uploads/2021/07/ff9b2671-780c-4090-bd93-38dab94a907c-0607czofk1zr1.jpg\"\n                        }\n                    ],\n                    \"itemId\": 15,\n                    \"name\": \"Test photo resize\",\n                    \"ingredients\": \"Test ingrd\",\n                    \"categoryId\": 11\n                },\n                \"itemInfoId\": 26,\n                \"size\": \"S\",\n                \"energyValue\": 22.22,\n                \"mass\": 22.22,\n                \"price\": 22.22\n            }\n        }\n    ],\n    \"order\": {\n        \"orderId\": 10,\n        \"addressId\": 3,\n        \"address\": {\n            \"postalAddressId\": 3,\n            \"userId\": 2,\n            \"address\": \"Test address\",\n            \"phoneNumber\": \"064111222333\",\n            \"isActive\": true\n        },\n        \"createdAt\": \"2021-07-02T07:38:31.000Z\",\n        \"status\": \"pending\",\n        \"desiredDeliveryTime\": null,\n        \"footnote\": \"test footnote\"\n    },\n    \"cartId\": 11,\n    \"createdAt\": \"2021-07-02T04:45:26.000Z\",\n    \"userId\": 2,\n    \"user\": {\n        \"passwordResetCode\": null,\n        \"postalAddresses\": [],\n        \"userId\": 2,\n        \"email\": \"aleksa2@test.com\",\n        \"createdAt\": \"2021-05-30T02:40:01.000Z\",\n        \"passwordHash\": \"$2b$08$DHjgNjPqayHRMpqYHx6S3OGbuOvHnGAK4pixIj/UWy1HzpxRiBefK\",\n        \"forename\": \"Aleksa\",\n        \"surname\": \"Milenkovic\",\n        \"isActive\": true\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "GET all my orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/cart/order/my",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"cart",
+								"order",
+								"my"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET all my orders",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/cart/order/my",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart",
+										"order",
+										"my"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1430"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"596-2FqYZ+8Wo0nlY44ecQUEkFbmX0g\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 May 2021 02:38:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"itemInfos\": [\n            {\n                \"cartItemId\": 1,\n                \"itemInfoId\": 27,\n                \"quantity\": 1,\n                \"itemInfo\": {\n                    \"itemId\": 15,\n                    \"item\": {\n                        \"category\": {\n                            \"parentCategoryId\": 1,\n                            \"parentCategory\": null,\n                            \"subCategories\": [],\n                            \"items\": [],\n                            \"categoryId\": 11,\n                            \"name\": \"Veb programiranje\"\n                        },\n                        \"itemInfoAll\": [],\n                        \"photos\": [\n                            {\n                                \"photoId\": 7,\n                                \"imagePath\": \"static/uploads/2021/05/36baeb82-2870-47ee-8635-ebabd596ded5-yaml.PNG\"\n                            }\n                        ],\n                        \"itemId\": 15,\n                        \"name\": \"Test photo resize\",\n                        \"ingredients\": \"Test ingrd\",\n                        \"categoryId\": 11\n                    },\n                    \"itemInfoId\": 27,\n                    \"size\": \"L\",\n                    \"energyValue\": 22.22,\n                    \"mass\": 22.22,\n                    \"price\": 22.22\n                }\n            }\n        ],\n        \"order\": {\n            \"orderId\": 6,\n            \"createdAt\": \"2021-05-31T03:35:33.000Z\",\n            \"status\": \"pending\",\n            \"desiredDeliveryTime\": null,\n            \"footnote\": \"\"\n        },\n        \"cartId\": 8,\n        \"createdAt\": \"2021-05-31T02:42:54.000Z\",\n        \"userId\": 2,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"postalAddresses\": [],\n            \"userId\": 2,\n            \"email\": \"aleksa2@test.com\",\n            \"createdAt\": \"2021-05-30T02:40:01.000Z\",\n            \"passwordHash\": \"$2b$08$DHjgNjPqayHRMpqYHx6S3OGbuOvHnGAK4pixIj/UWy1HzpxRiBefK\",\n            \"forename\": \"Aleksa\",\n            \"surname\": \"Milenkovic\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"itemInfos\": [],\n        \"order\": {\n            \"orderId\": 5,\n            \"createdAt\": \"2021-05-31T02:25:45.000Z\",\n            \"status\": \"pending\",\n            \"desiredDeliveryTime\": null,\n            \"footnote\": \"test\"\n        },\n        \"cartId\": 7,\n        \"createdAt\": \"2021-05-31T02:24:26.000Z\",\n        \"userId\": 2,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"postalAddresses\": [],\n            \"userId\": 2,\n            \"email\": \"aleksa2@test.com\",\n            \"createdAt\": \"2021-05-30T02:40:01.000Z\",\n            \"passwordHash\": \"$2b$08$DHjgNjPqayHRMpqYHx6S3OGbuOvHnGAK4pixIj/UWy1HzpxRiBefK\",\n            \"forename\": \"Aleksa\",\n            \"surname\": \"Milenkovic\",\n            \"isActive\": true\n        }\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "GET all orders -  ADMIN",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/order",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"order"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET all orders -  ADMIN",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/order",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"order"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1430"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"596-2FqYZ+8Wo0nlY44ecQUEkFbmX0g\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 May 2021 02:40:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"itemInfos\": [\n            {\n                \"cartItemId\": 1,\n                \"itemInfoId\": 27,\n                \"quantity\": 1,\n                \"itemInfo\": {\n                    \"itemId\": 15,\n                    \"item\": {\n                        \"category\": {\n                            \"parentCategoryId\": 1,\n                            \"parentCategory\": null,\n                            \"subCategories\": [],\n                            \"items\": [],\n                            \"categoryId\": 11,\n                            \"name\": \"Veb programiranje\"\n                        },\n                        \"itemInfoAll\": [],\n                        \"photos\": [\n                            {\n                                \"photoId\": 7,\n                                \"imagePath\": \"static/uploads/2021/05/36baeb82-2870-47ee-8635-ebabd596ded5-yaml.PNG\"\n                            }\n                        ],\n                        \"itemId\": 15,\n                        \"name\": \"Test photo resize\",\n                        \"ingredients\": \"Test ingrd\",\n                        \"categoryId\": 11\n                    },\n                    \"itemInfoId\": 27,\n                    \"size\": \"L\",\n                    \"energyValue\": 22.22,\n                    \"mass\": 22.22,\n                    \"price\": 22.22\n                }\n            }\n        ],\n        \"order\": {\n            \"orderId\": 6,\n            \"createdAt\": \"2021-05-31T03:35:33.000Z\",\n            \"status\": \"pending\",\n            \"desiredDeliveryTime\": null,\n            \"footnote\": \"\"\n        },\n        \"cartId\": 8,\n        \"createdAt\": \"2021-05-31T02:42:54.000Z\",\n        \"userId\": 2,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"postalAddresses\": [],\n            \"userId\": 2,\n            \"email\": \"aleksa2@test.com\",\n            \"createdAt\": \"2021-05-30T02:40:01.000Z\",\n            \"passwordHash\": \"$2b$08$DHjgNjPqayHRMpqYHx6S3OGbuOvHnGAK4pixIj/UWy1HzpxRiBefK\",\n            \"forename\": \"Aleksa\",\n            \"surname\": \"Milenkovic\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"itemInfos\": [],\n        \"order\": {\n            \"orderId\": 5,\n            \"createdAt\": \"2021-05-31T02:25:45.000Z\",\n            \"status\": \"pending\",\n            \"desiredDeliveryTime\": null,\n            \"footnote\": \"test\"\n        },\n        \"cartId\": 7,\n        \"createdAt\": \"2021-05-31T02:24:26.000Z\",\n        \"userId\": 2,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"postalAddresses\": [],\n            \"userId\": 2,\n            \"email\": \"aleksa2@test.com\",\n            \"createdAt\": \"2021-05-30T02:40:01.000Z\",\n            \"passwordHash\": \"$2b$08$DHjgNjPqayHRMpqYHx6S3OGbuOvHnGAK4pixIj/UWy1HzpxRiBefK\",\n            \"forename\": \"Aleksa\",\n            \"surname\": \"Milenkovic\",\n            \"isActive\": true\n        }\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "GET all orders of a user - ADMIN",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/user/2/order",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"user",
+								"2",
+								"order"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET all orders of a user - ADMIN",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/user/2/order",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"user",
+										"2",
+										"order"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1430"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"596-2FqYZ+8Wo0nlY44ecQUEkFbmX0g\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 May 2021 02:41:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"itemInfos\": [\n            {\n                \"cartItemId\": 1,\n                \"itemInfoId\": 27,\n                \"quantity\": 1,\n                \"itemInfo\": {\n                    \"itemId\": 15,\n                    \"item\": {\n                        \"category\": {\n                            \"parentCategoryId\": 1,\n                            \"parentCategory\": null,\n                            \"subCategories\": [],\n                            \"items\": [],\n                            \"categoryId\": 11,\n                            \"name\": \"Veb programiranje\"\n                        },\n                        \"itemInfoAll\": [],\n                        \"photos\": [\n                            {\n                                \"photoId\": 7,\n                                \"imagePath\": \"static/uploads/2021/05/36baeb82-2870-47ee-8635-ebabd596ded5-yaml.PNG\"\n                            }\n                        ],\n                        \"itemId\": 15,\n                        \"name\": \"Test photo resize\",\n                        \"ingredients\": \"Test ingrd\",\n                        \"categoryId\": 11\n                    },\n                    \"itemInfoId\": 27,\n                    \"size\": \"L\",\n                    \"energyValue\": 22.22,\n                    \"mass\": 22.22,\n                    \"price\": 22.22\n                }\n            }\n        ],\n        \"order\": {\n            \"orderId\": 6,\n            \"createdAt\": \"2021-05-31T03:35:33.000Z\",\n            \"status\": \"pending\",\n            \"desiredDeliveryTime\": null,\n            \"footnote\": \"\"\n        },\n        \"cartId\": 8,\n        \"createdAt\": \"2021-05-31T02:42:54.000Z\",\n        \"userId\": 2,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"postalAddresses\": [],\n            \"userId\": 2,\n            \"email\": \"aleksa2@test.com\",\n            \"createdAt\": \"2021-05-30T02:40:01.000Z\",\n            \"passwordHash\": \"$2b$08$DHjgNjPqayHRMpqYHx6S3OGbuOvHnGAK4pixIj/UWy1HzpxRiBefK\",\n            \"forename\": \"Aleksa\",\n            \"surname\": \"Milenkovic\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"itemInfos\": [],\n        \"order\": {\n            \"orderId\": 5,\n            \"createdAt\": \"2021-05-31T02:25:45.000Z\",\n            \"status\": \"pending\",\n            \"desiredDeliveryTime\": null,\n            \"footnote\": \"test\"\n        },\n        \"cartId\": 7,\n        \"createdAt\": \"2021-05-31T02:24:26.000Z\",\n        \"userId\": 2,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"postalAddresses\": [],\n            \"userId\": 2,\n            \"email\": \"aleksa2@test.com\",\n            \"createdAt\": \"2021-05-30T02:40:01.000Z\",\n            \"passwordHash\": \"$2b$08$DHjgNjPqayHRMpqYHx6S3OGbuOvHnGAK4pixIj/UWy1HzpxRiBefK\",\n            \"forename\": \"Aleksa\",\n            \"surname\": \"Milenkovic\",\n            \"isActive\": true\n        }\n    }\n]"
+						},
+						{
+							"name": "GET all orders of a user - ADMIN - with no existing user or user has no order",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/user/55/order",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"user",
+										"55",
+										"order"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 May 2021 02:43:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[]"
+						}
+					]
+				},
+				{
+					"name": "PUT a new status for  a cart's order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"rejected\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/cart/25",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"cart",
+								"25"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "PUT a new status for  a cart's order",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"status\": \"accepted\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/cart/7",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart",
+										"7"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "472"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1d8-dEQurtqU17V3wcP4stBkcYFQ5i8\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 May 2021 02:48:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"itemInfos\": [],\n    \"order\": {\n        \"orderId\": 5,\n        \"createdAt\": \"2021-05-31T03:48:03.000Z\",\n        \"status\": \"accepted\",\n        \"desiredDeliveryTime\": null,\n        \"footnote\": \"test\"\n    },\n    \"cartId\": 7,\n    \"createdAt\": \"2021-05-31T02:24:26.000Z\",\n    \"userId\": 2,\n    \"user\": {\n        \"passwordResetCode\": null,\n        \"postalAddresses\": [],\n        \"userId\": 2,\n        \"email\": \"aleksa2@test.com\",\n        \"createdAt\": \"2021-05-30T02:40:01.000Z\",\n        \"passwordHash\": \"$2b$08$DHjgNjPqayHRMpqYHx6S3OGbuOvHnGAK4pixIj/UWy1HzpxRiBefK\",\n        \"forename\": \"Aleksa\",\n        \"surname\": \"Milenkovic\",\n        \"isActive\": true\n    }\n}"
+						},
+						{
+							"name": "PUT a new status for  a cart's order - with status not allowed",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"status\": \"inv\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/cart/7",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart",
+										"7"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "229"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e5-8H0FmkBNpDfPnwwXv6DiOlbupl8\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 May 2021 02:47:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"instancePath\": \"/status\",\n        \"schemaPath\": \"#/properties/status/pattern\",\n        \"keyword\": \"pattern\",\n        \"params\": {\n            \"pattern\": \"^(pending|rejected|accepted|completed)$\"\n        },\n        \"message\": \"must match pattern \\\"^(pending|rejected|accepted|completed)$\\\"\"\n    }\n]"
+						},
+						{
+							"name": "PUT a new status for  a cart's order - with user role and status which isn't rejected",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"status\": \"accepted\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/cart/17",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart",
+										"17"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "15"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f-uHmJ+bNe0eOBT9bu79qQ1pEvhVw\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Aug 2021 00:00:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Invalid status."
+						},
+						{
+							"name": "PUT a new status for  a cart's order - which order is already accepted",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"status\": \"rejected\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/cart/25",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart",
+										"25"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "59"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3b-E1Ry7CA6sPzHqpLD3zdl+4EvYHM\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Sep 2021 22:39:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Can't cancel order which is already accepted.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "PUT to edit order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cartId\": 26,\r\n    \"itemInfos\": [\r\n    {\r\n        \"cartItemId\": 57,\r\n        \"itemInfoId\": 87,\r\n        \"quantity\": 2,\r\n        \"itemInfo\": {\r\n            \"itemId\": 36,\r\n            \"item\": {\r\n                \"category\": {\r\n                    \"parentCategoryId\": null,\r\n                    \"parentCategory\": null,\r\n                    \"subCategories\": [],\r\n                    \"items\": [],\r\n                    \"categoryId\": 37,\r\n                    \"name\": \"Pasta\"\r\n                },\r\n                \"itemInfoAll\": [],\r\n                \"photos\": [\r\n                    {\r\n                        \"photoId\": 38,\r\n                        \"imagePath\": \"static/uploads/2021/09/8136296a-f5a8-44c0-a983-a2371f5329f9-gorocvet_71705275.jpg\"\r\n                    }\r\n                ],\r\n                \"itemId\": 36,\r\n                \"name\": \"Bolognese\",\r\n                \"ingredients\": \"Pasta, beef meat\",\r\n                \"categoryId\": 37\r\n            },\r\n            \"itemInfoId\": 87,\r\n            \"size\": \"L\",\r\n            \"energyValue\": 14.9,\r\n            \"mass\": 25.2,\r\n            \"price\": 3\r\n        }\r\n    }\r\n    ],\r\n    \"order\": {\r\n    \"orderId\": 24,\r\n    \"addressId\": 3,\r\n    \"desiredDeliveryTime\": \"2021-09-13T23:27:55.547Z\",\r\n    \"footnote\": \"\"\r\n}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/cart/26/edit",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"cart",
+								"26",
+								"edit"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "PUT to edit order - valid data",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cartId\": 26,\r\n    \"itemInfos\": [\r\n    {\r\n        \"cartItemId\": 57,\r\n        \"itemInfoId\": 87,\r\n        \"quantity\": 2,\r\n        \"itemInfo\": {\r\n            \"itemId\": 36,\r\n            \"item\": {\r\n                \"category\": {\r\n                    \"parentCategoryId\": null,\r\n                    \"parentCategory\": null,\r\n                    \"subCategories\": [],\r\n                    \"items\": [],\r\n                    \"categoryId\": 37,\r\n                    \"name\": \"Pasta\"\r\n                },\r\n                \"itemInfoAll\": [],\r\n                \"photos\": [\r\n                    {\r\n                        \"photoId\": 38,\r\n                        \"imagePath\": \"static/uploads/2021/09/8136296a-f5a8-44c0-a983-a2371f5329f9-gorocvet_71705275.jpg\"\r\n                    }\r\n                ],\r\n                \"itemId\": 36,\r\n                \"name\": \"Bolognese\",\r\n                \"ingredients\": \"Pasta, beef meat\",\r\n                \"categoryId\": 37\r\n            },\r\n            \"itemInfoId\": 87,\r\n            \"size\": \"L\",\r\n            \"energyValue\": 14.9,\r\n            \"mass\": 25.2,\r\n            \"price\": 3\r\n        }\r\n    }\r\n    ],\r\n    \"order\": {\r\n    \"orderId\": 24,\r\n    \"addressId\": 3,\r\n    \"desiredDeliveryTime\": \"2021-09-13T23:27:55.547Z\",\r\n    \"footnote\": \"\"\r\n}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/cart/26/edit",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart",
+										"26",
+										"edit"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "814"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"32e-cI39hl4YW9I6u/KJTdh8PCWpXac\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Sep 2021 22:48:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"itemInfos\": [\n        {\n            \"cartItemId\": 57,\n            \"itemInfoId\": 87,\n            \"quantity\": 2,\n            \"itemInfo\": {\n                \"itemId\": 36,\n                \"item\": {\n                    \"category\": {\n                        \"parentCategoryId\": null,\n                        \"parentCategory\": null,\n                        \"subCategories\": [],\n                        \"items\": [],\n                        \"categoryId\": 37,\n                        \"name\": \"Pasta\"\n                    },\n                    \"itemInfoAll\": [],\n                    \"photos\": [\n                        {\n                            \"photoId\": 38,\n                            \"imagePath\": \"static/uploads/2021/09/8136296a-f5a8-44c0-a983-a2371f5329f9-gorocvet_71705275.jpg\"\n                        }\n                    ],\n                    \"itemId\": 36,\n                    \"name\": \"Bolognese\",\n                    \"ingredients\": \"Pasta, beef meat\",\n                    \"categoryId\": 37\n                },\n                \"itemInfoId\": 87,\n                \"size\": \"L\",\n                \"energyValue\": 14.9,\n                \"mass\": 25.2,\n                \"price\": 3\n            }\n        }\n    ],\n    \"order\": {\n        \"orderId\": 24,\n        \"addressId\": 3,\n        \"address\": {\n            \"postalAddressId\": 3,\n            \"userId\": 2,\n            \"address\": \"Test address\",\n            \"phoneNumber\": \"064555555555\",\n            \"isActive\": true\n        },\n        \"createdAt\": \"2021-09-13T23:43:02.000Z\",\n        \"status\": \"pending\",\n        \"desiredDeliveryTime\": null,\n        \"footnote\": \"\"\n    },\n    \"cartId\": 26,\n    \"createdAt\": \"2021-09-13T23:00:18.000Z\",\n    \"userId\": 2\n}"
+						},
+						{
+							"name": "PUT to edit order - which order is not pending",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cartId\": 26,\r\n    \"itemInfos\": [\r\n    {\r\n        \"cartItemId\": 57,\r\n        \"itemInfoId\": 87,\r\n        \"quantity\": 2,\r\n        \"itemInfo\": {\r\n            \"itemId\": 36,\r\n            \"item\": {\r\n                \"category\": {\r\n                    \"parentCategoryId\": null,\r\n                    \"parentCategory\": null,\r\n                    \"subCategories\": [],\r\n                    \"items\": [],\r\n                    \"categoryId\": 37,\r\n                    \"name\": \"Pasta\"\r\n                },\r\n                \"itemInfoAll\": [],\r\n                \"photos\": [\r\n                    {\r\n                        \"photoId\": 38,\r\n                        \"imagePath\": \"static/uploads/2021/09/8136296a-f5a8-44c0-a983-a2371f5329f9-gorocvet_71705275.jpg\"\r\n                    }\r\n                ],\r\n                \"itemId\": 36,\r\n                \"name\": \"Bolognese\",\r\n                \"ingredients\": \"Pasta, beef meat\",\r\n                \"categoryId\": 37\r\n            },\r\n            \"itemInfoId\": 87,\r\n            \"size\": \"L\",\r\n            \"energyValue\": 14.9,\r\n            \"mass\": 25.2,\r\n            \"price\": 3\r\n        }\r\n    }\r\n    ],\r\n    \"order\": {\r\n    \"orderId\": 24,\r\n    \"addressId\": 3,\r\n    \"desiredDeliveryTime\": \"2021-09-13T23:27:55.547Z\",\r\n    \"footnote\": \"\"\r\n}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/cart/25/edit",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart",
+										"25",
+										"edit"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"34-q++i4a5lg8SfQIfli28MDEkcZ6Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Sep 2021 22:52:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Cant edit cart which isn't on pending!\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Evaluation",
+			"item": [
+				{
+					"name": "POST new evaluation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"orderId\": 23,\r\n    \"score\": \"2\",\r\n    \"remark\": \"Test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/evaluation",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"evaluation"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST new evaluation - valid data",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"orderId\": 23,\r\n    \"cartId\": 25,\r\n    \"score\": \"2\",\r\n    \"remark\": \"Test\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/evaluation",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"evaluation"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "59"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3b-4QuHBccTWNJJuHaH6+CwlfQ6+mI\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Sep 2021 22:59:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"evaluationId\": 3,\n    \"orderId\": 23,\n    \"score\": \"2\",\n    \"remark\": \"Test\"\n}"
+						},
+						{
+							"name": "POST new evaluation - missing property",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"orderId\": 23,\r\n    \"score\": \"2\",\r\n    \"remark\": \"Test\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/evaluation",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"evaluation"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "155"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9b-4iaUL6M8m7ILxVKoBd62JXQ9Rgs\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Sep 2021 23:00:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"instancePath\": \"\",\n        \"schemaPath\": \"#/required\",\n        \"keyword\": \"required\",\n        \"params\": {\n            \"missingProperty\": \"cartId\"\n        },\n        \"message\": \"must have required property 'cartId'\"\n    }\n]"
+						},
+						{
+							"name": "POST new evaluation - wrong cart id",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"orderId\": 23,\r\n    \"cartId\": 4,\r\n    \"score\": \"2\",\r\n    \"remark\": \"Test\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/evaluation",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"evaluation"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"0-2jmj7l5rSw0yVb/vlWAYkK/YBwk\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Sep 2021 23:00:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{AUTH_TOKEN}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "API_URL",
+			"value": "http://localhost:40080"
+		},
+		{
+			"key": "API_USER_AUTH_TOKEN",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWRlbnRpdHkiOiJhbGVrc2EyQHRlc3QuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2MjIzMzcyMzUsImV4cCI6MTYyMjk0MjAzNSwiaXNzIjoibG9jYWxob3N0In0.b1P_vi1fskqqiEP0fDrzSiSAeMC6IOQjbExvaxkIBXV1iIiPJ7PWKwT-BILINs24eBukdvhNVM6S5lOjO98eOy34k-Hf82Hwpu9NRdVCJtFeqUxnHrLpKnLW88RWtaH9XLVbLoP5RP-YuhbaDBU8x8wsrvvJdfgW3oTuanJaAYsY3Kyhcp0LbjnxqNeH7K8r7ybRBERO86k6ONmdtavtRK8DFkuUQctNNksTVI_98w1Cp025ub4L-uVGLNQC85cK_6OJYrzlrbmZEvu92etnYP7J6eMglofrayp2snwAKFEWOy4nNgZh5p0ezfla8t-QSgIIelZmD0cMsHYS9Fhc0w"
+		},
+		{
+			"key": "AUTH_TOKEN",
+			"value": ""
+		}
+	]
+}
