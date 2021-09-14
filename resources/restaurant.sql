@@ -12,7 +12,14 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+
+-- Dumping database structure for restaurant
+DROP DATABASE IF EXISTS `restaurant`;
+CREATE DATABASE IF NOT EXISTS `restaurant` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+USE `restaurant`;
+
 -- Dumping structure for table restaurant.administrator
+DROP TABLE IF EXISTS `administrator`;
 CREATE TABLE IF NOT EXISTS `administrator` (
   `administrator_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(30) NOT NULL DEFAULT '0',
@@ -29,6 +36,7 @@ INSERT INTO `administrator` (`administrator_id`, `username`, `password_hash`, `i
 /*!40000 ALTER TABLE `administrator` ENABLE KEYS */;
 
 -- Dumping structure for table restaurant.cart
+DROP TABLE IF EXISTS `cart`;
 CREATE TABLE IF NOT EXISTS `cart` (
   `cart_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) unsigned NOT NULL,
@@ -49,6 +57,7 @@ INSERT INTO `cart` (`cart_id`, `user_id`, `created_at`) VALUES
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 
 -- Dumping structure for table restaurant.cart_item
+DROP TABLE IF EXISTS `cart_item`;
 CREATE TABLE IF NOT EXISTS `cart_item` (
   `cart_item_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `cart_id` int(10) unsigned NOT NULL,
@@ -75,6 +84,7 @@ INSERT INTO `cart_item` (`cart_item_id`, `cart_id`, `item_info_id`, `quantity`) 
 /*!40000 ALTER TABLE `cart_item` ENABLE KEYS */;
 
 -- Dumping structure for table restaurant.category
+DROP TABLE IF EXISTS `category`;
 CREATE TABLE IF NOT EXISTS `category` (
   `category_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
@@ -105,6 +115,7 @@ INSERT INTO `category` (`category_id`, `name`, `parent_category_id`) VALUES
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 
 -- Dumping structure for table restaurant.evaluation
+DROP TABLE IF EXISTS `evaluation`;
 CREATE TABLE IF NOT EXISTS `evaluation` (
   `evaluation_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `order_id` int(10) unsigned NOT NULL,
@@ -125,6 +136,7 @@ INSERT INTO `evaluation` (`evaluation_id`, `order_id`, `user_id`, `score`, `rema
 /*!40000 ALTER TABLE `evaluation` ENABLE KEYS */;
 
 -- Dumping structure for table restaurant.item
+DROP TABLE IF EXISTS `item`;
 CREATE TABLE IF NOT EXISTS `item` (
   `item_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `category_id` int(10) unsigned NOT NULL,
@@ -172,6 +184,7 @@ INSERT INTO `item` (`item_id`, `category_id`, `name`, `ingredients`, `is_active`
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 
 -- Dumping structure for table restaurant.item_info
+DROP TABLE IF EXISTS `item_info`;
 CREATE TABLE IF NOT EXISTS `item_info` (
   `item_info_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `item_id` int(10) unsigned NOT NULL,
@@ -277,6 +290,7 @@ INSERT INTO `item_info` (`item_info_id`, `item_id`, `size`, `energy_value`, `mas
 /*!40000 ALTER TABLE `item_info` ENABLE KEYS */;
 
 -- Dumping structure for table restaurant.order
+DROP TABLE IF EXISTS `order`;
 CREATE TABLE IF NOT EXISTS `order` (
   `order_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `cart_id` int(10) unsigned NOT NULL,
@@ -302,6 +316,7 @@ INSERT INTO `order` (`order_id`, `cart_id`, `status`, `postal_address_id`, `desi
 /*!40000 ALTER TABLE `order` ENABLE KEYS */;
 
 -- Dumping structure for table restaurant.photo
+DROP TABLE IF EXISTS `photo`;
 CREATE TABLE IF NOT EXISTS `photo` (
   `photo_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `item_id` int(10) unsigned NOT NULL,
@@ -346,6 +361,7 @@ INSERT INTO `photo` (`photo_id`, `item_id`, `image_path`) VALUES
 /*!40000 ALTER TABLE `photo` ENABLE KEYS */;
 
 -- Dumping structure for table restaurant.postal_address
+DROP TABLE IF EXISTS `postal_address`;
 CREATE TABLE IF NOT EXISTS `postal_address` (
   `postal_address_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) unsigned NOT NULL,
@@ -369,6 +385,7 @@ INSERT INTO `postal_address` (`postal_address_id`, `user_id`, `address`, `phone_
 /*!40000 ALTER TABLE `postal_address` ENABLE KEYS */;
 
 -- Dumping structure for table restaurant.user
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
