@@ -21,12 +21,13 @@ export default class UserRouter implements IRouter {
       userController.add.bind(userController));
     application.put(
       '/user/:id',
-      AuthMiddleware.getVerifier('administrator', 'user'),
+      AuthMiddleware.getVerifier('user'),
       userController.edit.bind(userController));
     application.post(
       '/auth/user/register',
       userController.register.bind(userController));
     application.delete("/user/:id",
+      AuthMiddleware.getVerifier('administrator'),
       userController.delete.bind(userController));
   }
 }
